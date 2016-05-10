@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle" xmlns:dc="http://purl.org/dc/elements/1.1/">
+    <channel>
+        <title>PodcastMenu Changelog</title>
+        <link>https://github.com/insidegui/PodcastMenu/raw/master/Releases/appcast.xml</link>
+        <description>Most recent changes with links to updates.</description>
+        <language>en</language>
+        
+        <item>
+            <title>Version 1.0</title>
+			<description><![CDATA[
+							<ul>
+								<li>First release</li>
+							</ul>
+						]]></description>
+            <pubDate>Tue, 10 May 2016 18:30:00 +0000</pubDate>
+            <enclosure url="https://github.com/insidegui/PodcastMenu/raw/master/Releases/PodcastMenu_v1.0.zip" sparkle:version="1" sparkle:shortVersionString="1.0" length="3786282" type="application/octet-stream" />
+            <sparkle:minimumSystemVersion>10.10</sparkle:minimumSystemVersion>
+        </item>
+    </channel>
+</rss>
