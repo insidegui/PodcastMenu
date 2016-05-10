@@ -18,7 +18,7 @@ If you love podcasts and you're not using Overcast, you definitely should.
 
 # Download
 
-[⬇️ Click here to download the latest release](https://raw.githubusercontent.com/insidegui/WWDC/master/Releases/WWDC_latest.zip).
+[⬇️ Click here to download the latest release](https://github.com/insidegui/PodcastMenu/raw/master/Releases/PodcastMenu_v1.0.zip).
 
 ![screenshot](screenshot.png)
 
