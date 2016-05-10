@@ -10,12 +10,6 @@ While the app is playing a podcast, you can use your keyboard's media keys to co
 * Play/pause to play or pause the currently playing episode
 * Forward/backward to advance/go back 30 seconds
 
-# Get Overcast
-
-If you love podcasts and you're not using Overcast, you definitely should. 
-
-[Overcast is available on the App Store](https://itunes.apple.com/app/overcast-podcast-player/id888422857).
-
 # Download
 
 [⬇️ Click here to download the latest release](https://github.com/insidegui/PodcastMenu/raw/master/Releases/PodcastMenu_v1.0.zip).
@@ -25,3 +19,9 @@ If you love podcasts and you're not using Overcast, you definitely should.
 ## Disclaimer
 
 This is not an "official" app, I'm not affiliated with Overcast, I just love It and really wanted It to have a Mac app 😁
+
+# Get Overcast
+
+If you love podcasts and you're not using Overcast, you definitely should. 
+
+[Overcast is available on the App Store](https://itunes.apple.com/app/overcast-podcast-player/id888422857).
