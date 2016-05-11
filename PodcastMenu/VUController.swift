@@ -63,7 +63,7 @@ class VUController: OvercastLoudnessDelegate {
             timeoutTimer = nil
         }
         
-        timeoutTimer = NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: #selector(timeoutTimerAction), userInfo: nil, repeats: false)
+        timeoutTimer = NSTimer.scheduledTimerWithTimeInterval(0.3, target: self, selector: #selector(timeoutTimerAction), userInfo: nil, repeats: false)
     }
     
     @objc private func timeoutTimerAction() {
