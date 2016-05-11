@@ -26,6 +26,7 @@
 		DD0BFE741CE2890000446474 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD0BFE721CE2890000446474 /* Crashlytics.framework */; };
 		DDC61FE91CE2F0C300C0FADA /* VUController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDC61FE81CE2F0C300C0FADA /* VUController.swift */; };
 		DDC61FED1CE2F20E00C0FADA /* NSImage+CGImage.m in Sources */ = {isa = PBXBuildFile; fileRef = DDC61FEC1CE2F20E00C0FADA /* NSImage+CGImage.m */; };
+		DDC61FF01CE2FE1E00C0FADA /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDC61FEF1CE2FE1E00C0FADA /* Preferences.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -65,6 +66,7 @@
 		DDC61FEA1CE2F20E00C0FADA /* PodcastMenu-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PodcastMenu-Bridging-Header.h"; sourceTree = "<group>"; };
 		DDC61FEB1CE2F20E00C0FADA /* NSImage+CGImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSImage+CGImage.h"; sourceTree = "<group>"; };
 		DDC61FEC1CE2F20E00C0FADA /* NSImage+CGImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSImage+CGImage.m"; sourceTree = "<group>"; };
+		DDC61FEF1CE2FE1E00C0FADA /* Preferences.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Preferences.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,6 +128,7 @@
 				DD0BFE511CE2672800446474 /* Constants.swift */,
 				DD0BFE4D1CE260FC00446474 /* Metrics.swift */,
 				DD0BFE4F1CE2618900446474 /* Theme.swift */,
+				DDC61FEF1CE2FE1E00C0FADA /* Preferences.swift */,
 			);
 			name = Definitions;
 			sourceTree = "<group>";
@@ -297,6 +300,7 @@
 				DD0BFE641CE2792800446474 /* PodcastMenuApplication.swift in Sources */,
 				DD0BFE4E1CE260FC00446474 /* Metrics.swift in Sources */,
 				DDC61FED1CE2F20E00C0FADA /* NSImage+CGImage.m in Sources */,
+				DDC61FF01CE2FE1E00C0FADA /* Preferences.swift in Sources */,
 				DD0BFE521CE2672800446474 /* Constants.swift in Sources */,
 				DDC61FE91CE2F0C300C0FADA /* VUController.swift in Sources */,
 				DD0BFE591CE2686100446474 /* ProgressBar.swift in Sources */,

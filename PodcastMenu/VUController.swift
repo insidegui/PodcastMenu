@@ -17,7 +17,20 @@ class VUController: OvercastLoudnessDelegate {
         self.statusItem = statusItem
     }
     
+    private var hadVUEnabled = false
+    
     func loudnessDidChange(value: Double) {
+        guard Preferences.enableVU else {
+            if (hadVUEnabled) {
+                timeoutTimerAction()
+                hadVUEnabled = false
+            }
+            
+            return
+        }
+        
+        hadVUEnabled = true
+        
         resetTimeoutTimer()
         
         statusItem.image = imageForLoudness(value)

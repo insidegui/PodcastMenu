@@ -8,6 +8,7 @@
 
 import Cocoa
 import WebKit
+import Sparkle
 
 class PodcastWebAppViewController: NSViewController {
     
@@ -24,6 +25,18 @@ class PodcastWebAppViewController: NSViewController {
     private lazy var progressBar = ProgressBar(frame: NSZeroRect)
     private lazy var webView: WKWebView = WKWebView(frame: NSZeroRect)
     private var overcastController: OvercastController!
+    
+    private lazy var configMenuButton: NSButton = {
+        let b = NSButton(frame: NSZeroRect)
+        
+        b.translatesAutoresizingMaskIntoConstraints = false
+        b.bordered = false
+        b.image = NSImage(named: NSImageNameActionTemplate)
+        b.toolTip = NSLocalizedString("Options", comment: "Options menu tooltip")
+        b.sizeToFit()
+        
+        return b
+    }()
     
     override func loadView() {
         view = NSView(frame: NSRect(x: 0.0, y: 0.0, width: Metrics.viewportWidth, height: Metrics.viewportHeight))
@@ -46,6 +59,17 @@ class PodcastWebAppViewController: NSViewController {
         progressBar.leadingAnchor.constraintEqualToAnchor(view.leadingAnchor).active = true
         progressBar.trailingAnchor.constraintEqualToAnchor(view.trailingAnchor).active = true
         progressBar.topAnchor.constraintEqualToAnchor(view.topAnchor).active = true
+        
+        createConfigMenu()
+        
+        configMenuButton.target = self
+        configMenuButton.action = #selector(showConfigMenu)
+        configMenuButton.sendActionOn(Int(NSEventMask.LeftMouseDownMask.rawValue))
+        
+        view.addSubview(configMenuButton)
+        
+        configMenuButton.trailingAnchor.constraintEqualToAnchor(view.trailingAnchor, constant: -10.0).active = true
+        configMenuButton.bottomAnchor.constraintEqualToAnchor(view.bottomAnchor, constant: -10.0).active = true
     }
     
     override func viewDidLoad() {
@@ -75,6 +99,40 @@ class PodcastWebAppViewController: NSViewController {
         }
         
         webView.loadRequest(NSURLRequest(URL: URL))
+    }
+    
+    // MARK: - Configuration Menu
+    
+    private lazy var configMenu = NSMenu()
+    
+    private func createConfigMenu() {
+        let vuItem = NSMenuItem(title: NSLocalizedString("Enable VU Meter", comment: "Enable VU Meter"), action: #selector(toggleReflectAudioLevelInIcon(_:)), keyEquivalent: "")
+        vuItem.target = self
+        vuItem.state = Preferences.enableVU ? NSOnState : NSOffState
+        
+        let updateItem = NSMenuItem(title: NSLocalizedString("Check for Updates…", comment: "Check for Updates"), action: #selector(checkForUpdates(_:)), keyEquivalent: "")
+        updateItem.target = self
+        
+        let quitItem = NSMenuItem(title: NSLocalizedString("Quit", comment: "Quit"), action: #selector(NSApplication.terminate(_:)), keyEquivalent: "")
+        quitItem.target = NSApp
+        
+        configMenu.addItem(vuItem)
+        configMenu.addItem(NSMenuItem.separatorItem())
+        configMenu.addItem(updateItem)
+        configMenu.addItem(quitItem)
+    }
+    
+    @objc private func showConfigMenu() {
+        configMenu.popUpMenuPositioningItem(nil, atLocation: NSZeroPoint, inView: configMenuButton)
+    }
+    
+    @objc private func toggleReflectAudioLevelInIcon(sender: NSMenuItem) {
+        sender.state = sender.state == NSOnState ? NSOffState : NSOnState
+        Preferences.enableVU = (sender.state == NSOnState)
+    }
+    
+    @objc private func checkForUpdates(sender: NSMenuItem) {
+        SUUpdater.sharedUpdater().checkForUpdates(sender)
     }
     
 }
