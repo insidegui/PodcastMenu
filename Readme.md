@@ -18,7 +18,7 @@ While the app is playing a podcast, you can use your keyboard's media keys to co
 
 ## Disclaimer
 
-This is not an "official" app, I'm not affiliated with Overcast, I just love It and really wanted It to have a Mac app 😁
+This is not an "official" app, I'm not affiliated with Overcast, I just love It and really wanted it to have a Mac app 😁
 
 # Get Overcast
 
