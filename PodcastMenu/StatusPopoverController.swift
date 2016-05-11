@@ -12,7 +12,7 @@ class StatusPopoverController: NSObject {
 
     private var theme = Theme()
     private var popover: NSPopover?
-    private lazy var webAppController = PodcastWebAppViewController()
+    lazy var webAppController = PodcastWebAppViewController()
     private var themeObserver: NSObjectProtocol?
     
     override init() {

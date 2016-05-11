@@ -22,6 +22,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     func applicationWillFinishLaunching(notification: NSNotification) {
         NSUserDefaults.standardUserDefaults().registerDefaults(["NSApplicationCrashOnExceptions": true])
+        
+        registerURLHandler()
     }
     
     func applicationDidFinishLaunching(aNotification: NSNotification) {
@@ -38,6 +40,20 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     @objc private func statusItemAction(sender: NSStatusBarButton) {
         popoverController.showPopoverFromStatusItemButton(sender)
+    }
+    
+    private func registerURLHandler() {
+        NSAppleEventManager.sharedAppleEventManager().setEventHandler(self, andSelector: #selector(handleURLEvent(_:replyEvent:)), forEventClass: UInt32(kInternetEventClass), andEventID: UInt32(kAEGetURL))
+    }
+    
+    @objc private func handleURLEvent(event: NSAppleEventDescriptor!, replyEvent: NSAppleEventDescriptor!) {
+        guard let urlString = event.paramDescriptorForKeyword(UInt32(keyDirectObject))?.stringValue else { return }
+        guard let URL = NSURL(string: urlString) else { return }
+        guard statusItem?.button != nil else { return }
+        
+        statusItemAction(statusItem.button!)
+        
+        popoverController.webAppController.openURL(URL)
     }
 
 }

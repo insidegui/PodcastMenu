@@ -64,4 +64,13 @@ class PodcastWebAppViewController: NSViewController {
         progressBar.progress = webView.estimatedProgress
     }
     
+    func openURL(URL: NSURL) {
+        guard overcastController.isValidOvercastURL(URL) else {
+            NSWorkspace.sharedWorkspace().openURL(URL)
+            return
+        }
+        
+        webView.loadRequest(NSURLRequest(URL: URL))
+    }
+    
 }

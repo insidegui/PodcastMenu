@@ -35,6 +35,12 @@ class OvercastController: NSObject, WKNavigationDelegate {
         webView.configuration.userContentController.addUserScript(userscript)
     }
     
+    func isValidOvercastURL(URL: NSURL) -> Bool {
+        guard let host = URL.host else { return false }
+        
+        return Constants.allowedHosts.contains(host)
+    }
+    
     func webView(webView: WKWebView, decidePolicyForNavigationAction navigationAction: WKNavigationAction, decisionHandler: (WKNavigationActionPolicy) -> Void) {
         // the default is to allow the navigation
         var decision = WKNavigationActionPolicy.Allow
@@ -45,10 +51,8 @@ class OvercastController: NSObject, WKNavigationDelegate {
         
         guard let URL = navigationAction.request.URL else { return }
         
-        guard let host = URL.host else { return }
-        
         // if the user clicked a link to another website, open with the default browser instead of navigating inside the app
-        guard Constants.allowedHosts.contains(host) else {
+        guard isValidOvercastURL(URL) else {
             decision = .Cancel
             NSWorkspace.sharedWorkspace().openURL(URL)
             return
