@@ -11,6 +11,8 @@ import WebKit
 
 class PodcastWebAppViewController: NSViewController {
     
+    var loudnessDelegate: OvercastLoudnessDelegate?
+    
     init() {
         super.init(nibName: nil, bundle: nil)!
     }
@@ -50,6 +52,8 @@ class PodcastWebAppViewController: NSViewController {
         super.viewDidLoad()
         
         overcastController = OvercastController(webView: webView)
+        overcastController.loudnessDelegate = loudnessDelegate
+        
         webView.addObserver(self, forKeyPath: "estimatedProgress", options: [.Initial, .New], context: nil)
         
         webView.loadRequest(NSURLRequest(URL: Constants.webAppURL))

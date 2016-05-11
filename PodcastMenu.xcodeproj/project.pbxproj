@@ -24,6 +24,8 @@
 		DD0BFE6B1CE2817100446474 /* Sparkle.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DD0BFE681CE2816900446474 /* Sparkle.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		DD0BFE731CE2890000446474 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD0BFE711CE2890000446474 /* Fabric.framework */; };
 		DD0BFE741CE2890000446474 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD0BFE721CE2890000446474 /* Crashlytics.framework */; };
+		DDC61FE91CE2F0C300C0FADA /* VUController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDC61FE81CE2F0C300C0FADA /* VUController.swift */; };
+		DDC61FED1CE2F20E00C0FADA /* NSImage+CGImage.m in Sources */ = {isa = PBXBuildFile; fileRef = DDC61FEC1CE2F20E00C0FADA /* NSImage+CGImage.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -59,6 +61,10 @@
 		DD0BFE681CE2816900446474 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sparkle.framework; path = lib/Sparkle.framework; sourceTree = "<group>"; };
 		DD0BFE711CE2890000446474 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
 		DD0BFE721CE2890000446474 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
+		DDC61FE81CE2F0C300C0FADA /* VUController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VUController.swift; sourceTree = "<group>"; };
+		DDC61FEA1CE2F20E00C0FADA /* PodcastMenu-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PodcastMenu-Bridging-Header.h"; sourceTree = "<group>"; };
+		DDC61FEB1CE2F20E00C0FADA /* NSImage+CGImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSImage+CGImage.h"; sourceTree = "<group>"; };
+		DDC61FEC1CE2F20E00C0FADA /* NSImage+CGImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSImage+CGImage.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,6 +136,7 @@
 				DD0BFE491CE2602B00446474 /* StatusPopoverController.swift */,
 				DD0BFE4B1CE2608E00446474 /* PodcastWebAppViewController.swift */,
 				DD0BFE5A1CE268A500446474 /* OvercastController.swift */,
+				DDC61FE81CE2F0C300C0FADA /* VUController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -148,6 +155,7 @@
 		DD0BFE571CE2683700446474 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				DDC61FEE1CE2F21900C0FADA /* Helpers */,
 				DD0BFE581CE2686100446474 /* ProgressBar.swift */,
 			);
 			name = Views;
@@ -177,6 +185,16 @@
 				DD0BFE681CE2816900446474 /* Sparkle.framework */,
 			);
 			name = Vendor;
+			sourceTree = "<group>";
+		};
+		DDC61FEE1CE2F21900C0FADA /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				DDC61FEA1CE2F20E00C0FADA /* PodcastMenu-Bridging-Header.h */,
+				DDC61FEB1CE2F20E00C0FADA /* NSImage+CGImage.h */,
+				DDC61FEC1CE2F20E00C0FADA /* NSImage+CGImage.m */,
+			);
+			name = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -278,7 +296,9 @@
 				DD0BFE4A1CE2602B00446474 /* StatusPopoverController.swift in Sources */,
 				DD0BFE641CE2792800446474 /* PodcastMenuApplication.swift in Sources */,
 				DD0BFE4E1CE260FC00446474 /* Metrics.swift in Sources */,
+				DDC61FED1CE2F20E00C0FADA /* NSImage+CGImage.m in Sources */,
 				DD0BFE521CE2672800446474 /* Constants.swift in Sources */,
+				DDC61FE91CE2F0C300C0FADA /* VUController.swift in Sources */,
 				DD0BFE591CE2686100446474 /* ProgressBar.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -383,6 +403,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "Developer ID Application";
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -394,6 +415,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = br.com.guilhermerambo.PodcastMenu;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "PodcastMenu/PodcastMenu-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -401,6 +424,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "Developer ID Application";
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -412,6 +436,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = br.com.guilhermerambo.PodcastMenu;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "PodcastMenu/PodcastMenu-Bridging-Header.h";
 			};
 			name = Release;
 		};
@@ -434,6 +459,7 @@
 				DD0BFE481CE25D1400446474 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

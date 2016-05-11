@@ -27,7 +27,11 @@ class Theme: NSObject {
     }
     
     struct Colors {
-        static let tint = NSColor(calibratedRed:0, green:0.415, blue:1, alpha:1)
+        static let tint = NSColor(calibratedRed:0.989, green:0.496, blue:0.059, alpha:1)
+        
+        static var iconFill: NSColor {
+            return Theme.isDark ? NSColor.whiteColor() : NSColor.blackColor()
+        }
     }
     
     static var isDark: Bool {

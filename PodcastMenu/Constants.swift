@@ -11,4 +11,6 @@ import Foundation
 struct Constants {
     static let allowedHosts = ["overcast.fm","www.overcast.fm"]
     static let webAppURL = NSURL(string: "https://overcast.fm/podcasts")!
+    static let javascriptBridgeName = "PodcastMenuApp"
+    static let maxLoudness = 128.0
 }

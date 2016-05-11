@@ -19,6 +19,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     private var statusItem: NSStatusItem!
     private lazy var popoverController = StatusPopoverController()
+    private var vuController: VUController!
 
     func applicationWillFinishLaunching(notification: NSNotification) {
         NSUserDefaults.standardUserDefaults().registerDefaults(["NSApplicationCrashOnExceptions": true])
@@ -34,6 +35,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         statusItem.target = self
         statusItem.action = #selector(statusItemAction(_:))
         statusItem.highlightMode = true
+        
+        vuController = VUController(statusItem: statusItem)
+        popoverController.webAppController.loudnessDelegate = vuController
         
         performSelector(#selector(statusItemAction(_:)), withObject: statusItem.button, afterDelay: 0.5)
     }

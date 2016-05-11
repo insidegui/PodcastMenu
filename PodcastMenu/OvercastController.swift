@@ -9,9 +9,16 @@
 import Cocoa
 import WebKit
 
+protocol OvercastLoudnessDelegate {
+    func loudnessDidChange(value: Double)
+}
+
 class OvercastController: NSObject, WKNavigationDelegate {
 
+    var loudnessDelegate: OvercastLoudnessDelegate?
+    
     private let webView: WKWebView
+    private let bridge: OvercastJavascriptBridge
     
     private var mediaKeysHandler = MediaKeysHandler()
     
@@ -23,8 +30,11 @@ class OvercastController: NSObject, WKNavigationDelegate {
     
     init(webView: WKWebView) {
         self.webView = webView
+        self.bridge = OvercastJavascriptBridge(webView: webView)
         
         super.init()
+        
+        self.bridge.callback = callLoudnessDelegate
         
         webView.navigationDelegate = self
         
@@ -69,6 +79,30 @@ class OvercastController: NSObject, WKNavigationDelegate {
     
     private func handleBackwardButton() {
         webView.evaluateJavaScript("document.querySelector('#seekbackbutton').click()", completionHandler: nil)
+    }
+    
+    private func callLoudnessDelegate(value: Double) {
+        loudnessDelegate?.loudnessDidChange(value)
+    }
+    
+}
+
+private class OvercastJavascriptBridge: NSObject, WKScriptMessageHandler {
+    
+    var callback: (Double) -> () = { _ in }
+    
+    init(webView: WKWebView) {
+        super.init()
+        
+        webView.configuration.userContentController.addScriptMessageHandler(self, name: Constants.javascriptBridgeName)
+    }
+    
+    @objc private func userContentController(userContentController: WKUserContentController, didReceiveScriptMessage message: WKScriptMessage) {
+        guard let value = message.body as? Double else { return }
+        
+        dispatch_async(dispatch_get_main_queue()) {
+            self.callback(value)
+        }
     }
     
 }
