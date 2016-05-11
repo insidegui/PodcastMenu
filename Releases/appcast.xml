@@ -5,7 +5,19 @@
         <link>https://github.com/insidegui/PodcastMenu/raw/master/Releases/appcast.xml</link>
         <description>Most recent changes with links to updates.</description>
         <language>en</language>
-        
+
+        <item>
+            <title>Version 1.1</title>
+			<description><![CDATA[
+							<ul>
+								<li>The menubar icon now works as a VU meter while playing an episode</li>
+								<li>Added options menu to the lower-right corner</li>
+							</ul>
+						]]></description>
+            <pubDate>Wed, 11 May 2016 03:08:00 +0000</pubDate>
+            <enclosure url="https://github.com/insidegui/PodcastMenu/raw/master/Releases/PodcastMenu_v1.1.zip" sparkle:version="2" sparkle:shortVersionString="1.1" length="3799031" type="application/octet-stream" />
+            <sparkle:minimumSystemVersion>10.11</sparkle:minimumSystemVersion>
+        </item>        
         <item>
             <title>Version 1.0</title>
 			<description><![CDATA[
@@ -15,7 +27,7 @@
 						]]></description>
             <pubDate>Tue, 10 May 2016 18:30:00 +0000</pubDate>
             <enclosure url="https://github.com/insidegui/PodcastMenu/raw/master/Releases/PodcastMenu_v1.0.zip" sparkle:version="1" sparkle:shortVersionString="1.0" length="3786282" type="application/octet-stream" />
-            <sparkle:minimumSystemVersion>10.10</sparkle:minimumSystemVersion>
+            <sparkle:minimumSystemVersion>10.11</sparkle:minimumSystemVersion>
         </item>
     </channel>
 </rss>
