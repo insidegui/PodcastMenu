@@ -21,9 +21,10 @@ class MediaKeysHandler: NSObject {
         setDefaultSystemMediaKeysHandlingEnabled(false)
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(reenableSystemMediaKeys), name: NSApplicationWillTerminateNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(playPressed), name: PodcastMenuApplicationDidPressPlay, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(forwardPressed), name: PodcastMenuApplicationDidPressForward, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(backwardPressed), name: PodcastMenuApplicationDidPressBackward, object: nil)
+        
+        PodcastMenuApplication.Notifications.DidPressPlay.subscribe(playPressed)
+        PodcastMenuApplication.Notifications.DidPressForward.subscribe(forwardPressed)
+        PodcastMenuApplication.Notifications.DidPressBackward.subscribe(backwardPressed)
     }
     
     private func setDefaultSystemMediaKeysHandlingEnabled(enabled: Bool) {

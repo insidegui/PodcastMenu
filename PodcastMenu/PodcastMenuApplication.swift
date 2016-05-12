@@ -8,11 +8,13 @@
 
 import Cocoa
 
-let PodcastMenuApplicationDidPressPlay = "PodcastMenuApplicationDidPressPlayNotification"
-let PodcastMenuApplicationDidPressForward = "PodcastMenuApplicationDidPressForwardNotification"
-let PodcastMenuApplicationDidPressBackward = "PodcastMenuApplicationDidPressBackwardNotification"
-
 class PodcastMenuApplication: NSApplication {
+    
+    enum Notifications: String, NotificationsBase {
+        case DidPressPlay
+        case DidPressForward
+        case DidPressBackward
+    }
     
     // source: http://sernprogramming.com/blog/handling-media-key-events-in-swift/
     override func sendEvent(event: NSEvent) {
@@ -34,9 +36,9 @@ class PodcastMenuApplication: NSApplication {
         guard state else { return }
         
         switch(key) {
-        case NX_KEYTYPE_PLAY: NSNotificationCenter.defaultCenter().postNotificationName(PodcastMenuApplicationDidPressPlay, object: self)
-        case NX_KEYTYPE_FAST: NSNotificationCenter.defaultCenter().postNotificationName(PodcastMenuApplicationDidPressForward, object: self)
-        case NX_KEYTYPE_REWIND: NSNotificationCenter.defaultCenter().postNotificationName(PodcastMenuApplicationDidPressBackward, object: self)
+        case NX_KEYTYPE_PLAY: Notifications.DidPressPlay.post()
+        case NX_KEYTYPE_FAST: Notifications.DidPressForward.post()
+        case NX_KEYTYPE_REWIND: Notifications.DidPressBackward.post()
         default: break
         }
     }
