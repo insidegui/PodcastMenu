@@ -31,6 +31,8 @@ class PodcastWebAppViewController: NSViewController {
         
         b.translatesAutoresizingMaskIntoConstraints = false
         b.bordered = false
+        b.bezelStyle = NSBezelStyle.RegularSquareBezelStyle
+        b.setButtonType(.MomentaryLightButton)
         b.image = NSImage(named: NSImageNameActionTemplate)
         b.toolTip = NSLocalizedString("Options", comment: "Options menu tooltip")
         b.sizeToFit()
