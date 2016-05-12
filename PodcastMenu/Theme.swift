@@ -10,20 +10,8 @@ import Cocoa
 
 class Theme: NSObject {
     
-    enum Notifications: String {
+    enum Notifications: String, NotificationsBase {
         case SystemAppearanceDidChange
-        
-        private func post() {
-            NSNotificationCenter.defaultCenter().postNotificationName(self.rawValue, object: nil)
-        }
-        
-        func subscribe(block: (notification: NSNotification) -> ()) -> NSObjectProtocol {
-            return NSNotificationCenter.defaultCenter().addObserverForName(self.rawValue, object: nil, queue: NSOperationQueue.mainQueue(), usingBlock: block)
-        }
-        
-        func unsubscribe(observer: NSObjectProtocol) {
-            NSNotificationCenter.defaultCenter().removeObserver(observer, name: self.rawValue, object: nil)
-        }
     }
     
     struct Colors {
