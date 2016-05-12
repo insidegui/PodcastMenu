@@ -11,6 +11,7 @@ import Foundation
 protocol NotificationsBase: RawRepresentable {
     func post()
     func subscribe(block: (notification: NSNotification) -> ()) -> NSObjectProtocol
+    func subscribe(block: () -> ())
     func unsubscribe(observer: NSObjectProtocol)
 }
 
@@ -22,6 +23,12 @@ extension NotificationsBase {
     func subscribe(block: (notification: NSNotification) -> ()) -> NSObjectProtocol {
         let name = rawValue as! String
         return NSNotificationCenter.defaultCenter().addObserverForName(name, object: nil, queue: NSOperationQueue.mainQueue(), usingBlock: block)
+    }
+    
+    func subscribe(block: () -> ()) {
+        subscribe { (note: NSNotification) -> Void in
+            block()
+        }
     }
     
     func unsubscribe(observer: NSObjectProtocol) {

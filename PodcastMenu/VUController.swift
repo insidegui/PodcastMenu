@@ -15,23 +15,12 @@ class VUController: OvercastLoudnessDelegate {
     
     init(statusItem: NSStatusItem) {
         self.statusItem = statusItem
+        
+        OvercastController.Notifications.OvercastDidPause.subscribe(resetToDefaultImage)
     }
     
-    private var hadVUEnabled = false
-    
     func loudnessDidChange(value: Double) {
-        guard Preferences.enableVU else {
-            if (hadVUEnabled) {
-                timeoutTimerAction()
-                hadVUEnabled = false
-            }
-            
-            return
-        }
-        
-        hadVUEnabled = true
-        
-        resetTimeoutTimer()
+        guard Preferences.enableVU else { return resetToDefaultImage() }
         
         statusItem.image = imageForLoudness(value)
     }
@@ -70,16 +59,7 @@ class VUController: OvercastLoudnessDelegate {
         return image
     }
     
-    private func resetTimeoutTimer() {
-        if (timeoutTimer != nil) {
-            timeoutTimer.invalidate()
-            timeoutTimer = nil
-        }
-        
-        timeoutTimer = NSTimer.scheduledTimerWithTimeInterval(0.3, target: self, selector: #selector(timeoutTimerAction), userInfo: nil, repeats: false)
-    }
-    
-    @objc private func timeoutTimerAction() {
+    private func resetToDefaultImage() {
         statusItem.image = baseImage
     }
     

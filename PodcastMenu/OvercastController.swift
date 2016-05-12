@@ -15,6 +15,11 @@ protocol OvercastLoudnessDelegate {
 
 class OvercastController: NSObject, WKNavigationDelegate {
 
+    enum Notifications: String, NotificationsBase {
+        case OvercastDidPlay
+        case OvercastDidPause
+    }
+    
     var loudnessDelegate: OvercastLoudnessDelegate?
     
     private let webView: WKWebView
@@ -22,7 +27,7 @@ class OvercastController: NSObject, WKNavigationDelegate {
     
     private var mediaKeysHandler = MediaKeysHandler()
     
-    private lazy var userscript: WKUserScript = {
+    private lazy var userScript: WKUserScript = {
         let source = try! String(contentsOfURL: NSBundle.mainBundle().URLForResource("overcast", withExtension: "js")!)
         
         return WKUserScript(source: source, injectionTime: .AtDocumentEnd, forMainFrameOnly: true)
@@ -42,7 +47,7 @@ class OvercastController: NSObject, WKNavigationDelegate {
         mediaKeysHandler.forwardHandler = handleForwardButton
         mediaKeysHandler.backwardHandler = handleBackwardButton
         
-        webView.configuration.userContentController.addUserScript(userscript)
+        webView.configuration.userContentController.addUserScript(userScript)
     }
     
     func isValidOvercastURL(URL: NSURL) -> Bool {
@@ -91,6 +96,8 @@ private class OvercastJavascriptBridge: NSObject, WKScriptMessageHandler {
     
     var callback: (Double) -> () = { _ in }
     
+    private var fakeGenerator: FakeLoudnessDataGenerator!
+    
     init(webView: WKWebView) {
         super.init()
         
@@ -98,11 +105,85 @@ private class OvercastJavascriptBridge: NSObject, WKScriptMessageHandler {
     }
     
     @objc private func userContentController(userContentController: WKUserContentController, didReceiveScriptMessage message: WKScriptMessage) {
+        guard let msg = message.body as? String else { return }
+        
+        switch msg {
+        case "pause": didPause()
+        case "play": didPlay()
+        default: break;
+        }
+        
+        /* JS-based VU disabled because of webkit bug (issue #3)
         guard let value = message.body as? Double else { return }
         
         dispatch_async(dispatch_get_main_queue()) {
             self.callback(value)
         }
+         */
     }
     
+    private func didPause() {
+        guard fakeGenerator != nil else { return }
+        
+        OvercastController.Notifications.OvercastDidPause.post()
+        
+        dispatch_async(dispatch_get_main_queue()) {
+            self.fakeGenerator.suspend()
+        }
+    }
+    
+    private func didPlay() {
+        if fakeGenerator == nil { fakeGenerator = FakeLoudnessDataGenerator(callback: callback) }
+        
+        OvercastController.Notifications.OvercastDidPlay.post()
+        
+        dispatch_async(dispatch_get_main_queue()) {
+            self.fakeGenerator.resume()
+        }
+    }
+    
+}
+
+private class FakeLoudnessDataGenerator {
+    
+    private let callback: (Double) -> ()
+    private var timer: NSTimer!
+    
+    init(callback: (Double) -> ()) {
+        self.callback = callback
+    }
+    
+    func resume() {
+        guard timer == nil else { return }
+        
+        timer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: #selector(generate), userInfo: nil, repeats: true)
+        NSLog("Generator resumed")
+    }
+    
+    func suspend() {
+        guard timer != nil else { return }
+        
+        timer.invalidate()
+        timer = nil
+        NSLog("Generator suspended")
+    }
+    
+    private var minValue = 22.0
+    private var maxValue = 100.0
+    private var stepValue = 4.0
+    private var currentValue = 0.0
+    private var direction = 1
+    
+    @objc private func generate() {
+        let step = (stepValue + stepValue * drand48()) * Double(direction)
+        currentValue += step
+        
+        if (currentValue >= maxValue) {
+            direction = -1
+        } else if (currentValue <= minValue) {
+            direction = 1
+        }
+        
+        callback(currentValue)
+    }
 }
