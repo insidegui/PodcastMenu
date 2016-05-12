@@ -7,6 +7,19 @@
         <language>en</language>
 
         <item>
+            <title>Version 1.1.2</title>
+			<description><![CDATA[
+							<ul>
+								<li>Fixed an issue with playback rates higher than 1x</li>
+								<li>Improved configuration button look</li>
+							</ul>
+						]]></description>
+            <pubDate>Wed, 12 May 2016 17:40:00 +0000</pubDate>
+            <enclosure url="https://github.com/insidegui/PodcastMenu/raw/master/Releases/PodcastMenu_v1.1.2.zip" sparkle:version="3" sparkle:shortVersionString="1.1.2" length="3802742" type="application/octet-stream" />
+            <sparkle:minimumSystemVersion>10.11</sparkle:minimumSystemVersion>
+        </item>
+
+        <item>
             <title>Version 1.1</title>
 			<description><![CDATA[
 							<ul>
@@ -17,7 +30,8 @@
             <pubDate>Wed, 11 May 2016 03:08:00 +0000</pubDate>
             <enclosure url="https://github.com/insidegui/PodcastMenu/raw/master/Releases/PodcastMenu_v1.1.zip" sparkle:version="2" sparkle:shortVersionString="1.1" length="3799031" type="application/octet-stream" />
             <sparkle:minimumSystemVersion>10.11</sparkle:minimumSystemVersion>
-        </item>        
+        </item>
+		
         <item>
             <title>Version 1.0</title>
 			<description><![CDATA[
