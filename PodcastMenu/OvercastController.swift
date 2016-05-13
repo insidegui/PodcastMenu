@@ -33,6 +33,12 @@ class OvercastController: NSObject, WKNavigationDelegate {
         return WKUserScript(source: source, injectionTime: .AtDocumentEnd, forMainFrameOnly: true)
     }()
     
+    private lazy var lookUserScript: WKUserScript = {
+        let source = try! String(contentsOfURL: NSBundle.mainBundle().URLForResource("look", withExtension: "js")!)
+        
+        return WKUserScript(source: source, injectionTime: .AtDocumentEnd, forMainFrameOnly: false)
+    }()
+    
     init(webView: WKWebView) {
         self.webView = webView
         self.bridge = OvercastJavascriptBridge(webView: webView)
@@ -47,6 +53,7 @@ class OvercastController: NSObject, WKNavigationDelegate {
         mediaKeysHandler.forwardHandler = handleForwardButton
         mediaKeysHandler.backwardHandler = handleBackwardButton
         
+        webView.configuration.userContentController.addUserScript(lookUserScript)
         webView.configuration.userContentController.addUserScript(userScript)
     }
     

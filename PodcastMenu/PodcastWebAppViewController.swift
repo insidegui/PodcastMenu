@@ -23,7 +23,7 @@ class PodcastWebAppViewController: NSViewController {
     }
     
     private lazy var progressBar = ProgressBar(frame: NSZeroRect)
-    private lazy var webView: WKWebView = WKWebView(frame: NSZeroRect)
+    private lazy var webView: PMWebView = PMWebView(frame: NSZeroRect)
     private var overcastController: OvercastController!
     
     private lazy var configMenuButton: NSButton = {
