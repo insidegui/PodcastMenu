@@ -12,7 +12,7 @@ While the app is playing a podcast, you can use your keyboard's media keys to co
 
 # Download
 
-[⬇️ Click here to download the latest release](https://github.com/insidegui/PodcastMenu/raw/master/Releases/PodcastMenu_v1.1.2.zip).
+[⬇️ Click here to download the latest release](https://github.com/insidegui/PodcastMenu/raw/master/Releases/PodcastMenu_v1.2.zip).
 
 ![screenshot](screenshot.png)
 

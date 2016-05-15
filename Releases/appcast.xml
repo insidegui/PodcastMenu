@@ -7,6 +7,22 @@
         <language>en</language>
 
         <item>
+            <title>Version 1.2</title>
+			<description><![CDATA[
+							<ul>
+								<li>Scrollbar now looks nicer and is less intrusive</li>
+								<li>Fixed a bug where the mouse would stop working for some users</li>
+								<li>Improved media keys handling and coordination with other media apps</li>
+								<li>Added option to pass media keys pressed to other running media apps</li>
+								<li>Preventing system sleep while playing an episode</li>
+							</ul>
+						]]></description>
+            <pubDate>Wed, 15 May 2016 17:30:00 +0000</pubDate>
+            <enclosure url="https://github.com/insidegui/PodcastMenu/raw/master/Releases/PodcastMenu_v1.2.zip" sparkle:version="4" sparkle:shortVersionString="1.2" length="3813171" type="application/octet-stream" />
+            <sparkle:minimumSystemVersion>10.11</sparkle:minimumSystemVersion>
+        </item>
+
+        <item>
             <title>Version 1.1.2</title>
 			<description><![CDATA[
 							<ul>
