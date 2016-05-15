@@ -9,6 +9,8 @@
 import Foundation
 
 protocol NotificationsBase: RawRepresentable {
+    var rawValue: String { get }
+    
     func post()
     func subscribe(block: (notification: NSNotification) -> ()) -> NSObjectProtocol
     func subscribe(block: () -> ())
@@ -17,11 +19,11 @@ protocol NotificationsBase: RawRepresentable {
 
 extension NotificationsBase {
     func post() {
-        NSNotificationCenter.defaultCenter().postNotificationName(rawValue as! String, object: nil)
+        NSNotificationCenter.defaultCenter().postNotificationName(rawValue, object: nil)
     }
     
     func subscribe(block: (notification: NSNotification) -> ()) -> NSObjectProtocol {
-        let name = rawValue as! String
+        let name = rawValue
         return NSNotificationCenter.defaultCenter().addObserverForName(name, object: nil, queue: NSOperationQueue.mainQueue(), usingBlock: block)
     }
     
@@ -32,7 +34,7 @@ extension NotificationsBase {
     }
     
     func unsubscribe(observer: NSObjectProtocol) {
-        let name = rawValue as! String
+        let name = rawValue
         NSNotificationCenter.defaultCenter().removeObserver(observer, name: name, object: nil)
     }
 }
