@@ -37,5 +37,7 @@
 	<string>org.quodlibet.quodlibet</string>
 	<string>com.blackmagic-design.desktopvideoutility.setup</string>
 	<string>br.com.guilhermerambo.Event-Player</string>
+	<string>br.com.guilhermerambo.WWDC</string>
+	<string>com.apple.Photos</string>
 </array>
 </plist>
