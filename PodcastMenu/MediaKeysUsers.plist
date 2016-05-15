@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<string>com.spotify.client</string>
+	<string>com.apple.iTunes</string>
+	<string>com.apple.iTunesX</string>
+	<string>com.apple.QuickTimePlayerX</string>
+	<string>com.apple.quicktimeplayer</string>
+	<string>com.apple.iWork.Keynote</string>
+	<string>com.apple.iPhoto</string>
+	<string>org.videolan.vlc</string>
+	<string>com.apple.Aperture</string>
+	<string>com.plexsquared.Plex</string>
+	<string>com.soundcloud.desktop</string>
+	<string>org.niltsh.MPlayerX</string>
+	<string>com.ilabs.PandorasHelper</string>
+	<string>com.mahasoftware.pandabar</string>
+	<string>com.bitcartel.pandorajam</string>
+	<string>org.clementine-player.clementine</string>
+	<string>fm.last.Last.fm</string>
+	<string>fm.last.Scrobbler</string>
+	<string>com.beatport.BeatportPro</string>
+	<string>com.Timenut.SongKey</string>
+	<string>com.macromedia.fireworks</string>
+	<string>at.justp.Theremin</string>
+	<string>ru.ya.themblsha.YandexMusic</string>
+	<string>com.jriver.MediaCenter18</string>
+	<string>com.jriver.MediaCenter19</string>
+	<string>com.jriver.MediaCenter20</string>
+	<string>co.rackit.mate</string>
+	<string>com.ttitt.b-music</string>
+	<string>com.beardedspice.BeardedSpice</string>
+	<string>com.plug.Plug</string>
+	<string>com.plug.Plug2</string>
+	<string>com.netease.163music</string>
+	<string>org.quodlibet.quodlibet</string>
+	<string>com.blackmagic-design.desktopvideoutility.setup</string>
+	<string>br.com.guilhermerambo.Event-Player</string>
+</array>
+</plist>

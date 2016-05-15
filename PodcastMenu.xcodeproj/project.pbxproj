@@ -24,6 +24,8 @@
 		DD0BFE731CE2890000446474 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD0BFE711CE2890000446474 /* Fabric.framework */; };
 		DD0BFE741CE2890000446474 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD0BFE721CE2890000446474 /* Crashlytics.framework */; };
 		DD13C8B81CE8DE9A002174C4 /* PMEventTap.m in Sources */ = {isa = PBXBuildFile; fileRef = DD13C8B71CE8DE9A002174C4 /* PMEventTap.m */; };
+		DD13C8BB1CE8E4DE002174C4 /* MediaKeysCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD13C8BA1CE8E4DE002174C4 /* MediaKeysCoordinator.swift */; };
+		DD13C8BD1CE8E587002174C4 /* MediaKeysUsers.plist in Resources */ = {isa = PBXBuildFile; fileRef = DD13C8BC1CE8E587002174C4 /* MediaKeysUsers.plist */; };
 		DD1EFA781CE671A800E0C623 /* look.js in Resources */ = {isa = PBXBuildFile; fileRef = DD1EFA771CE671A800E0C623 /* look.js */; };
 		DD1EFA7A1CE671B200E0C623 /* PMWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD1EFA791CE671B200E0C623 /* PMWebView.swift */; };
 		DD5439311CE50B59002BA32E /* NotificationsBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5439301CE50B59002BA32E /* NotificationsBase.swift */; };
@@ -66,6 +68,8 @@
 		DD0BFE721CE2890000446474 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		DD13C8B61CE8DE9A002174C4 /* PMEventTap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMEventTap.h; sourceTree = "<group>"; };
 		DD13C8B71CE8DE9A002174C4 /* PMEventTap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMEventTap.m; sourceTree = "<group>"; };
+		DD13C8BA1CE8E4DE002174C4 /* MediaKeysCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaKeysCoordinator.swift; sourceTree = "<group>"; };
+		DD13C8BC1CE8E587002174C4 /* MediaKeysUsers.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = MediaKeysUsers.plist; sourceTree = "<group>"; };
 		DD1EFA771CE671A800E0C623 /* look.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = look.js; sourceTree = "<group>"; };
 		DD1EFA791CE671B200E0C623 /* PMWebView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PMWebView.swift; sourceTree = "<group>"; };
 		DD5439301CE50B59002BA32E /* NotificationsBase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationsBase.swift; sourceTree = "<group>"; };
@@ -155,6 +159,7 @@
 		DD0BFE561CE267F400446474 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				DD13C8BC1CE8E587002174C4 /* MediaKeysUsers.plist */,
 				DD0BFE651CE27D4500446474 /* Userscripts */,
 				DD0BFE3E1CE25D1400446474 /* Assets.xcassets */,
 				DD0BFE401CE25D1400446474 /* MainMenu.xib */,
@@ -204,6 +209,7 @@
 		DD13C8B91CE8DE9E002174C4 /* Aux */ = {
 			isa = PBXGroup;
 			children = (
+				DD13C8BA1CE8E4DE002174C4 /* MediaKeysCoordinator.swift */,
 				DD13C8B61CE8DE9A002174C4 /* PMEventTap.h */,
 				DD13C8B71CE8DE9A002174C4 /* PMEventTap.m */,
 			);
@@ -282,6 +288,7 @@
 			files = (
 				DD0BFE3F1CE25D1400446474 /* Assets.xcassets in Resources */,
 				DD0BFE671CE27D5400446474 /* overcast.js in Resources */,
+				DD13C8BD1CE8E587002174C4 /* MediaKeysUsers.plist in Resources */,
 				DD0BFE421CE25D1400446474 /* MainMenu.xib in Resources */,
 				DD1EFA781CE671A800E0C623 /* look.js in Resources */,
 			);
@@ -316,6 +323,7 @@
 				DD0BFE4C1CE2608E00446474 /* PodcastWebAppViewController.swift in Sources */,
 				DD0BFE501CE2618900446474 /* Theme.swift in Sources */,
 				DD0BFE621CE276CF00446474 /* MediaKeysHandler.swift in Sources */,
+				DD13C8BB1CE8E4DE002174C4 /* MediaKeysCoordinator.swift in Sources */,
 				DD0BFE4A1CE2602B00446474 /* StatusPopoverController.swift in Sources */,
 				DD1EFA7A1CE671B200E0C623 /* PMWebView.swift in Sources */,
 				DD0BFE4E1CE260FC00446474 /* Metrics.swift in Sources */,

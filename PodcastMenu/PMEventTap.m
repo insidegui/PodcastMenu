@@ -7,9 +7,11 @@
 //
 
 #import "PMEventTap.h"
+#import "PodcastMenu-Swift.h"
 
 @interface PMEventTap ()
 
+@property (nonatomic, strong) MediaKeysCoordinator *coordinator;
 @property (nonatomic, copy) void (^mediaKeyEventHandler)(int32_t key, BOOL down);
 @property (nonatomic, assign) CFMachPortRef eventPort;
 
@@ -18,6 +20,8 @@
 CGEventRef eventTapCallback(CGEventTapProxy proxy, CGEventType type, CGEventRef event, void* context)
 {
     PMEventTap *eventTap = (__bridge PMEventTap *)context;
+    
+    if (![eventTap.coordinator shouldInterceptMediaKeys]) return event;
     
     if (type == kCGEventTapDisabledByTimeout) {
         NSLog(@"[PMEventTap] Tap disabled by timeout, reenabling.");
@@ -62,6 +66,7 @@ CGEventRef eventTapCallback(CGEventTapProxy proxy, CGEventType type, CGEventRef 
 {
     self = [super init];
     
+    self.coordinator = [[MediaKeysCoordinator alloc] init];
     self.mediaKeyEventHandler = eventHandler;
     
     return self;
