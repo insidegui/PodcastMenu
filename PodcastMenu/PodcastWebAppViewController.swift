@@ -112,6 +112,10 @@ class PodcastWebAppViewController: NSViewController {
         vuItem.target = self
         vuItem.state = Preferences.enableVU ? NSOnState : NSOffState
         
+        let passthroughItem = NSMenuItem(title: NSLocalizedString("Don't Own Media Keys", comment: "Don't Own Media Keys"), action: #selector(toggleMediaKeysPassthrough(_:)), keyEquivalent: "")
+        passthroughItem.target = self
+        passthroughItem.state = Preferences.mediaKeysPassthroughEnabled ? NSOnState : NSOffState
+        
         let updateItem = NSMenuItem(title: NSLocalizedString("Check for Updates…", comment: "Check for Updates"), action: #selector(checkForUpdates(_:)), keyEquivalent: "")
         updateItem.target = self
         
@@ -119,6 +123,7 @@ class PodcastWebAppViewController: NSViewController {
         quitItem.target = NSApp
         
         configMenu.addItem(vuItem)
+        configMenu.addItem(passthroughItem)
         configMenu.addItem(NSMenuItem.separatorItem())
         configMenu.addItem(updateItem)
         configMenu.addItem(quitItem)
@@ -131,6 +136,11 @@ class PodcastWebAppViewController: NSViewController {
     @objc private func toggleReflectAudioLevelInIcon(sender: NSMenuItem) {
         sender.state = sender.state == NSOnState ? NSOffState : NSOnState
         Preferences.enableVU = (sender.state == NSOnState)
+    }
+    
+    @objc private func toggleMediaKeysPassthrough(sender: NSMenuItem) {
+        sender.state = sender.state == NSOnState ? NSOffState : NSOnState
+        Preferences.mediaKeysPassthroughEnabled = (sender.state == NSOnState)
     }
     
     @objc private func checkForUpdates(sender: NSMenuItem) {

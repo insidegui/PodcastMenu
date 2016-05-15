@@ -24,7 +24,9 @@ CGEventRef eventTapCallback(CGEventTapProxy proxy, CGEventType type, CGEventRef 
     if (![eventTap.coordinator shouldInterceptMediaKeys]) return event;
     
     if (type == kCGEventTapDisabledByTimeout) {
+        #ifdef DEBUG
         NSLog(@"[PMEventTap] Tap disabled by timeout, reenabling.");
+        #endif
         
         CGEventTapEnable(eventTap.eventPort, true);
         
@@ -36,7 +38,9 @@ CGEventRef eventTapCallback(CGEventTapProxy proxy, CGEventType type, CGEventRef 
     @try {
         theEvent = [NSEvent eventWithCGEvent:event];
     } @catch (NSException *e) {
+        #ifdef DEBUG
         NSLog(@"[PMEventTap] Received an unknown event. Exception: %@", e);
+        #endif
         return event;
     }
     
@@ -54,6 +58,11 @@ CGEventRef eventTapCallback(CGEventTapProxy proxy, CGEventType type, CGEventRef 
         
         eventTap.mediaKeyEventHandler((int32_t)keyCode, keyState);
         
+        if ([eventTap.coordinator shouldPassthroughMediaKeysEvents]) {
+            return event;
+        } else {
+            return NULL;
+        }
         return NULL;
     } else {
         return event;

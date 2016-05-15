@@ -10,14 +10,30 @@ import Foundation
 
 class Preferences {
     
+    private class var defaults: NSUserDefaults {
+        return NSUserDefaults.standardUserDefaults()
+    }
+    
     class var enableVU: Bool {
         set {
+            #if DEBUG
             NSLog("enableVU = \(!newValue)")
-            NSUserDefaults.standardUserDefaults().setBool(!newValue, forKey: "vudisabled")
-            NSUserDefaults.standardUserDefaults().synchronize()
+            #endif
+            defaults.setBool(!newValue, forKey: "vudisabled")
+            defaults.synchronize()
         }
         get {
-            return !NSUserDefaults.standardUserDefaults().boolForKey("vudisabled")
+            return !defaults.boolForKey("vudisabled")
+        }
+    }
+    
+    class var mediaKeysPassthroughEnabled: Bool {
+        set {
+            defaults.setBool(newValue, forKey: "mediakeyspassthrough")
+            defaults.synchronize()
+        }
+        get {
+            return defaults.boolForKey("mediakeyspassthrough")
         }
     }
     

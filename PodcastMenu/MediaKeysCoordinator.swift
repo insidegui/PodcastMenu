@@ -26,7 +26,11 @@ class MediaKeysCoordinator: NSObject {
     private var keysOwnedByAnotherApplication = false
     
     func shouldInterceptMediaKeys() -> Bool {
-        return keysOwnedByAnotherApplication == false
+        return keysOwnedByAnotherApplication == false || Preferences.mediaKeysPassthroughEnabled
+    }
+    
+    func shouldPassthroughMediaKeysEvents() -> Bool {
+        return Preferences.mediaKeysPassthroughEnabled
     }
     
     override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
@@ -36,12 +40,16 @@ class MediaKeysCoordinator: NSObject {
                 if !keysOwnedByAnotherApplication {
                     if (mediaKeysUsers.contains(identifier)) {
                         keysOwnedByAnotherApplication = true
+                        #if DEBUG
                         NSLog("[MediaKeysCoordinator] Media keys now owned by \(identifier)")
+                        #endif
                     }
                 } else {
                     if identifier == NSBundle.mainBundle().bundleIdentifier {
                         keysOwnedByAnotherApplication = false
+                        #if DEBUG
                         NSLog("[MediaKeysCoordinator] Media keys now owned by PodcastMenu")
+                        #endif
                     }
                 }
             }
@@ -49,7 +57,9 @@ class MediaKeysCoordinator: NSObject {
             if !NSWorkspace.sharedWorkspace().runningApplications.reduce(false, combine: { $0 ? $0 : mediaKeysUsers.contains($1.bundleIdentifier ?? "") }) {
                 // all media keys users have quit, reclaim media keys
                 keysOwnedByAnotherApplication = false
+                #if DEBUG
                 NSLog("[MediaKeysCoordinator] Media keys now owned by PodcastMenu because no other media apps are running")
+                #endif
             }
         } else {
             super.observeValueForKeyPath(keyPath, ofObject: object, change: change, context: context)
