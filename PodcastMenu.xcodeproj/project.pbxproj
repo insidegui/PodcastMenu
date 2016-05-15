@@ -18,12 +18,12 @@
 		DD0BFE591CE2686100446474 /* ProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD0BFE581CE2686100446474 /* ProgressBar.swift */; };
 		DD0BFE5B1CE268A500446474 /* OvercastController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD0BFE5A1CE268A500446474 /* OvercastController.swift */; };
 		DD0BFE621CE276CF00446474 /* MediaKeysHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD0BFE611CE276CF00446474 /* MediaKeysHandler.swift */; };
-		DD0BFE641CE2792800446474 /* PodcastMenuApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD0BFE631CE2792800446474 /* PodcastMenuApplication.swift */; };
 		DD0BFE671CE27D5400446474 /* overcast.js in Resources */ = {isa = PBXBuildFile; fileRef = DD0BFE661CE27D5400446474 /* overcast.js */; };
 		DD0BFE6A1CE2817100446474 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD0BFE681CE2816900446474 /* Sparkle.framework */; };
 		DD0BFE6B1CE2817100446474 /* Sparkle.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DD0BFE681CE2816900446474 /* Sparkle.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		DD0BFE731CE2890000446474 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD0BFE711CE2890000446474 /* Fabric.framework */; };
 		DD0BFE741CE2890000446474 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD0BFE721CE2890000446474 /* Crashlytics.framework */; };
+		DD13C8B81CE8DE9A002174C4 /* PMEventTap.m in Sources */ = {isa = PBXBuildFile; fileRef = DD13C8B71CE8DE9A002174C4 /* PMEventTap.m */; };
 		DD1EFA781CE671A800E0C623 /* look.js in Resources */ = {isa = PBXBuildFile; fileRef = DD1EFA771CE671A800E0C623 /* look.js */; };
 		DD1EFA7A1CE671B200E0C623 /* PMWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD1EFA791CE671B200E0C623 /* PMWebView.swift */; };
 		DD5439311CE50B59002BA32E /* NotificationsBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5439301CE50B59002BA32E /* NotificationsBase.swift */; };
@@ -60,11 +60,12 @@
 		DD0BFE581CE2686100446474 /* ProgressBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressBar.swift; sourceTree = "<group>"; };
 		DD0BFE5A1CE268A500446474 /* OvercastController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OvercastController.swift; sourceTree = "<group>"; };
 		DD0BFE611CE276CF00446474 /* MediaKeysHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaKeysHandler.swift; sourceTree = "<group>"; };
-		DD0BFE631CE2792800446474 /* PodcastMenuApplication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PodcastMenuApplication.swift; sourceTree = "<group>"; };
 		DD0BFE661CE27D5400446474 /* overcast.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = overcast.js; sourceTree = "<group>"; };
 		DD0BFE681CE2816900446474 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sparkle.framework; path = lib/Sparkle.framework; sourceTree = "<group>"; };
 		DD0BFE711CE2890000446474 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
 		DD0BFE721CE2890000446474 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
+		DD13C8B61CE8DE9A002174C4 /* PMEventTap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMEventTap.h; sourceTree = "<group>"; };
+		DD13C8B71CE8DE9A002174C4 /* PMEventTap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMEventTap.m; sourceTree = "<group>"; };
 		DD1EFA771CE671A800E0C623 /* look.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = look.js; sourceTree = "<group>"; };
 		DD1EFA791CE671B200E0C623 /* PMWebView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PMWebView.swift; sourceTree = "<group>"; };
 		DD5439301CE50B59002BA32E /* NotificationsBase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationsBase.swift; sourceTree = "<group>"; };
@@ -122,7 +123,7 @@
 		DD0BFE531CE267D800446474 /* Bootstrap */ = {
 			isa = PBXGroup;
 			children = (
-				DD0BFE631CE2792800446474 /* PodcastMenuApplication.swift */,
+				DDC61FEA1CE2F20E00C0FADA /* PodcastMenu-Bridging-Header.h */,
 				DD0BFE3C1CE25D1400446474 /* AppDelegate.swift */,
 			);
 			name = Bootstrap;
@@ -175,6 +176,7 @@
 		DD0BFE601CE276AC00446474 /* Media Keys Handling */ = {
 			isa = PBXGroup;
 			children = (
+				DD13C8B91CE8DE9E002174C4 /* Aux */,
 				DD0BFE611CE276CF00446474 /* MediaKeysHandler.swift */,
 			);
 			name = "Media Keys Handling";
@@ -199,10 +201,18 @@
 			name = Vendor;
 			sourceTree = "<group>";
 		};
+		DD13C8B91CE8DE9E002174C4 /* Aux */ = {
+			isa = PBXGroup;
+			children = (
+				DD13C8B61CE8DE9A002174C4 /* PMEventTap.h */,
+				DD13C8B71CE8DE9A002174C4 /* PMEventTap.m */,
+			);
+			name = Aux;
+			sourceTree = "<group>";
+		};
 		DDC61FEE1CE2F21900C0FADA /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				DDC61FEA1CE2F20E00C0FADA /* PodcastMenu-Bridging-Header.h */,
 				DDC61FEB1CE2F20E00C0FADA /* NSImage+CGImage.h */,
 				DDC61FEC1CE2F20E00C0FADA /* NSImage+CGImage.m */,
 			);
@@ -308,10 +318,10 @@
 				DD0BFE621CE276CF00446474 /* MediaKeysHandler.swift in Sources */,
 				DD0BFE4A1CE2602B00446474 /* StatusPopoverController.swift in Sources */,
 				DD1EFA7A1CE671B200E0C623 /* PMWebView.swift in Sources */,
-				DD0BFE641CE2792800446474 /* PodcastMenuApplication.swift in Sources */,
 				DD0BFE4E1CE260FC00446474 /* Metrics.swift in Sources */,
 				DD5439311CE50B59002BA32E /* NotificationsBase.swift in Sources */,
 				DDC61FED1CE2F20E00C0FADA /* NSImage+CGImage.m in Sources */,
+				DD13C8B81CE8DE9A002174C4 /* PMEventTap.m in Sources */,
 				DDC61FF01CE2FE1E00C0FADA /* Preferences.swift in Sources */,
 				DD0BFE521CE2672800446474 /* Constants.swift in Sources */,
 				DDC61FE91CE2F0C300C0FADA /* VUController.swift in Sources */,

@@ -17,29 +17,7 @@ class MediaKeysHandler: NSObject {
     override init() {
         super.init()
         
-        // disables the system's default media keys handler (stops rcd service)
-        setDefaultSystemMediaKeysHandlingEnabled(false)
-        
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(reenableSystemMediaKeys), name: NSApplicationWillTerminateNotification, object: nil)
-        
-        PodcastMenuApplication.Notifications.DidPressPlay.subscribe(playPressed)
-        PodcastMenuApplication.Notifications.DidPressForward.subscribe(forwardPressed)
-        PodcastMenuApplication.Notifications.DidPressBackward.subscribe(backwardPressed)
-    }
-    
-    private func setDefaultSystemMediaKeysHandlingEnabled(enabled: Bool) {
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0)) {
-            let task = NSTask()
-            task.launchPath = "/bin/launchctl"
-            let command = enabled ? "load" : "unload"
-            task.arguments = [command, "/System/Library/LaunchAgents/com.apple.rcd.plist"]
-            task.launch()
-            task.waitUntilExit()
-        }
-    }
-    
-    @objc private func reenableSystemMediaKeys() {
-        setDefaultSystemMediaKeysHandlingEnabled(true)
+        startEventTap()
     }
     
     @objc private func playPressed() {
@@ -52,6 +30,28 @@ class MediaKeysHandler: NSObject {
     
     @objc private func backwardPressed() {
         dispatch_async(dispatch_get_main_queue(), backwardHandler)
+    }
+    
+    // MARK: - Media Keys Events
+    
+    private func mediaKeyEvent(key: Int32, down: Bool) {
+        guard down else { return }
+        
+        switch(key) {
+        case NX_KEYTYPE_PLAY: playPressed()
+        case NX_KEYTYPE_FAST: forwardPressed()
+        case NX_KEYTYPE_REWIND: backwardPressed()
+        default: break
+        }
+    }
+    
+    // MARK: Event tap
+    
+    private var eventTap: PMEventTap!
+    
+    private func startEventTap() {
+        eventTap = PMEventTap(mediaKeyEventHandler: mediaKeyEvent)
+        eventTap.start()
     }
     
 }
