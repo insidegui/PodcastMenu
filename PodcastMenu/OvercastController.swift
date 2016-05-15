@@ -55,6 +55,9 @@ class OvercastController: NSObject, WKNavigationDelegate {
         
         webView.configuration.userContentController.addUserScript(lookUserScript)
         webView.configuration.userContentController.addUserScript(userScript)
+        
+        Notifications.OvercastDidPlay.subscribe(startActivityIfNeeded)
+        Notifications.OvercastDidPause.subscribe(stopActivity)
     }
     
     func isValidOvercastURL(URL: NSURL) -> Bool {
@@ -105,6 +108,31 @@ class OvercastController: NSObject, WKNavigationDelegate {
         loudnessDelegate?.loudnessDidChange(value)
     }
     
+    // MARK: - Activity
+    
+    private var activity: NSObjectProtocol?
+    
+    private func startActivityIfNeeded() {
+        guard activity == nil else { return }
+        
+        activity = NSProcessInfo.processInfo().beginActivityWithOptions([.UserInitiated, .AutomaticTerminationDisabled, .SuddenTerminationDisabled, .IdleSystemSleepDisabled], reason: "PodcastMenu")
+        
+        #if DEBUG
+        NSLog("[OvercastController] Started activity \(activity)")
+        #endif
+    }
+    private func stopActivity() {
+        guard let activity = activity else { return }
+        
+        #if DEBUG
+        NSLog("[OvercastController] Stopping activity \(activity)")
+        #endif
+        
+        NSProcessInfo.processInfo().endActivity(activity)
+        
+        self.activity = nil
+    }
+    
 }
 
 private class OvercastJavascriptBridge: NSObject, WKScriptMessageHandler {
@@ -122,10 +150,12 @@ private class OvercastJavascriptBridge: NSObject, WKScriptMessageHandler {
     @objc private func userContentController(userContentController: WKUserContentController, didReceiveScriptMessage message: WKScriptMessage) {
         guard let msg = message.body as? String else { return }
         
-        switch msg {
-        case "pause": didPause()
-        case "play": didPlay()
-        default: break;
+        dispatch_async(dispatch_get_main_queue()) {
+            switch msg {
+            case "pause": self.didPause()
+            case "play": self.didPlay()
+            default: break;
+            }
         }
         
         /* JS-based VU disabled because of webkit bug (issue #3)
