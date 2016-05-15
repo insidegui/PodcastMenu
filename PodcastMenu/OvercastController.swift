@@ -164,7 +164,6 @@ private class FakeLoudnessDataGenerator {
         guard timer == nil else { return }
         
         timer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: #selector(generate), userInfo: nil, repeats: true)
-        NSLog("Generator resumed")
     }
     
     func suspend() {
@@ -172,7 +171,6 @@ private class FakeLoudnessDataGenerator {
         
         timer.invalidate()
         timer = nil
-        NSLog("Generator suspended")
     }
     
     private var minValue = 22.0
