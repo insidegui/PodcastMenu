@@ -81,8 +81,16 @@ class OvercastController: NSObject, WKNavigationDelegate {
         }
     }
     
+    private var isPaused = false
+    
     private func handlePlayPauseButton() {
-        webView.evaluateJavaScript("document.querySelector('audio').paused ? document.querySelector('audio').play() : document.querySelector('audio').pause()", completionHandler: nil)
+        if isPaused {
+            webView.evaluateJavaScript("document.querySelector('audio').play()", completionHandler: nil)
+        } else {
+            webView.evaluateJavaScript("document.querySelector('audio').pause()", completionHandler: nil)
+        }
+        
+        isPaused = !isPaused
     }
     
     private func handleForwardButton() {
