@@ -86,22 +86,56 @@ class OvercastController: NSObject, WKNavigationDelegate {
     
     private var isPaused = false
     
+    // WKWebView has a bug where javascript will not be evaluated in some circumstances (Radar #26290876)
+    private func fakeOrderFrontToWorkaround26290876() {
+        guard !NSApp.active else { return }
+        
+        NSAnimationContext.beginGrouping()
+        NSAnimationContext.currentContext().duration = 0.0
+        webView.window?.orderFrontRegardless()
+        webView.window?.alphaValue = 0.0
+        NSAnimationContext.endGrouping()
+    }
+    
+    private func undoFakeOrderFront() {
+        guard !NSApp.active else { return }
+        
+        NSAnimationContext.beginGrouping()
+        NSAnimationContext.currentContext().duration = 0.0
+        webView.window?.orderOut(nil)
+        NSAnimationContext.endGrouping()
+    }
+    
     private func handlePlayPauseButton() {
+        fakeOrderFrontToWorkaround26290876()
+        
         if isPaused {
-            webView.evaluateJavaScript("document.querySelector('audio').play()", completionHandler: nil)
+            webView.evaluateJavaScript("document.querySelector('audio').play()") { [unowned self] _, _ in
+                dispatch_async(dispatch_get_main_queue(), self.undoFakeOrderFront);
+            }
         } else {
-            webView.evaluateJavaScript("document.querySelector('audio').pause()", completionHandler: nil)
+            webView.evaluateJavaScript("document.querySelector('audio').pause()") { [unowned self] _, _ in
+                dispatch_async(dispatch_get_main_queue(), self.undoFakeOrderFront);
+            }
         }
         
         isPaused = !isPaused
     }
     
     private func handleForwardButton() {
-        webView.evaluateJavaScript("document.querySelector('#seekforwardbutton').click()", completionHandler: nil)
+        fakeOrderFrontToWorkaround26290876()
+        
+        webView.evaluateJavaScript("document.querySelector('#seekforwardbutton').click()") { [unowned self] _, _ in
+            dispatch_async(dispatch_get_main_queue(), self.undoFakeOrderFront);
+        }
     }
     
     private func handleBackwardButton() {
-        webView.evaluateJavaScript("document.querySelector('#seekbackbutton').click()", completionHandler: nil)
+        fakeOrderFrontToWorkaround26290876()
+        
+        webView.evaluateJavaScript("document.querySelector('#seekbackbutton').click()") { [unowned self] _, _ in
+            dispatch_async(dispatch_get_main_queue(), self.undoFakeOrderFront);
+        }
     }
     
     private func callLoudnessDelegate(value: Double) {

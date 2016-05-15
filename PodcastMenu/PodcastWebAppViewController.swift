@@ -85,6 +85,12 @@ class PodcastWebAppViewController: NSViewController {
         webView.loadRequest(NSURLRequest(URL: Constants.webAppURL))
     }
     
+    override func viewWillAppear() {
+        super.viewWillAppear()
+        
+        view.window?.alphaValue = 1.0
+    }
+    
     override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
         guard keyPath == "estimatedProgress" else {
             super.observeValueForKeyPath(keyPath, ofObject: object, change: change, context: context)
