@@ -17,6 +17,8 @@
 
 @end
 
+#define CGEventTypeSystemDefined NSSystemDefined
+
 CGEventRef eventTapCallback(CGEventTapProxy proxy, CGEventType type, CGEventRef event, void* context)
 {
     PMEventTap *eventTap = (__bridge PMEventTap *)context;
@@ -32,6 +34,8 @@ CGEventRef eventTapCallback(CGEventTapProxy proxy, CGEventType type, CGEventRef 
         
         return event;
     }
+    
+    if (type != CGEventTypeSystemDefined) return event;
     
     NSEvent *theEvent;
     
