@@ -20,6 +20,8 @@ While the app is playing a podcast, you can use your keyboard's media keys to co
 
 This is not an "official" app, I'm not affiliated with Overcast, I just love It and really wanted it to have a Mac app 😁
 
+OBS: This app is free and open source but It's license prohibits anyone from distributing It (free or paid) on any AppStore.
+
 # Get Overcast
 
 If you love podcasts and you're not using Overcast, you definitely should. 
