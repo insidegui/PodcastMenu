@@ -7,6 +7,21 @@
         <language>en</language>
 
         <item>
+            <title>Version 1.2.1</title>
+			<description><![CDATA[
+							<ul>
+								<li>Improved error handling</li>
+								<li>Fixed a memory leak which caused the app to consume too much memory</li>
+								<li>Fixed issues with the look of the configuration button</li>
+								<li>Moved "Reload" option from contextual menu to the configuration button</li>
+							</ul>
+						]]></description>
+            <pubDate>Tue, 28 Jun 2016 20:45:00 -0300</pubDate>
+            <enclosure url="https://github.com/insidegui/PodcastMenu/raw/master/Releases/PodcastMenu_v1.2.1.zip" sparkle:version="5" sparkle:shortVersionString="1.2.1" length="3819920" type="application/octet-stream" />
+            <sparkle:minimumSystemVersion>10.11</sparkle:minimumSystemVersion>
+        </item>
+
+        <item>
             <title>Version 1.2</title>
 			<description><![CDATA[
 							<ul>
