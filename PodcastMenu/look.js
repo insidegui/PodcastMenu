@@ -1,6 +1,13 @@
 PodcastMenuLook = new function(){
 	this.scrollHidden = true;
 	
+    function overrideContextMenu() {
+        document.addEventListener('contextmenu', function(e) {
+          e.preventDefault();
+        }, false);
+    }
+    overrideContextMenu();
+    
 	function injectStyle() {
 		document.styleSheets[0].insertRule('html { overflow: auto; }', 0);
 		document.styleSheets[0].insertRule('body { position: absolute; top: 5px; left: 0; bottom: 5px; right: 5px; padding: 5px; overflow-y: scroll; overflow-x: hidden; }', 0);

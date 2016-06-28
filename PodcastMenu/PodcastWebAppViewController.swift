@@ -31,11 +31,12 @@ class PodcastWebAppViewController: NSViewController {
         
         b.translatesAutoresizingMaskIntoConstraints = false
         b.bordered = false
-        b.bezelStyle = NSBezelStyle.RegularSquareBezelStyle
-        b.setButtonType(.MomentaryLightButton)
+        b.bezelStyle = .ShadowlessSquareBezelStyle
+        b.setButtonType(.MomentaryPushInButton)
         b.image = NSImage(named: NSImageNameActionTemplate)
         b.toolTip = NSLocalizedString("Options", comment: "Options menu tooltip")
         b.sizeToFit()
+        b.appearance = NSAppearance(named: NSAppearanceNameAqua)
         
         return b
     }()
@@ -115,6 +116,9 @@ class PodcastWebAppViewController: NSViewController {
     private lazy var configMenu = NSMenu()
     
     private func createConfigMenu() {
+        let reloadItem = NSMenuItem(title: NSLocalizedString("Reload", comment: "Reload"), action: #selector(reload(_:)), keyEquivalent: "")
+        reloadItem.target = self
+        
         let vuItem = NSMenuItem(title: NSLocalizedString("Enable VU Meter", comment: "Enable VU Meter"), action: #selector(toggleReflectAudioLevelInIcon(_:)), keyEquivalent: "")
         vuItem.target = self
         vuItem.state = Preferences.enableVU ? NSOnState : NSOffState
@@ -129,6 +133,8 @@ class PodcastWebAppViewController: NSViewController {
         let quitItem = NSMenuItem(title: NSLocalizedString("Quit", comment: "Quit"), action: #selector(NSApplication.terminate(_:)), keyEquivalent: "")
         quitItem.target = NSApp
         
+        configMenu.addItem(reloadItem)
+        configMenu.addItem(NSMenuItem.separatorItem())
         configMenu.addItem(vuItem)
         configMenu.addItem(passthroughItem)
         configMenu.addItem(NSMenuItem.separatorItem())
@@ -138,6 +144,10 @@ class PodcastWebAppViewController: NSViewController {
     
     @objc private func showConfigMenu() {
         configMenu.popUpMenuPositioningItem(nil, atLocation: NSZeroPoint, inView: configMenuButton)
+    }
+    
+    @objc private func reload(sender: NSMenuItem) {
+        webView.reload()
     }
     
     @objc private func toggleReflectAudioLevelInIcon(sender: NSMenuItem) {
