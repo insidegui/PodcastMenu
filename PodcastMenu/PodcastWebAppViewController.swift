@@ -61,6 +61,7 @@ class PodcastWebAppViewController: NSViewController {
         progressBar.leadingAnchor.constraintEqualToAnchor(view.leadingAnchor).active = true
         progressBar.trailingAnchor.constraintEqualToAnchor(view.trailingAnchor).active = true
         progressBar.topAnchor.constraintEqualToAnchor(view.topAnchor).active = true
+        progressBar.layer?.zPosition = 100
         
         createConfigMenu()
         

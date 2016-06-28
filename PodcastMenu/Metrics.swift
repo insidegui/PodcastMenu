@@ -13,4 +13,6 @@ struct Metrics {
     static let viewportHeight = CGFloat(430.0)
     static let webViewMargin = CGFloat(0.0)
     static let progressBarThickness = CGFloat(2.0)
+    static let errorBarHeight = CGFloat(48.0)
+    static let errorBarMargin = CGFloat(8.0)
 }

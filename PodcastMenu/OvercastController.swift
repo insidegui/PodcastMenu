@@ -167,6 +167,65 @@ class OvercastController: NSObject, WKNavigationDelegate {
         self.activity = nil
     }
     
+    // MARK: - Error handling
+    
+    private var errorViewController: ErrorViewController!
+    
+    @objc private func reload() {
+        let currentURL = webView.URL ?? Constants.webAppURL
+        webView.loadRequest(NSURLRequest(URL: currentURL))
+    }
+    
+    func webView(webView: WKWebView, didCommitNavigation navigation: WKNavigation!) {
+        dispatch_async(dispatch_get_main_queue()) {
+            self.hideErrorViewController()
+        }
+    }
+    
+    func webView(webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: NSError) {
+        let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(Constants.retryIntervalAfterError * Double(NSEC_PER_SEC)))
+        dispatch_after(delayTime, dispatch_get_main_queue()) { [weak self] in
+            self?.reload()
+        }
+        
+        dispatch_async(dispatch_get_main_queue()) {
+            self.showErrorViewControllerWithError(error)
+        }
+    }
+    
+    private func showErrorViewControllerWithError(error: NSError) {
+        if errorViewController == nil {
+            errorViewController = ErrorViewController(error: error)
+            
+            if let superview = webView.superview {
+                errorViewController.view.frame = NSRect(x: 0.0, y: superview.bounds.height - Metrics.errorBarHeight, width: superview.bounds.width, height: Metrics.errorBarHeight)
+                errorViewController.view.alphaValue = 0.0
+                errorViewController.view.autoresizingMask = [.ViewWidthSizable, .ViewMinYMargin]
+                superview.addSubview(errorViewController.view)
+            }
+            
+            errorViewController.reloadHandler = { [weak self] in
+                self?.reload()
+            }
+        }
+        
+        errorViewController.view.hidden = false
+        
+        NSAnimationContext.runAnimationGroup({ ctx in
+            ctx.duration = 0.4
+            self.errorViewController.view.animator().alphaValue = 1.0
+            }, completionHandler: nil)
+    }
+    
+    private func hideErrorViewController() {
+        guard errorViewController != nil else { return }
+        
+        NSAnimationContext.runAnimationGroup({ ctx in
+            ctx.duration = 0.4
+            self.errorViewController.view.animator().alphaValue = 0.0
+            }, completionHandler: { self.errorViewController.view.hidden = true })
+    }
+    
 }
 
 private class OvercastJavascriptBridge: NSObject, WKScriptMessageHandler {

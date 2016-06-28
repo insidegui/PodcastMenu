@@ -32,6 +32,7 @@
 		DDC61FE91CE2F0C300C0FADA /* VUController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDC61FE81CE2F0C300C0FADA /* VUController.swift */; };
 		DDC61FED1CE2F20E00C0FADA /* NSImage+CGImage.m in Sources */ = {isa = PBXBuildFile; fileRef = DDC61FEC1CE2F20E00C0FADA /* NSImage+CGImage.m */; };
 		DDC61FF01CE2FE1E00C0FADA /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDC61FEF1CE2FE1E00C0FADA /* Preferences.swift */; };
+		DDF690641D2333AA00C8AB25 /* ErrorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF690631D2333AA00C8AB25 /* ErrorViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -78,6 +79,7 @@
 		DDC61FEB1CE2F20E00C0FADA /* NSImage+CGImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSImage+CGImage.h"; sourceTree = "<group>"; };
 		DDC61FEC1CE2F20E00C0FADA /* NSImage+CGImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSImage+CGImage.m"; sourceTree = "<group>"; };
 		DDC61FEF1CE2FE1E00C0FADA /* Preferences.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Preferences.swift; sourceTree = "<group>"; };
+		DDF690631D2333AA00C8AB25 /* ErrorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -152,6 +154,7 @@
 				DD0BFE4B1CE2608E00446474 /* PodcastWebAppViewController.swift */,
 				DD0BFE5A1CE268A500446474 /* OvercastController.swift */,
 				DDC61FE81CE2F0C300C0FADA /* VUController.swift */,
+				DDF690631D2333AA00C8AB25 /* ErrorViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -333,6 +336,7 @@
 				DDC61FF01CE2FE1E00C0FADA /* Preferences.swift in Sources */,
 				DD0BFE521CE2672800446474 /* Constants.swift in Sources */,
 				DDC61FE91CE2F0C300C0FADA /* VUController.swift in Sources */,
+				DDF690641D2333AA00C8AB25 /* ErrorViewController.swift in Sources */,
 				DD0BFE591CE2686100446474 /* ProgressBar.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -438,7 +442,6 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "Developer ID Application";
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -460,7 +463,6 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "Developer ID Application";
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",

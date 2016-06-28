@@ -13,4 +13,5 @@ struct Constants {
     static let webAppURL = NSURL(string: "https://overcast.fm/podcasts")!
     static let javascriptBridgeName = "PodcastMenuApp"
     static let maxLoudness = 128.0
+    static let retryIntervalAfterError = 10.0
 }
