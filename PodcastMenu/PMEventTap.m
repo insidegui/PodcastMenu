@@ -89,7 +89,9 @@ CGEventRef eventTapCallback(CGEventTapProxy proxy, CGEventType type, CGEventRef 
 {
     dispatch_queue_t eventQueue = dispatch_queue_create("br.com.guilhermerambo.EventTap", NULL);
     dispatch_async(eventQueue, ^{
-        self.eventPort = CGEventTapCreate(kCGHIDEventTap, kCGHeadInsertEventTap, 0, kCGEventMaskForAllEvents, eventTapCallback, (__bridge void *)self);
+        CGEventMask mask = CGEventMaskBit(NSSystemDefined);
+        
+        self.eventPort = CGEventTapCreate(kCGHIDEventTap, kCGHeadInsertEventTap, 0, mask, eventTapCallback, (__bridge void *)self);
         CFRunLoopSourceRef runLoopSource = CFMachPortCreateRunLoopSource(kCFAllocatorDefault, self.eventPort, 0);
         CFRunLoopAddSource(CFRunLoopGetCurrent(), runLoopSource, kCFRunLoopCommonModes);
         CGEventTapEnable(self.eventPort, true);
