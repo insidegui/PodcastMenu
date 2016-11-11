@@ -22,17 +22,17 @@ class PodcastWebAppViewController: NSViewController {
         super.init(coder: coder)
     }
     
-    private lazy var progressBar = ProgressBar(frame: NSZeroRect)
-    private lazy var webView: PMWebView = PMWebView(frame: NSZeroRect)
-    private var overcastController: OvercastController!
+    fileprivate lazy var progressBar = ProgressBar(frame: NSZeroRect)
+    fileprivate lazy var webView: PMWebView = PMWebView(frame: NSZeroRect)
+    fileprivate var overcastController: OvercastController!
     
-    private lazy var configMenuButton: NSButton = {
+    fileprivate lazy var configMenuButton: NSButton = {
         let b = NSButton(frame: NSZeroRect)
         
         b.translatesAutoresizingMaskIntoConstraints = false
-        b.bordered = false
-        b.bezelStyle = .ShadowlessSquareBezelStyle
-        b.setButtonType(.MomentaryPushInButton)
+        b.isBordered = false
+        b.bezelStyle = .shadowlessSquare
+        b.setButtonType(.momentaryPushIn)
         b.image = NSImage(named: NSImageNameActionTemplate)
         b.toolTip = NSLocalizedString("Options", comment: "Options menu tooltip")
         b.sizeToFit()
@@ -48,32 +48,32 @@ class PodcastWebAppViewController: NSViewController {
         
         webView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(webView)
-        webView.topAnchor.constraintEqualToAnchor(view.topAnchor, constant: Metrics.webViewMargin).active = true
-        webView.bottomAnchor.constraintEqualToAnchor(view.bottomAnchor, constant: -Metrics.webViewMargin).active = true
-        webView.leadingAnchor.constraintEqualToAnchor(view.leadingAnchor, constant: Metrics.webViewMargin).active = true
-        webView.trailingAnchor.constraintEqualToAnchor(view.trailingAnchor, constant: -Metrics.webViewMargin).active = true
+        webView.topAnchor.constraint(equalTo: view.topAnchor, constant: Metrics.webViewMargin).isActive = true
+        webView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -Metrics.webViewMargin).isActive = true
+        webView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Metrics.webViewMargin).isActive = true
+        webView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -Metrics.webViewMargin).isActive = true
         
         progressBar.translatesAutoresizingMaskIntoConstraints = false
         progressBar.tintColor = Theme.Colors.tint
         progressBar.completedThreshold = 0.80
         
         view.addSubview(progressBar)
-        progressBar.addConstraint(NSLayoutConstraint(item: progressBar, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: Metrics.progressBarThickness))
-        progressBar.leadingAnchor.constraintEqualToAnchor(view.leadingAnchor).active = true
-        progressBar.trailingAnchor.constraintEqualToAnchor(view.trailingAnchor).active = true
-        progressBar.topAnchor.constraintEqualToAnchor(view.topAnchor).active = true
+        progressBar.addConstraint(NSLayoutConstraint(item: progressBar, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: Metrics.progressBarThickness))
+        progressBar.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        progressBar.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        progressBar.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
         progressBar.layer?.zPosition = 100
         
         createConfigMenu()
         
         configMenuButton.target = self
         configMenuButton.action = #selector(showConfigMenu)
-        configMenuButton.sendActionOn(Int(NSEventMask.LeftMouseDownMask.rawValue))
+        configMenuButton.sendAction(on: NSEventMask(rawValue: UInt64(Int(NSEventMask.leftMouseDown.rawValue))))
         
         view.addSubview(configMenuButton)
         
-        configMenuButton.trailingAnchor.constraintEqualToAnchor(view.trailingAnchor, constant: -10.0).active = true
-        configMenuButton.bottomAnchor.constraintEqualToAnchor(view.bottomAnchor, constant: -10.0).active = true
+        configMenuButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10.0).isActive = true
+        configMenuButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -10.0).isActive = true
     }
     
     override func viewDidLoad() {
@@ -82,9 +82,9 @@ class PodcastWebAppViewController: NSViewController {
         overcastController = OvercastController(webView: webView)
         overcastController.loudnessDelegate = loudnessDelegate
         
-        webView.addObserver(self, forKeyPath: "estimatedProgress", options: [.Initial, .New], context: nil)
+        webView.addObserver(self, forKeyPath: "estimatedProgress", options: [.initial, .new], context: nil)
         
-        webView.loadRequest(NSURLRequest(URL: Constants.webAppURL))
+        webView.load(URLRequest(url: Constants.webAppURL as URL))
     }
     
     override func viewWillAppear() {
@@ -93,29 +93,29 @@ class PodcastWebAppViewController: NSViewController {
         view.window?.alphaValue = 1.0
     }
     
-    override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         guard keyPath == "estimatedProgress" else {
-            super.observeValueForKeyPath(keyPath, ofObject: object, change: change, context: context)
+            super.observeValue(forKeyPath: keyPath, of: object, change: change, context: context)
             return
         }
         
         progressBar.progress = webView.estimatedProgress
     }
     
-    func openURL(URL: NSURL) {
+    func openURL(_ URL: Foundation.URL) {
         guard overcastController.isValidOvercastURL(URL) else {
-            NSWorkspace.sharedWorkspace().openURL(URL)
+            NSWorkspace.shared().open(URL)
             return
         }
         
-        webView.loadRequest(NSURLRequest(URL: URL))
+        webView.load(URLRequest(url: URL))
     }
     
     // MARK: - Configuration Menu
     
-    private lazy var configMenu = NSMenu()
+    fileprivate lazy var configMenu = NSMenu()
     
-    private func createConfigMenu() {
+    fileprivate func createConfigMenu() {
         let reloadItem = NSMenuItem(title: NSLocalizedString("Reload", comment: "Reload"), action: #selector(reload(_:)), keyEquivalent: "")
         reloadItem.target = self
         
@@ -134,34 +134,34 @@ class PodcastWebAppViewController: NSViewController {
         quitItem.target = NSApp
         
         configMenu.addItem(reloadItem)
-        configMenu.addItem(NSMenuItem.separatorItem())
+        configMenu.addItem(NSMenuItem.separator())
         configMenu.addItem(vuItem)
         configMenu.addItem(passthroughItem)
-        configMenu.addItem(NSMenuItem.separatorItem())
+        configMenu.addItem(NSMenuItem.separator())
         configMenu.addItem(updateItem)
         configMenu.addItem(quitItem)
     }
     
-    @objc private func showConfigMenu() {
-        configMenu.popUpMenuPositioningItem(nil, atLocation: NSZeroPoint, inView: configMenuButton)
+    @objc fileprivate func showConfigMenu() {
+        configMenu.popUp(positioning: nil, at: NSZeroPoint, in: configMenuButton)
     }
     
-    @objc private func reload(sender: NSMenuItem) {
+    @objc fileprivate func reload(_ sender: NSMenuItem) {
         webView.reload()
     }
     
-    @objc private func toggleReflectAudioLevelInIcon(sender: NSMenuItem) {
+    @objc fileprivate func toggleReflectAudioLevelInIcon(_ sender: NSMenuItem) {
         sender.state = sender.state == NSOnState ? NSOffState : NSOnState
         Preferences.enableVU = (sender.state == NSOnState)
     }
     
-    @objc private func toggleMediaKeysPassthrough(sender: NSMenuItem) {
+    @objc fileprivate func toggleMediaKeysPassthrough(_ sender: NSMenuItem) {
         sender.state = sender.state == NSOnState ? NSOffState : NSOnState
         Preferences.mediaKeysPassthroughEnabled = (sender.state == NSOnState)
     }
     
-    @objc private func checkForUpdates(sender: NSMenuItem) {
-        SUUpdater.sharedUpdater().checkForUpdates(sender)
+    @objc fileprivate func checkForUpdates(_ sender: NSMenuItem) {
+        SUUpdater.shared().checkForUpdates(sender)
     }
     
 }

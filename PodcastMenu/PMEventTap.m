@@ -35,7 +35,7 @@ CGEventRef eventTapCallback(CGEventTapProxy proxy, CGEventType type, CGEventRef 
         return event;
     }
     
-    if (type != CGEventTypeSystemDefined) return event;
+    if ((NSEventType)type != CGEventTypeSystemDefined) return event;
     
     NSEvent *theEvent;
     

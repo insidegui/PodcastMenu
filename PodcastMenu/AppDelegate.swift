@@ -15,22 +15,22 @@ import Crashlytics
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
 
-    private var updater = SUUpdater()
+    fileprivate var updater = SUUpdater()
     
-    private var statusItem: NSStatusItem!
-    private lazy var popoverController = StatusPopoverController()
-    private var vuController: VUController!
+    fileprivate var statusItem: NSStatusItem!
+    fileprivate lazy var popoverController = StatusPopoverController()
+    fileprivate var vuController: VUController!
 
-    func applicationWillFinishLaunching(notification: NSNotification) {
-        NSUserDefaults.standardUserDefaults().registerDefaults(["NSApplicationCrashOnExceptions": true])
+    func applicationWillFinishLaunching(_ notification: Notification) {
+        UserDefaults.standard.register(defaults: ["NSApplicationCrashOnExceptions": true])
         
         registerURLHandler()
     }
     
-    func applicationDidFinishLaunching(aNotification: NSNotification) {
+    func applicationDidFinishLaunching(_ aNotification: Notification) {
         Fabric.with([Crashlytics.self])
         
-        statusItem = NSStatusBar.systemStatusBar().statusItemWithLength(NSVariableStatusItemLength)
+        statusItem = NSStatusBar.system().statusItem(withLength: NSVariableStatusItemLength)
         statusItem.image = NSImage(named: "podcast")!
         statusItem.target = self
         statusItem.action = #selector(statusItemAction(_:))
@@ -39,20 +39,20 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         vuController = VUController(statusItem: statusItem)
         popoverController.webAppController.loudnessDelegate = vuController
         
-        performSelector(#selector(statusItemAction(_:)), withObject: statusItem.button, afterDelay: 0.5)
+        perform(#selector(statusItemAction(_:)), with: statusItem.button, afterDelay: 0.5)
     }
     
-    @objc private func statusItemAction(sender: NSStatusBarButton) {
+    @objc fileprivate func statusItemAction(_ sender: NSStatusBarButton) {
         popoverController.showPopoverFromStatusItemButton(sender)
     }
     
-    private func registerURLHandler() {
-        NSAppleEventManager.sharedAppleEventManager().setEventHandler(self, andSelector: #selector(handleURLEvent(_:replyEvent:)), forEventClass: UInt32(kInternetEventClass), andEventID: UInt32(kAEGetURL))
+    fileprivate func registerURLHandler() {
+        NSAppleEventManager.shared().setEventHandler(self, andSelector: #selector(handleURLEvent(_:replyEvent:)), forEventClass: UInt32(kInternetEventClass), andEventID: UInt32(kAEGetURL))
     }
     
-    @objc private func handleURLEvent(event: NSAppleEventDescriptor!, replyEvent: NSAppleEventDescriptor!) {
-        guard let urlString = event.paramDescriptorForKeyword(UInt32(keyDirectObject))?.stringValue else { return }
-        guard let URL = NSURL(string: urlString) else { return }
+    @objc fileprivate func handleURLEvent(_ event: NSAppleEventDescriptor!, replyEvent: NSAppleEventDescriptor!) {
+        guard let urlString = event.paramDescriptor(forKeyword: UInt32(keyDirectObject))?.stringValue else { return }
+        guard let URL = URL(string: urlString) else { return }
         guard statusItem?.button != nil else { return }
         
         statusItemAction(statusItem.button!)

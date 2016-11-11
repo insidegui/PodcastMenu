@@ -10,7 +10,7 @@ import Cocoa
 
 class ErrorViewController: NSViewController {
 
-    private let error: NSError
+    fileprivate let error: NSError
     
     var reloadHandler = {}
     
@@ -24,13 +24,13 @@ class ErrorViewController: NSViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private let errorLabel: NSTextField = {
+    fileprivate let errorLabel: NSTextField = {
         let f = NSTextField(frame: NSZeroRect)
         
-        f.editable = false
-        f.bezeled = false
-        f.bordered = false
-        f.selectable = false
+        f.isEditable = false
+        f.isBezeled = false
+        f.isBordered = false
+        f.isSelectable = false
         f.backgroundColor = Theme.Colors.tint
         f.textColor = NSColor(calibratedWhite: 0, alpha: 0.7)
         f.translatesAutoresizingMaskIntoConstraints = false
@@ -38,13 +38,13 @@ class ErrorViewController: NSViewController {
         return f
     }()
     
-    private let reloadButton: NSButton = {
+    fileprivate let reloadButton: NSButton = {
         let b = NSButton(frame: NSZeroRect)
         
         b.image = NSImage(named: NSImageNameRefreshFreestandingTemplate)
-        b.setButtonType(.MomentaryPushInButton)
-        b.bordered = false
-        b.bezelStyle = NSBezelStyle.ShadowlessSquareBezelStyle
+        b.setButtonType(.momentaryPushIn)
+        b.isBordered = false
+        b.bezelStyle = NSBezelStyle.shadowlessSquare
         b.sizeToFit()
         b.translatesAutoresizingMaskIntoConstraints = false
         b.appearance = NSAppearance(named: NSAppearanceNameAqua)
@@ -55,23 +55,23 @@ class ErrorViewController: NSViewController {
     override func loadView() {
         view = NSView(frame: NSZeroRect)
         view.wantsLayer = true
-        view.layer?.backgroundColor = Theme.Colors.tint.CGColor
+        view.layer?.backgroundColor = Theme.Colors.tint.cgColor
         
         view.addSubview(errorLabel)
-        errorLabel.setContentCompressionResistancePriority(NSLayoutPriorityDefaultLow, forOrientation: .Horizontal)
-        errorLabel.centerYAnchor.constraintEqualToAnchor(view.centerYAnchor).active = true
-        errorLabel.leadingAnchor.constraintEqualToAnchor(view.leadingAnchor, constant: Metrics.errorBarMargin).active = true
+        errorLabel.setContentCompressionResistancePriority(NSLayoutPriorityDefaultLow, for: .horizontal)
+        errorLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+        errorLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Metrics.errorBarMargin).isActive = true
         
         view.addSubview(reloadButton)
-        reloadButton.leadingAnchor.constraintEqualToAnchor(errorLabel.trailingAnchor, constant: 8.0).active = true
-        reloadButton.trailingAnchor.constraintEqualToAnchor(view.trailingAnchor, constant: -Metrics.errorBarMargin).active = true
-        reloadButton.centerYAnchor.constraintEqualToAnchor(errorLabel.centerYAnchor).active = true
+        reloadButton.leadingAnchor.constraint(equalTo: errorLabel.trailingAnchor, constant: 8.0).isActive = true
+        reloadButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -Metrics.errorBarMargin).isActive = true
+        reloadButton.centerYAnchor.constraint(equalTo: errorLabel.centerYAnchor).isActive = true
         
         reloadButton.target = self
         reloadButton.action = #selector(reload)
     }
     
-    @objc private func reload() {
+    @objc fileprivate func reload() {
         reloadHandler()
     }
     

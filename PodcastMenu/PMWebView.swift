@@ -11,8 +11,8 @@ import WebKit
 
 class PMWebView: WKWebView {
 
-    private var scrollTimer: NSTimer!
-    private lazy var scrollCaptureView = PMScrollCaptureView(frame: NSZeroRect)
+    fileprivate var scrollTimer: Timer!
+    fileprivate lazy var scrollCaptureView = PMScrollCaptureView(frame: NSZeroRect)
     
     override func viewDidMoveToWindow() {
         super.viewDidMoveToWindow()
@@ -22,29 +22,29 @@ class PMWebView: WKWebView {
         
         scrollCaptureView.webView = self
         scrollCaptureView.frame = bounds
-        scrollCaptureView.autoresizingMask = [.ViewWidthSizable, .ViewHeightSizable]
+        scrollCaptureView.autoresizingMask = [.viewWidthSizable, .viewHeightSizable]
         subviews[0].addSubview(scrollCaptureView)
     }
     
-    private func didScroll() {
+    fileprivate func didScroll() {
         showScrollbar()
         resetScrollTimer()
     }
     
-    private func resetScrollTimer() {
+    fileprivate func resetScrollTimer() {
         if scrollTimer != nil {
             scrollTimer.invalidate()
             scrollTimer = nil
         }
         
-        scrollTimer = NSTimer.scheduledTimerWithTimeInterval(0.4, target: self, selector: #selector(hideScrollbar), userInfo: nil, repeats: false)
+        scrollTimer = Timer.scheduledTimer(timeInterval: 0.4, target: self, selector: #selector(hideScrollbar), userInfo: nil, repeats: false)
     }
     
-    @objc private func hideScrollbar() {
+    @objc fileprivate func hideScrollbar() {
         evaluateJavaScript("PodcastMenuLook.hideScroll()", completionHandler: nil)
     }
     
-    private func showScrollbar() {
+    fileprivate func showScrollbar() {
         evaluateJavaScript("PodcastMenuLook.showScroll()", completionHandler: nil)
     }
     
@@ -52,15 +52,15 @@ class PMWebView: WKWebView {
 
 private class PMScrollCaptureView: NSView {
     
-    private var webView: PMWebView!
+    fileprivate var webView: PMWebView!
     
-    private override func scrollWheel(theEvent: NSEvent) {
+    fileprivate override func scrollWheel(with theEvent: NSEvent) {
         // cancel horizontal scrolling
         guard fabs(theEvent.scrollingDeltaX) < fabs(theEvent.scrollingDeltaY) else { return }
         
         webView.didScroll()
         
-        superview?.scrollWheel(theEvent)
+        superview?.scrollWheel(with: theEvent)
     }
     
 }

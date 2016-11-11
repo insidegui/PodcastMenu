@@ -8,32 +8,32 @@
 
 import Cocoa
 
+extension Notification.Name {
+    static let SystemAppearanceDidChange = Notification.Name(rawValue: "SystemAppearanceDidChange")
+}
+
 class Theme: NSObject {
-    
-    enum Notifications: String, NotificationsBase {
-        case SystemAppearanceDidChange
-    }
     
     struct Colors {
         static let tint = NSColor(calibratedRed:0.989, green:0.496, blue:0.059, alpha:1)
         
         static var iconFill: NSColor {
-            return Theme.isDark ? NSColor.whiteColor() : NSColor.blackColor()
+            return Theme.isDark ? NSColor.white : NSColor.black
         }
     }
     
     static var isDark: Bool {
-        return NSUserDefaults.standardUserDefaults().stringForKey("AppleInterfaceStyle") == "Dark"
+        return UserDefaults.standard.string(forKey: "AppleInterfaceStyle") == "Dark"
     }
     
     override init() {
         super.init()
         
-        NSDistributedNotificationCenter.defaultCenter().addObserver(self, selector: #selector(systemAppearanceChanged), name: "AppleInterfaceThemeChangedNotification", object: nil)
+        DistributedNotificationCenter.default().addObserver(self, selector: #selector(systemAppearanceChanged), name: NSNotification.Name(rawValue: "AppleInterfaceThemeChangedNotification"), object: nil)
     }
     
-    @objc private func systemAppearanceChanged() {
-        Notifications.SystemAppearanceDidChange.post()
+    @objc fileprivate func systemAppearanceChanged() {
+        NotificationCenter.default.post(name: Notification.Name.SystemAppearanceDidChange, object: nil)
     }
     
 }

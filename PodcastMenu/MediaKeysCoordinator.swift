@@ -10,20 +10,20 @@ import Foundation
 
 class MediaKeysCoordinator: NSObject {
     
-    private let mediaKeysUsers: [String]
+    fileprivate let mediaKeysUsers: [String]
     
     override init() {
-        let data = NSData(contentsOfURL: NSBundle.mainBundle().URLForResource("MediaKeysUsers", withExtension: "plist")!)!
-        self.mediaKeysUsers = try! NSPropertyListSerialization.propertyListWithData(data, options: .Immutable, format: nil) as! [String]
+        let data = try! Data(contentsOf: Bundle.main.url(forResource: "MediaKeysUsers", withExtension: "plist")!)
+        self.mediaKeysUsers = try! PropertyListSerialization.propertyList(from: data, options: PropertyListSerialization.MutabilityOptions(), format: nil) as! [String]
         
         super.init()
         
         
-        NSWorkspace.sharedWorkspace().addObserver(self, forKeyPath: "frontmostApplication", options: [.Initial, .New], context: nil)
-        NSWorkspace.sharedWorkspace().addObserver(self, forKeyPath: "runningApplications", options: [.Initial, .New], context: nil)
+        NSWorkspace.shared().addObserver(self, forKeyPath: "frontmostApplication", options: [.initial, .new], context: nil)
+        NSWorkspace.shared().addObserver(self, forKeyPath: "runningApplications", options: [.initial, .new], context: nil)
     }
     
-    private var keysOwnedByAnotherApplication = false
+    fileprivate var keysOwnedByAnotherApplication = false
     
     func shouldInterceptMediaKeys() -> Bool {
         return keysOwnedByAnotherApplication == false || Preferences.mediaKeysPassthroughEnabled
@@ -33,10 +33,10 @@ class MediaKeysCoordinator: NSObject {
         return Preferences.mediaKeysPassthroughEnabled
     }
     
-    override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         if keyPath == "frontmostApplication" {
             // if frontmost application is one of the apps listed in mediaKeysUsers, disable media keys handling, if It's our app, reenable if disabled
-            if let identifier = NSWorkspace.sharedWorkspace().frontmostApplication?.bundleIdentifier {
+            if let identifier = NSWorkspace.shared().frontmostApplication?.bundleIdentifier {
                 if !keysOwnedByAnotherApplication {
                     if (mediaKeysUsers.contains(identifier)) {
                         keysOwnedByAnotherApplication = true
@@ -45,7 +45,7 @@ class MediaKeysCoordinator: NSObject {
                         #endif
                     }
                 } else {
-                    if identifier == NSBundle.mainBundle().bundleIdentifier {
+                    if identifier == Bundle.main.bundleIdentifier {
                         keysOwnedByAnotherApplication = false
                         #if DEBUG
                         NSLog("[MediaKeysCoordinator] Media keys now owned by PodcastMenu")
@@ -54,7 +54,7 @@ class MediaKeysCoordinator: NSObject {
                 }
             }
         } else if keyPath == "runningApplications" {
-            if !NSWorkspace.sharedWorkspace().runningApplications.reduce(false, combine: { $0 ? $0 : mediaKeysUsers.contains($1.bundleIdentifier ?? "") }) {
+            if !NSWorkspace.shared().runningApplications.reduce(false, { $0 ? $0 : mediaKeysUsers.contains($1.bundleIdentifier ?? "") }) {
                 // all media keys users have quit, reclaim media keys
                 keysOwnedByAnotherApplication = false
                 #if DEBUG
@@ -62,7 +62,7 @@ class MediaKeysCoordinator: NSObject {
                 #endif
             }
         } else {
-            super.observeValueForKeyPath(keyPath, ofObject: object, change: change, context: context)
+            super.observeValue(forKeyPath: keyPath, of: object, change: change, context: context)
         }
     }
     

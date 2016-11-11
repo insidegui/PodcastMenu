@@ -11,55 +11,57 @@ import Cocoa
 class VUController: OvercastLoudnessDelegate {
     
     var statusItem: NSStatusItem
-    var timeoutTimer: NSTimer!
+    var timeoutTimer: Timer!
     
     init(statusItem: NSStatusItem) {
         self.statusItem = statusItem
         
-        OvercastController.Notifications.OvercastDidPause.subscribe(resetToDefaultImage)
+        NotificationCenter.default.addObserver(forName: Notification.Name.OvercastDidPause, object: nil, queue: nil) { [weak self] _ in
+            self?.resetToDefaultImage()
+        }
     }
     
-    func loudnessDidChange(value: Double) {
+    func loudnessDidChange(_ value: Double) {
         guard Preferences.enableVU else { return resetToDefaultImage() }
         
         statusItem.image = imageForLoudness(value)
     }
     
-    private lazy var baseImage = NSImage(named: "podcast")!
-    private lazy var baseImageCG = NSImage(named: "podcast")!.CGImage
-    private let startAngle = CGFloat(M_PI / 2.0 * -1.0)
-    private let endAngle = CGFloat(2.0 * M_PI) + CGFloat(M_PI / 2.0 * -1.0)
+    fileprivate lazy var baseImage = NSImage(named: "podcast")!
+    fileprivate lazy var baseImageCG: CGImage = NSImage(named: "podcast")!.cgImage
+    fileprivate let startAngle = CGFloat(M_PI / 2.0 * -1.0)
+    fileprivate let endAngle = CGFloat(2.0 * M_PI) + CGFloat(M_PI / 2.0 * -1.0)
     
-    private func imageForLoudness(value: Double) -> NSImage {
+    fileprivate func imageForLoudness(_ value: Double) -> NSImage {
         let image = NSImage(size: statusItem.image!.size)
         let w = image.size.width
         let h = image.size.height
         
         image.lockFocus()
         
-        let ctx = NSGraphicsContext.currentContext()!.CGContext
+        let ctx = NSGraphicsContext.current()!.cgContext
         
         let maskBounds = CGRect(x: 0.0, y: 0.0, width: w, height: h)
-        CGContextClipToMask(ctx, maskBounds, baseImageCG)
+        ctx.clip(to: maskBounds, mask: baseImageCG)
 
-        if !statusItem.button!.highlighted {
-            CGContextSetFillColorWithColor(ctx, Theme.Colors.iconFill.colorWithAlphaComponent(0.1).CGColor)
-            CGContextFillRect(ctx, maskBounds)
+        if !statusItem.button!.isHighlighted {
+            ctx.setFillColor(Theme.Colors.iconFill.withAlphaComponent(0.1).cgColor)
+            ctx.fill(maskBounds)
         }
         
         let relativeLoudness = value / Constants.maxLoudness
         let radius = max(w * CGFloat(relativeLoudness), h * CGFloat(relativeLoudness)) * CGFloat(0.9)
         
-        CGContextSetFillColorWithColor(ctx, Theme.Colors.tint.CGColor)
-        CGContextAddArc(ctx, w / 2.0, h / 2.0 - 1.0, radius, startAngle, endAngle, 0)
-        CGContextFillPath(ctx)
+        ctx.setFillColor(Theme.Colors.tint.cgColor)
+        ctx.addArc(center: CGPoint(x: w / 2.0, y: h / 2.0), radius: radius, startAngle: startAngle, endAngle: endAngle, clockwise: false)
+        ctx.fillPath()
         
         image.unlockFocus()
         
         return image
     }
     
-    private func resetToDefaultImage() {
+    fileprivate func resetToDefaultImage() {
         statusItem.image = baseImage
     }
     

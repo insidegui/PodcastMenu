@@ -10,49 +10,49 @@ import Cocoa
 
 class StatusPopoverController: NSObject {
 
-    private var theme = Theme()
-    private var popover: NSPopover?
+    fileprivate var theme = Theme()
+    fileprivate var popover: NSPopover?
     lazy var webAppController = PodcastWebAppViewController()
-    private var themeObserver: NSObjectProtocol?
+    fileprivate var themeObserver: NSObjectProtocol?
     
     override init() {
         super.init()
         
-        themeObserver = Theme.Notifications.SystemAppearanceDidChange.subscribe { [unowned self] _ in
-            self.updatePopoverAppearance()
+        themeObserver = NotificationCenter.default.addObserver(forName: Notification.Name.SystemAppearanceDidChange, object: nil, queue: nil) { [weak self] _ in
+            self?.updatePopoverAppearance()
         }
         
         installApplicationTerminationListener()
     }
     
-    func showPopoverFromStatusItemButton(statusItemButton: NSStatusBarButton) {
+    func showPopoverFromStatusItemButton(_ statusItemButton: NSStatusBarButton) {
         if popover == nil {
             popover = NSPopover()
             popover!.contentViewController = webAppController
-            popover!.behavior = .Transient
+            popover!.behavior = .transient
         }
         
         updatePopoverAppearance()
         
-        popover!.showRelativeToRect(NSZeroRect, ofView: statusItemButton, preferredEdge: .MaxY)
+        popover!.show(relativeTo: NSZeroRect, of: statusItemButton, preferredEdge: .maxY)
         
-        NSApp.activateIgnoringOtherApps(true)
+        NSApp.activate(ignoringOtherApps: true)
     }
     
-    private func installApplicationTerminationListener() {
-        let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(2 * Double(NSEC_PER_SEC)))
-        dispatch_after(delayTime, dispatch_get_main_queue()) {
-            NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(StatusPopoverController.closePopover), name: NSApplicationDidResignActiveNotification, object: nil)
+    fileprivate func installApplicationTerminationListener() {
+        let delayTime = DispatchTime.now() + Double(Int64(2 * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)
+        DispatchQueue.main.asyncAfter(deadline: delayTime) {
+            NotificationCenter.default.addObserver(self, selector: #selector(StatusPopoverController.closePopover), name: NSNotification.Name.NSApplicationDidResignActive, object: nil)
         }
     }
     
-    private func updatePopoverAppearance() {
+    fileprivate func updatePopoverAppearance() {
         guard let popover = popover else { return }
         
         popover.appearance = Theme.isDark ? NSAppearance(named: NSAppearanceNameVibrantDark) : nil
     }
     
-    @objc private func closePopover() {
+    @objc fileprivate func closePopover() {
         guard let popover = popover else { return }
         
         popover.performClose(nil)
@@ -60,10 +60,10 @@ class StatusPopoverController: NSObject {
     
     deinit {
         if let themeObserver = themeObserver {
-            Theme.Notifications.SystemAppearanceDidChange.unsubscribe(themeObserver)
+            NotificationCenter.default.removeObserver(themeObserver)
         }
         
-        NSNotificationCenter.defaultCenter().removeObserver(self)
+        NotificationCenter.default.removeObserver(self)
     }
     
 }

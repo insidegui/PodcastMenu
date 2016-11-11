@@ -20,21 +20,21 @@ class MediaKeysHandler: NSObject {
         startEventTap()
     }
     
-    @objc private func playPressed() {
-        dispatch_async(dispatch_get_main_queue(), playPauseHandler)
+    @objc fileprivate func playPressed() {
+        DispatchQueue.main.async(execute: playPauseHandler)
     }
     
-    @objc private func forwardPressed() {
-        dispatch_async(dispatch_get_main_queue(), forwardHandler)
+    @objc fileprivate func forwardPressed() {
+        DispatchQueue.main.async(execute: forwardHandler)
     }
     
-    @objc private func backwardPressed() {
-        dispatch_async(dispatch_get_main_queue(), backwardHandler)
+    @objc fileprivate func backwardPressed() {
+        DispatchQueue.main.async(execute: backwardHandler)
     }
     
     // MARK: - Media Keys Events
     
-    private func mediaKeyEvent(key: Int32, down: Bool) {
+    fileprivate func mediaKeyEvent(_ key: Int32, down: Bool) {
         guard down else { return }
         
         switch(key) {
@@ -47,9 +47,9 @@ class MediaKeysHandler: NSObject {
     
     // MARK: Event tap
     
-    private var eventTap: PMEventTap!
+    fileprivate var eventTap: PMEventTap!
     
-    private func startEventTap() {
+    fileprivate func startEventTap() {
         eventTap = PMEventTap(mediaKeyEventHandler: mediaKeyEvent)
         eventTap.start()
     }
