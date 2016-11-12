@@ -115,7 +115,9 @@ class PodcastWebAppViewController: NSViewController {
 
     // MARK: - Touch Bar
 
-    fileprivate lazy var touchBarController = TouchBarController()
+    fileprivate lazy var touchBarController: TouchBarController = {
+        return TouchBarController(webView: self.webView)
+    }()
     
     private lazy var episodesParserScript: String? = {
         guard let url = Bundle.main.url(forResource: "EpisodesParser", withExtension: "js") else { return nil }
@@ -222,6 +224,15 @@ class PodcastWebAppViewController: NSViewController {
     
     deinit {
         webView.removeObserver(self, forKeyPath: "estimatedProgress")
+    }
+    
+}
+
+@available(OSX 10.12.1, *)
+extension PodcastWebAppViewController {
+    
+    override func makeTouchBar() -> NSTouchBar? {
+        return touchBarController.touchBar
     }
     
 }
