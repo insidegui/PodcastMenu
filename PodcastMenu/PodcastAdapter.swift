@@ -8,16 +8,36 @@
 
 import Foundation
 
-final class PodcastAdapter: Adapter<[String: String], Podcast> {
+final class PodcastAdapter: Adapter<JSON, Podcast> {
+    
+    override func adapt() -> Result<Podcast, AdapterError> {
+        guard let name = input["name"].string else {
+            return .error(.missingRequiredFields)
+        }
+        
+        guard let poster = input["poster"].string else {
+            return .error(.missingRequiredFields)
+        }
+        
+        let link = input["link"].stringValue
+        
+        let podcast = Podcast(name: name, poster: URL(string: poster)!, link: URL(string: link))
+        
+        return .success(podcast)
+    }
     
 }
 
 
-final class PodcastsAdapter: Adapter<[[String: String]], [Podcast]> {
+final class PodcastsAdapter: Adapter<JSON, [Podcast]> {
     
     override func adapt() -> Result<[Podcast], AdapterError> {
-        let podcasts: [Podcast] = input.flatMap { dict -> Podcast? in
-            let result = PodcastAdapter(input: dict).adapt()
+        guard let jsonPodcasts = input.array else {
+            return .error(.missingRequiredFields)
+        }
+        
+        let podcasts: [Podcast] = jsonPodcasts.flatMap { json -> Podcast? in
+            let result = PodcastAdapter(input: json).adapt()
             switch result {
             case .error(_): return nil
             case .success(let podcast): return podcast

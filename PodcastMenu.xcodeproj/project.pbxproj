@@ -35,11 +35,25 @@
 		DD6DFF4E1DD697E5004954DE /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD6DFF4D1DD697E5004954DE /* Result.swift */; };
 		DD6DFF501DD69E63004954DE /* PodcastAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD6DFF4F1DD69E63004954DE /* PodcastAdapter.swift */; };
 		DD6DFF541DD69F42004954DE /* EpisodeAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD6DFF531DD69F42004954DE /* EpisodeAdapter.swift */; };
+		DD6DFF5C1DD6A122004954DE /* PodcastMenuTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD6DFF5B1DD6A122004954DE /* PodcastMenuTests.swift */; };
+		DD6DFF651DD6A159004954DE /* Episodes.json in Resources */ = {isa = PBXBuildFile; fileRef = DD6DFF641DD6A159004954DE /* Episodes.json */; };
+		DD6DFF671DD6A1DF004954DE /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD6DFF661DD6A1DF004954DE /* SwiftyJSON.swift */; };
+		DD6DFF6A1DD6A6F8004954DE /* Podcasts.json in Resources */ = {isa = PBXBuildFile; fileRef = DD6DFF691DD6A6F8004954DE /* Podcasts.json */; };
 		DDC61FE91CE2F0C300C0FADA /* VUController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDC61FE81CE2F0C300C0FADA /* VUController.swift */; };
 		DDC61FED1CE2F20E00C0FADA /* NSImage+CGImage.m in Sources */ = {isa = PBXBuildFile; fileRef = DDC61FEC1CE2F20E00C0FADA /* NSImage+CGImage.m */; };
 		DDC61FF01CE2FE1E00C0FADA /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDC61FEF1CE2FE1E00C0FADA /* Preferences.swift */; };
 		DDF690641D2333AA00C8AB25 /* ErrorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF690631D2333AA00C8AB25 /* ErrorViewController.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		DD6DFF5E1DD6A122004954DE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DD0BFE311CE25D1400446474 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DD0BFE381CE25D1400446474;
+			remoteInfo = PodcastMenu;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		DD0BFE6C1CE2817100446474 /* Embed Frameworks */ = {
@@ -86,6 +100,12 @@
 		DD6DFF4D1DD697E5004954DE /* Result.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 		DD6DFF4F1DD69E63004954DE /* PodcastAdapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PodcastAdapter.swift; sourceTree = "<group>"; };
 		DD6DFF531DD69F42004954DE /* EpisodeAdapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EpisodeAdapter.swift; sourceTree = "<group>"; };
+		DD6DFF591DD6A122004954DE /* PodcastMenuTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PodcastMenuTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		DD6DFF5B1DD6A122004954DE /* PodcastMenuTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastMenuTests.swift; sourceTree = "<group>"; };
+		DD6DFF5D1DD6A122004954DE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DD6DFF641DD6A159004954DE /* Episodes.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = Episodes.json; path = Data/Episodes.json; sourceTree = "<group>"; };
+		DD6DFF661DD6A1DF004954DE /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwiftyJSON.swift; path = lib/SwiftyJSON.swift; sourceTree = "<group>"; };
+		DD6DFF691DD6A6F8004954DE /* Podcasts.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = Podcasts.json; path = Data/Podcasts.json; sourceTree = "<group>"; };
 		DDC61FE81CE2F0C300C0FADA /* VUController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VUController.swift; sourceTree = "<group>"; };
 		DDC61FEA1CE2F20E00C0FADA /* PodcastMenu-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PodcastMenu-Bridging-Header.h"; sourceTree = "<group>"; };
 		DDC61FEB1CE2F20E00C0FADA /* NSImage+CGImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSImage+CGImage.h"; sourceTree = "<group>"; };
@@ -105,6 +125,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		DD6DFF561DD6A122004954DE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -113,6 +140,7 @@
 			children = (
 				DD0BFE691CE2816C00446474 /* Vendor */,
 				DD0BFE3B1CE25D1400446474 /* PodcastMenu */,
+				DD6DFF5A1DD6A122004954DE /* PodcastMenuTests */,
 				DD0BFE3A1CE25D1400446474 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -121,6 +149,7 @@
 			isa = PBXGroup;
 			children = (
 				DD0BFE391CE25D1400446474 /* PodcastMenu.app */,
+				DD6DFF591DD6A122004954DE /* PodcastMenuTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -215,6 +244,7 @@
 		DD0BFE691CE2816C00446474 /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
+				DD6DFF661DD6A1DF004954DE /* SwiftyJSON.swift */,
 				DD0BFE711CE2890000446474 /* Fabric.framework */,
 				DD0BFE721CE2890000446474 /* Crashlytics.framework */,
 				DD0BFE681CE2816900446474 /* Sparkle.framework */,
@@ -253,6 +283,25 @@
 			name = Adapters;
 			sourceTree = "<group>";
 		};
+		DD6DFF5A1DD6A122004954DE /* PodcastMenuTests */ = {
+			isa = PBXGroup;
+			children = (
+				DD6DFF631DD6A13F004954DE /* Data */,
+				DD6DFF5B1DD6A122004954DE /* PodcastMenuTests.swift */,
+				DD6DFF5D1DD6A122004954DE /* Info.plist */,
+			);
+			path = PodcastMenuTests;
+			sourceTree = "<group>";
+		};
+		DD6DFF631DD6A13F004954DE /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				DD6DFF691DD6A6F8004954DE /* Podcasts.json */,
+				DD6DFF641DD6A159004954DE /* Episodes.json */,
+			);
+			name = Data;
+			sourceTree = "<group>";
+		};
 		DDC61FEE1CE2F21900C0FADA /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
@@ -284,13 +333,31 @@
 			productReference = DD0BFE391CE25D1400446474 /* PodcastMenu.app */;
 			productType = "com.apple.product-type.application";
 		};
+		DD6DFF581DD6A122004954DE /* PodcastMenuTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DD6DFF601DD6A122004954DE /* Build configuration list for PBXNativeTarget "PodcastMenuTests" */;
+			buildPhases = (
+				DD6DFF551DD6A122004954DE /* Sources */,
+				DD6DFF561DD6A122004954DE /* Frameworks */,
+				DD6DFF571DD6A122004954DE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				DD6DFF5F1DD6A122004954DE /* PBXTargetDependency */,
+			);
+			name = PodcastMenuTests;
+			productName = PodcastMenuTests;
+			productReference = DD6DFF591DD6A122004954DE /* PodcastMenuTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		DD0BFE311CE25D1400446474 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0730;
+				LastSwiftUpdateCheck = 0810;
 				LastUpgradeCheck = 0810;
 				ORGANIZATIONNAME = "Guilherme Rambo";
 				TargetAttributes = {
@@ -298,6 +365,12 @@
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = 8C7439RJLG;
 						LastSwiftMigration = 0810;
+					};
+					DD6DFF581DD6A122004954DE = {
+						CreatedOnToolsVersion = 8.1;
+						DevelopmentTeam = 8C7439RJLG;
+						ProvisioningStyle = Automatic;
+						TestTargetID = DD0BFE381CE25D1400446474;
 					};
 				};
 			};
@@ -315,6 +388,7 @@
 			projectRoot = "";
 			targets = (
 				DD0BFE381CE25D1400446474 /* PodcastMenu */,
+				DD6DFF581DD6A122004954DE /* PodcastMenuTests */,
 			);
 		};
 /* End PBXProject section */
@@ -329,6 +403,15 @@
 				DD13C8BD1CE8E587002174C4 /* MediaKeysUsers.plist in Resources */,
 				DD0BFE421CE25D1400446474 /* MainMenu.xib in Resources */,
 				DD1EFA781CE671A800E0C623 /* look.js in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DD6DFF571DD6A122004954DE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DD6DFF6A1DD6A6F8004954DE /* Podcasts.json in Resources */,
+				DD6DFF651DD6A159004954DE /* Episodes.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -359,6 +442,7 @@
 				DD0BFE3D1CE25D1400446474 /* AppDelegate.swift in Sources */,
 				DD6DFF491DD69734004954DE /* Episode.swift in Sources */,
 				DD0BFE5B1CE268A500446474 /* OvercastController.swift in Sources */,
+				DD6DFF671DD6A1DF004954DE /* SwiftyJSON.swift in Sources */,
 				DD0BFE4C1CE2608E00446474 /* PodcastWebAppViewController.swift in Sources */,
 				DD0BFE501CE2618900446474 /* Theme.swift in Sources */,
 				DD0BFE621CE276CF00446474 /* MediaKeysHandler.swift in Sources */,
@@ -382,7 +466,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		DD6DFF551DD6A122004954DE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DD6DFF5C1DD6A122004954DE /* PodcastMenuTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		DD6DFF5F1DD6A122004954DE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DD0BFE381CE25D1400446474 /* PodcastMenu */;
+			targetProxy = DD6DFF5E1DD6A122004954DE /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		DD0BFE401CE25D1400446474 /* MainMenu.xib */ = {
@@ -531,6 +631,46 @@
 			};
 			name = Release;
 		};
+		DD6DFF611DD6A122004954DE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = 8C7439RJLG;
+				INFOPLIST_FILE = PodcastMenuTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				PRODUCT_BUNDLE_IDENTIFIER = br.com.guilhermerambo.PodcastMenuTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PodcastMenu.app/Contents/MacOS/PodcastMenu";
+			};
+			name = Debug;
+		};
+		DD6DFF621DD6A122004954DE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 8C7439RJLG;
+				INFOPLIST_FILE = PodcastMenuTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				PRODUCT_BUNDLE_IDENTIFIER = br.com.guilhermerambo.PodcastMenuTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PodcastMenu.app/Contents/MacOS/PodcastMenu";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -551,6 +691,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		DD6DFF601DD6A122004954DE /* Build configuration list for PBXNativeTarget "PodcastMenuTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DD6DFF611DD6A122004954DE /* Debug */,
+				DD6DFF621DD6A122004954DE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};
