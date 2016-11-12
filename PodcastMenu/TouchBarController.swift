@@ -22,6 +22,20 @@ class TouchBarController: NSObject {
         self.webView.addObserver(self, forKeyPath: #keyPath(WKWebView.canGoForward), options: [.initial, .new], context: nil)
     }
     
+    var currentEpisodeTitle: String? = nil {
+        didSet {
+            currentEpisode = episodes.first(where: { $0.title == self.currentEpisodeTitle })
+        }
+    }
+    
+    var currentEpisode: Episode? = nil {
+        didSet {
+            DispatchQueue.main.async {
+                print("NOW PLAYING: \(self.currentEpisode)")
+            }
+        }
+    }
+    
     var episodes: [Episode] = [] {
         didSet {
             DispatchQueue.main.async {

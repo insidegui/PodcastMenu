@@ -135,9 +135,33 @@ class PodcastWebAppViewController: NSViewController {
         return String(data: data, encoding: .utf8)
     }()
     
+    private lazy var titleParserScript: String? = {
+        guard let url = Bundle.main.url(forResource: "TitleParser", withExtension: "js") else { return nil }
+        
+        guard let data = try? Data(contentsOf: url) else { return nil }
+        
+        return String(data: data, encoding: .utf8)
+    }()
+    
     private func webViewDidFinishLoadingPage() {
-        guard let title = webView.title, title == Constants.homeTitle else { return }
-        // we are visiting the home page, use this chance to grab the list of episodes and podcasts for the touch bar widgets
+        guard let title = webView.title, title == Constants.homeTitle else {
+            // visiting a page other than the home, try to find out the title of the episode being played
+            
+            guard let titleParserScript = titleParserScript else { return }
+            
+            webView.evaluateJavaScript(titleParserScript) { [weak self] evalResult, error in
+                guard error == nil else { return }
+                guard let jsString = evalResult as? String else { return }
+                
+                self?.touchBarController.currentEpisodeTitle = jsString.isEmpty ? nil : jsString
+            }
+            
+            return
+        }
+        
+        touchBarController.currentEpisodeTitle = nil
+        
+        // visiting the home page, use this chance to grab the list of episodes and podcasts for the touch bar widgets
         
         guard let episodesParserScript = episodesParserScript else { return }
         guard let podcastsParserScript = podcastsParserScript else { return }
