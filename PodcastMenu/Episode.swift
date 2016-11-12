@@ -19,5 +19,6 @@ struct Episode {
     let title: String
     let date: Date
     let time: Time
+    let link: URL
     
 }

@@ -12,5 +12,6 @@ struct Podcast {
     
     let name: String
     let poster: URL
+    let link: URL
     
 }
