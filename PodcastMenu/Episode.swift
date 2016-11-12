@@ -17,6 +17,7 @@ struct Episode {
     
     let podcast: Podcast
     let title: String
+    let poster: URL
     let date: Date
     let time: Time
     let link: URL
