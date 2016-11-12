@@ -29,6 +29,10 @@
 		DD1EFA781CE671A800E0C623 /* look.js in Resources */ = {isa = PBXBuildFile; fileRef = DD1EFA771CE671A800E0C623 /* look.js */; };
 		DD1EFA7A1CE671B200E0C623 /* PMWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD1EFA791CE671B200E0C623 /* PMWebView.swift */; };
 		DD5439311CE50B59002BA32E /* NotificationsBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5439301CE50B59002BA32E /* NotificationsBase.swift */; };
+		DD6DFF471DD69700004954DE /* Podcast.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD6DFF461DD69700004954DE /* Podcast.swift */; };
+		DD6DFF491DD69734004954DE /* Episode.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD6DFF481DD69734004954DE /* Episode.swift */; };
+		DD6DFF4C1DD697D7004954DE /* Adapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD6DFF4B1DD697D7004954DE /* Adapter.swift */; };
+		DD6DFF4E1DD697E5004954DE /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD6DFF4D1DD697E5004954DE /* Result.swift */; };
 		DDC61FE91CE2F0C300C0FADA /* VUController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDC61FE81CE2F0C300C0FADA /* VUController.swift */; };
 		DDC61FED1CE2F20E00C0FADA /* NSImage+CGImage.m in Sources */ = {isa = PBXBuildFile; fileRef = DDC61FEC1CE2F20E00C0FADA /* NSImage+CGImage.m */; };
 		DDC61FF01CE2FE1E00C0FADA /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDC61FEF1CE2FE1E00C0FADA /* Preferences.swift */; };
@@ -74,6 +78,10 @@
 		DD1EFA771CE671A800E0C623 /* look.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = look.js; sourceTree = "<group>"; };
 		DD1EFA791CE671B200E0C623 /* PMWebView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PMWebView.swift; sourceTree = "<group>"; };
 		DD5439301CE50B59002BA32E /* NotificationsBase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationsBase.swift; sourceTree = "<group>"; };
+		DD6DFF461DD69700004954DE /* Podcast.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Podcast.swift; sourceTree = "<group>"; };
+		DD6DFF481DD69734004954DE /* Episode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Episode.swift; sourceTree = "<group>"; };
+		DD6DFF4B1DD697D7004954DE /* Adapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Adapter.swift; sourceTree = "<group>"; };
+		DD6DFF4D1DD697E5004954DE /* Result.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 		DDC61FE81CE2F0C300C0FADA /* VUController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VUController.swift; sourceTree = "<group>"; };
 		DDC61FEA1CE2F20E00C0FADA /* PodcastMenu-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PodcastMenu-Bridging-Header.h"; sourceTree = "<group>"; };
 		DDC61FEB1CE2F20E00C0FADA /* NSImage+CGImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSImage+CGImage.h"; sourceTree = "<group>"; };
@@ -116,6 +124,7 @@
 		DD0BFE3B1CE25D1400446474 /* PodcastMenu */ = {
 			isa = PBXGroup;
 			children = (
+				DD6DFF451DD696F6004954DE /* Models */,
 				DD0BFE531CE267D800446474 /* Bootstrap */,
 				DD0BFE541CE267DE00446474 /* Definitions */,
 				DD0BFE551CE267EA00446474 /* Controllers */,
@@ -217,6 +226,25 @@
 				DD13C8B71CE8DE9A002174C4 /* PMEventTap.m */,
 			);
 			name = Aux;
+			sourceTree = "<group>";
+		};
+		DD6DFF451DD696F6004954DE /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				DD6DFF4A1DD697BD004954DE /* Adapters */,
+				DD6DFF4D1DD697E5004954DE /* Result.swift */,
+				DD6DFF461DD69700004954DE /* Podcast.swift */,
+				DD6DFF481DD69734004954DE /* Episode.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		DD6DFF4A1DD697BD004954DE /* Adapters */ = {
+			isa = PBXGroup;
+			children = (
+				DD6DFF4B1DD697D7004954DE /* Adapter.swift */,
+			);
+			name = Adapters;
 			sourceTree = "<group>";
 		};
 		DDC61FEE1CE2F21900C0FADA /* Helpers */ = {
@@ -323,6 +351,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DD0BFE3D1CE25D1400446474 /* AppDelegate.swift in Sources */,
+				DD6DFF491DD69734004954DE /* Episode.swift in Sources */,
 				DD0BFE5B1CE268A500446474 /* OvercastController.swift in Sources */,
 				DD0BFE4C1CE2608E00446474 /* PodcastWebAppViewController.swift in Sources */,
 				DD0BFE501CE2618900446474 /* Theme.swift in Sources */,
@@ -334,9 +363,12 @@
 				DD5439311CE50B59002BA32E /* NotificationsBase.swift in Sources */,
 				DDC61FED1CE2F20E00C0FADA /* NSImage+CGImage.m in Sources */,
 				DD13C8B81CE8DE9A002174C4 /* PMEventTap.m in Sources */,
+				DD6DFF4C1DD697D7004954DE /* Adapter.swift in Sources */,
 				DDC61FF01CE2FE1E00C0FADA /* Preferences.swift in Sources */,
 				DD0BFE521CE2672800446474 /* Constants.swift in Sources */,
+				DD6DFF471DD69700004954DE /* Podcast.swift in Sources */,
 				DDC61FE91CE2F0C300C0FADA /* VUController.swift in Sources */,
+				DD6DFF4E1DD697E5004954DE /* Result.swift in Sources */,
 				DDF690641D2333AA00C8AB25 /* ErrorViewController.swift in Sources */,
 				DD0BFE591CE2686100446474 /* ProgressBar.swift in Sources */,
 			);
