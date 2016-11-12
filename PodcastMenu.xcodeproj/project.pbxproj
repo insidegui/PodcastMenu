@@ -26,6 +26,7 @@
 		DD13C8B81CE8DE9A002174C4 /* PMEventTap.m in Sources */ = {isa = PBXBuildFile; fileRef = DD13C8B71CE8DE9A002174C4 /* PMEventTap.m */; };
 		DD13C8BB1CE8E4DE002174C4 /* MediaKeysCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD13C8BA1CE8E4DE002174C4 /* MediaKeysCoordinator.swift */; };
 		DD13C8BD1CE8E587002174C4 /* MediaKeysUsers.plist in Resources */ = {isa = PBXBuildFile; fileRef = DD13C8BC1CE8E587002174C4 /* MediaKeysUsers.plist */; };
+		DD14EB821DD6B0F800906DAD /* TouchBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD14EB811DD6B0F800906DAD /* TouchBarController.swift */; };
 		DD1EFA781CE671A800E0C623 /* look.js in Resources */ = {isa = PBXBuildFile; fileRef = DD1EFA771CE671A800E0C623 /* look.js */; };
 		DD1EFA7A1CE671B200E0C623 /* PMWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD1EFA791CE671B200E0C623 /* PMWebView.swift */; };
 		DD5439311CE50B59002BA32E /* NotificationsBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5439301CE50B59002BA32E /* NotificationsBase.swift */; };
@@ -39,6 +40,8 @@
 		DD6DFF651DD6A159004954DE /* Episodes.json in Resources */ = {isa = PBXBuildFile; fileRef = DD6DFF641DD6A159004954DE /* Episodes.json */; };
 		DD6DFF671DD6A1DF004954DE /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD6DFF661DD6A1DF004954DE /* SwiftyJSON.swift */; };
 		DD6DFF6A1DD6A6F8004954DE /* Podcasts.json in Resources */ = {isa = PBXBuildFile; fileRef = DD6DFF691DD6A6F8004954DE /* Podcasts.json */; };
+		DD6DFF6E1DD6ACB5004954DE /* EpisodesParser.js in Resources */ = {isa = PBXBuildFile; fileRef = DD6DFF6C1DD6ACB5004954DE /* EpisodesParser.js */; };
+		DD6DFF6F1DD6ACB5004954DE /* PodcastsParser.js in Resources */ = {isa = PBXBuildFile; fileRef = DD6DFF6D1DD6ACB5004954DE /* PodcastsParser.js */; };
 		DDC61FE91CE2F0C300C0FADA /* VUController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDC61FE81CE2F0C300C0FADA /* VUController.swift */; };
 		DDC61FED1CE2F20E00C0FADA /* NSImage+CGImage.m in Sources */ = {isa = PBXBuildFile; fileRef = DDC61FEC1CE2F20E00C0FADA /* NSImage+CGImage.m */; };
 		DDC61FF01CE2FE1E00C0FADA /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDC61FEF1CE2FE1E00C0FADA /* Preferences.swift */; };
@@ -91,6 +94,7 @@
 		DD13C8B71CE8DE9A002174C4 /* PMEventTap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMEventTap.m; sourceTree = "<group>"; };
 		DD13C8BA1CE8E4DE002174C4 /* MediaKeysCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaKeysCoordinator.swift; sourceTree = "<group>"; };
 		DD13C8BC1CE8E587002174C4 /* MediaKeysUsers.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = MediaKeysUsers.plist; sourceTree = "<group>"; };
+		DD14EB811DD6B0F800906DAD /* TouchBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TouchBarController.swift; sourceTree = "<group>"; };
 		DD1EFA771CE671A800E0C623 /* look.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = look.js; sourceTree = "<group>"; };
 		DD1EFA791CE671B200E0C623 /* PMWebView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PMWebView.swift; sourceTree = "<group>"; };
 		DD5439301CE50B59002BA32E /* NotificationsBase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationsBase.swift; sourceTree = "<group>"; };
@@ -106,6 +110,8 @@
 		DD6DFF641DD6A159004954DE /* Episodes.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = Episodes.json; path = Data/Episodes.json; sourceTree = "<group>"; };
 		DD6DFF661DD6A1DF004954DE /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwiftyJSON.swift; path = lib/SwiftyJSON.swift; sourceTree = "<group>"; };
 		DD6DFF691DD6A6F8004954DE /* Podcasts.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = Podcasts.json; path = Data/Podcasts.json; sourceTree = "<group>"; };
+		DD6DFF6C1DD6ACB5004954DE /* EpisodesParser.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = EpisodesParser.js; sourceTree = "<group>"; };
+		DD6DFF6D1DD6ACB5004954DE /* PodcastsParser.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = PodcastsParser.js; sourceTree = "<group>"; };
 		DDC61FE81CE2F0C300C0FADA /* VUController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VUController.swift; sourceTree = "<group>"; };
 		DDC61FEA1CE2F20E00C0FADA /* PodcastMenu-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PodcastMenu-Bridging-Header.h"; sourceTree = "<group>"; };
 		DDC61FEB1CE2F20E00C0FADA /* NSImage+CGImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSImage+CGImage.h"; sourceTree = "<group>"; };
@@ -194,9 +200,10 @@
 			children = (
 				DD0BFE491CE2602B00446474 /* StatusPopoverController.swift */,
 				DD0BFE4B1CE2608E00446474 /* PodcastWebAppViewController.swift */,
+				DD14EB811DD6B0F800906DAD /* TouchBarController.swift */,
 				DD0BFE5A1CE268A500446474 /* OvercastController.swift */,
-				DDC61FE81CE2F0C300C0FADA /* VUController.swift */,
 				DDF690631D2333AA00C8AB25 /* ErrorViewController.swift */,
+				DDC61FE81CE2F0C300C0FADA /* VUController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -205,6 +212,7 @@
 			isa = PBXGroup;
 			children = (
 				DD13C8BC1CE8E587002174C4 /* MediaKeysUsers.plist */,
+				DD6DFF6B1DD6AC9B004954DE /* Parsers */,
 				DD0BFE651CE27D4500446474 /* Userscripts */,
 				DD0BFE3E1CE25D1400446474 /* Assets.xcassets */,
 				DD0BFE401CE25D1400446474 /* MainMenu.xib */,
@@ -300,6 +308,15 @@
 				DD6DFF641DD6A159004954DE /* Episodes.json */,
 			);
 			name = Data;
+			sourceTree = "<group>";
+		};
+		DD6DFF6B1DD6AC9B004954DE /* Parsers */ = {
+			isa = PBXGroup;
+			children = (
+				DD6DFF6C1DD6ACB5004954DE /* EpisodesParser.js */,
+				DD6DFF6D1DD6ACB5004954DE /* PodcastsParser.js */,
+			);
+			name = Parsers;
 			sourceTree = "<group>";
 		};
 		DDC61FEE1CE2F21900C0FADA /* Helpers */ = {
@@ -398,9 +415,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DD6DFF6F1DD6ACB5004954DE /* PodcastsParser.js in Resources */,
 				DD0BFE3F1CE25D1400446474 /* Assets.xcassets in Resources */,
 				DD0BFE671CE27D5400446474 /* overcast.js in Resources */,
 				DD13C8BD1CE8E587002174C4 /* MediaKeysUsers.plist in Resources */,
+				DD6DFF6E1DD6ACB5004954DE /* EpisodesParser.js in Resources */,
 				DD0BFE421CE25D1400446474 /* MainMenu.xib in Resources */,
 				DD1EFA781CE671A800E0C623 /* look.js in Resources */,
 			);
@@ -463,6 +482,7 @@
 				DD6DFF4E1DD697E5004954DE /* Result.swift in Sources */,
 				DDF690641D2333AA00C8AB25 /* ErrorViewController.swift in Sources */,
 				DD0BFE591CE2686100446474 /* ProgressBar.swift in Sources */,
+				DD14EB821DD6B0F800906DAD /* TouchBarController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -699,6 +719,7 @@
 				DD6DFF621DD6A122004954DE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

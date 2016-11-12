@@ -94,12 +94,14 @@ class PodcastWebAppViewController: NSViewController {
     }
     
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
-        guard keyPath == "estimatedProgress" else {
+        if keyPath == "estimatedProgress" {
+            if webView.estimatedProgress >= 0.99 {
+                webViewDidFinishLoadingPage()
+            }
+            progressBar.progress = webView.estimatedProgress
+        } else {
             super.observeValue(forKeyPath: keyPath, of: object, change: change, context: context)
-            return
         }
-        
-        progressBar.progress = webView.estimatedProgress
     }
     
     func openURL(_ URL: Foundation.URL) {
@@ -109,6 +111,60 @@ class PodcastWebAppViewController: NSViewController {
         }
         
         webView.load(URLRequest(url: URL))
+    }
+
+    // MARK: - Touch Bar
+
+    fileprivate lazy var touchBarController = TouchBarController()
+    
+    private lazy var episodesParserScript: String? = {
+        guard let url = Bundle.main.url(forResource: "EpisodesParser", withExtension: "js") else { return nil }
+        
+        guard let data = try? Data(contentsOf: url) else { return nil }
+
+        return String(data: data, encoding: .utf8)
+    }()
+    
+    private lazy var podcastsParserScript: String? = {
+        guard let url = Bundle.main.url(forResource: "PodcastsParser", withExtension: "js") else { return nil }
+        
+        guard let data = try? Data(contentsOf: url) else { return nil }
+        
+        return String(data: data, encoding: .utf8)
+    }()
+    
+    private func webViewDidFinishLoadingPage() {
+        guard let title = webView.title, title == Constants.homeTitle else { return }
+        // we are visiting the home page, use this chance to grab the list of episodes and podcasts for the touch bar widgets
+        
+        guard let episodesParserScript = episodesParserScript else { return }
+        guard let podcastsParserScript = podcastsParserScript else { return }
+        
+        webView.evaluateJavaScript(episodesParserScript) { [weak self] evalResult, error in
+            guard error == nil else { return }
+            guard let jsString = evalResult as? String else { return }
+            guard let jsData = jsString.data(using: .utf8) else { return }
+            
+            let result = EpisodesAdapter(input: JSON(data: jsData)).adapt()
+            switch result {
+            case .success(let episodes):
+                self?.touchBarController.episodes = episodes
+            default: break
+            }
+        }
+        
+        webView.evaluateJavaScript(podcastsParserScript) { [weak self] evalResult, error in
+            guard error == nil else { return }
+            guard let jsString = evalResult as? String else { return }
+            guard let jsData = jsString.data(using: .utf8) else { return }
+            
+            let result = PodcastsAdapter(input: JSON(data: jsData)).adapt()
+            switch result {
+            case .success(let podcasts):
+                self?.touchBarController.podcasts = podcasts
+            default: break
+            }
+        }
     }
     
     // MARK: - Configuration Menu
@@ -162,6 +218,10 @@ class PodcastWebAppViewController: NSViewController {
     
     @objc fileprivate func checkForUpdates(_ sender: NSMenuItem) {
         SUUpdater.shared().checkForUpdates(sender)
+    }
+    
+    deinit {
+        webView.removeObserver(self, forKeyPath: "estimatedProgress")
     }
     
 }

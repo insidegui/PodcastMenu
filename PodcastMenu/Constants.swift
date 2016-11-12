@@ -14,4 +14,5 @@ struct Constants {
     static let javascriptBridgeName = "PodcastMenuApp"
     static let maxLoudness = 128.0
     static let retryIntervalAfterError = 10.0
+    static let homeTitle = "Overcast"
 }
