@@ -15,13 +15,13 @@ final class PodcastAdapter: Adapter<JSON, Podcast> {
             return .error(.missingRequiredFields)
         }
         
-        guard let poster = input["poster"].string else {
+        guard let poster = input["poster"].string?.overcastPoster else {
             return .error(.missingRequiredFields)
         }
         
         let link = input["link"].stringValue
         
-        let podcast = Podcast(name: name, poster: URL(string: poster)!, link: URL(string: link))
+        let podcast = Podcast(name: name, poster: poster, link: URL(string: link))
         
         return .success(podcast)
     }

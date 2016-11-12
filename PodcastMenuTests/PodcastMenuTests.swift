@@ -54,7 +54,7 @@ class PodcastMenuTests: XCTestCase {
             let podcast = podcasts[2]
             XCTAssertEqual(podcast.name, "Anxious Machine")
             XCTAssertEqual(podcast.link, URL(string: "https://overcast.fm/itunes928943009/anxious-machine"))
-            XCTAssertEqual(podcast.poster, URL(string: "https://d1eedt7bo0oujw.cloudfront.net/art?s=457f65dbc1648343bef1d75586ff6caa9e3733f71cf10daa143a27d330729ec4&w=160&u=http%3A%2F%2Fstatic.libsyn.com%2Fp%2Fassets%2Fe%2Fd%2Fc%2F0%2Fedc0c8516a5923c2%2Fam-3000.jpg"))
+            XCTAssertEqual(podcast.poster, URL(string: "http://static.libsyn.com/p/assets/e/d/c/0/edc0c8516a5923c2/am-3000.jpg"))
         }
     }
     
@@ -73,7 +73,7 @@ class PodcastMenuTests: XCTestCase {
             let episode = episodes[1]
             
             XCTAssertEqual(episode.podcast.name, "build phase")
-            XCTAssertEqual(episode.podcast.poster, URL(string: "https://d1eedt7bo0oujw.cloudfront.net/art?s=81d2b6e70c7f8e3eb7ec2907733d2d3758a1a300c5df73f0ee95cd2cd84cac6e&w=160&u=https%3A%2F%2Fmedia.simplecast.com%2Fpodcast%2Fimage%2F272%2F1437489285-artwork.jpg")!)
+            XCTAssertEqual(episode.podcast.poster, URL(string: "https://media.simplecast.com/podcast/image/272/1437489285-artwork.jpg")!)
             XCTAssertEqual(episode.title, "112: Embarrassment Factor")
             XCTAssertEqual(episode.link, URL(string: "https://overcast.fm/+F7xkKwdCw")!)
             XCTAssertEqual(episode.date, expectedTestEpisodeDate)

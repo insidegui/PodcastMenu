@@ -33,7 +33,7 @@ final class EpisodeAdapter: Adapter<JSON, Episode> {
             return .error(.missingRequiredFields)
         }
 
-        guard let poster = input["poster"].string else {
+        guard let poster = input["poster"].string?.overcastPoster else {
             return .error(.missingRequiredFields)
         }
         
@@ -67,7 +67,7 @@ final class EpisodeAdapter: Adapter<JSON, Episode> {
         let episode = Episode(
             podcast: podcast,
             title: title,
-            poster: URL(string: poster)!,
+            poster: poster,
             date: date,
             time: time,
             link: URL(string: link)!
