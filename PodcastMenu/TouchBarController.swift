@@ -22,32 +22,29 @@ class TouchBarController: NSObject {
         self.webView.addObserver(self, forKeyPath: #keyPath(WKWebView.canGoForward), options: [.initial, .new], context: nil)
     }
     
+    @available(OSX 10.12.1, *)
+    fileprivate lazy var scrubberController = TouchBarScrubberViewController()
+    
     var currentEpisodeTitle: String? = nil {
         didSet {
-            currentEpisode = episodes.first(where: { $0.title == self.currentEpisodeTitle })
-        }
-    }
-    
-    var currentEpisode: Episode? = nil {
-        didSet {
-            DispatchQueue.main.async {
-                print("NOW PLAYING: \(self.currentEpisode)")
+            if #available(OSX 10.12.1, *) {
+                scrubberController.currentEpisodeTitle = currentEpisodeTitle
             }
         }
     }
     
     var episodes: [Episode] = [] {
         didSet {
-            DispatchQueue.main.async {
-                print(self.episodes)
+            if #available(OSX 10.12.1, *) {
+                scrubberController.episodes = episodes
             }
         }
     }
     
     var podcasts: [Podcast] = [] {
         didSet {
-            DispatchQueue.main.async {
-                print(self.podcasts)
+            if #available(OSX 10.12.1, *) {
+                scrubberController.podcasts = podcasts
             }
         }
     }
@@ -116,6 +113,10 @@ extension TouchBarController: NSTouchBarDelegate {
         case NSTouchBarItemIdentifier.forwardButton:
             let item = NSCustomTouchBarItem(identifier: .forwardButton)
             item.view = forwardButton
+            return item
+        case NSTouchBarItemIdentifier.scrubber:
+            let item = NSCustomTouchBarItem(identifier: .scrubber)
+            item.viewController = scrubberController
             return item
         default: return nil
         }

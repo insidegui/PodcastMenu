@@ -28,6 +28,10 @@
 		DD13C8BD1CE8E587002174C4 /* MediaKeysUsers.plist in Resources */ = {isa = PBXBuildFile; fileRef = DD13C8BC1CE8E587002174C4 /* MediaKeysUsers.plist */; };
 		DD14EB821DD6B0F800906DAD /* TouchBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD14EB811DD6B0F800906DAD /* TouchBarController.swift */; };
 		DD14EB841DD6B81D00906DAD /* TitleParser.js in Resources */ = {isa = PBXBuildFile; fileRef = DD14EB831DD6B81D00906DAD /* TitleParser.js */; };
+		DD14EB861DD6BC2100906DAD /* TouchBarScrubberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD14EB851DD6BC2100906DAD /* TouchBarScrubberViewController.swift */; };
+		DD14EB8B1DD6C2A000906DAD /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD14EB8A1DD6C2A000906DAD /* ImageCache.swift */; };
+		DD14EB8D1DD6C4A600906DAD /* ScrubberRemoteImageItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD14EB8C1DD6C4A600906DAD /* ScrubberRemoteImageItemView.swift */; };
+		DD14EB8F1DD6C7F000906DAD /* Poster.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD14EB8E1DD6C7F000906DAD /* Poster.swift */; };
 		DD1EFA781CE671A800E0C623 /* look.js in Resources */ = {isa = PBXBuildFile; fileRef = DD1EFA771CE671A800E0C623 /* look.js */; };
 		DD1EFA7A1CE671B200E0C623 /* PMWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD1EFA791CE671B200E0C623 /* PMWebView.swift */; };
 		DD5439311CE50B59002BA32E /* NotificationsBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5439301CE50B59002BA32E /* NotificationsBase.swift */; };
@@ -97,6 +101,10 @@
 		DD13C8BC1CE8E587002174C4 /* MediaKeysUsers.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = MediaKeysUsers.plist; sourceTree = "<group>"; };
 		DD14EB811DD6B0F800906DAD /* TouchBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TouchBarController.swift; sourceTree = "<group>"; };
 		DD14EB831DD6B81D00906DAD /* TitleParser.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = TitleParser.js; sourceTree = "<group>"; };
+		DD14EB851DD6BC2100906DAD /* TouchBarScrubberViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TouchBarScrubberViewController.swift; sourceTree = "<group>"; };
+		DD14EB8A1DD6C2A000906DAD /* ImageCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
+		DD14EB8C1DD6C4A600906DAD /* ScrubberRemoteImageItemView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScrubberRemoteImageItemView.swift; sourceTree = "<group>"; };
+		DD14EB8E1DD6C7F000906DAD /* Poster.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Poster.swift; sourceTree = "<group>"; };
 		DD1EFA771CE671A800E0C623 /* look.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = look.js; sourceTree = "<group>"; };
 		DD1EFA791CE671B200E0C623 /* PMWebView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PMWebView.swift; sourceTree = "<group>"; };
 		DD5439301CE50B59002BA32E /* NotificationsBase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationsBase.swift; sourceTree = "<group>"; };
@@ -200,9 +208,9 @@
 		DD0BFE551CE267EA00446474 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				DD14EB871DD6BC2300906DAD /* Touch Bar */,
 				DD0BFE491CE2602B00446474 /* StatusPopoverController.swift */,
 				DD0BFE4B1CE2608E00446474 /* PodcastWebAppViewController.swift */,
-				DD14EB811DD6B0F800906DAD /* TouchBarController.swift */,
 				DD0BFE5A1CE268A500446474 /* OvercastController.swift */,
 				DDF690631D2333AA00C8AB25 /* ErrorViewController.swift */,
 				DDC61FE81CE2F0C300C0FADA /* VUController.swift */,
@@ -272,6 +280,17 @@
 			name = Aux;
 			sourceTree = "<group>";
 		};
+		DD14EB871DD6BC2300906DAD /* Touch Bar */ = {
+			isa = PBXGroup;
+			children = (
+				DD14EB811DD6B0F800906DAD /* TouchBarController.swift */,
+				DD14EB851DD6BC2100906DAD /* TouchBarScrubberViewController.swift */,
+				DD14EB8A1DD6C2A000906DAD /* ImageCache.swift */,
+				DD14EB8C1DD6C4A600906DAD /* ScrubberRemoteImageItemView.swift */,
+			);
+			name = "Touch Bar";
+			sourceTree = "<group>";
+		};
 		DD6DFF451DD696F6004954DE /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -287,6 +306,7 @@
 			isa = PBXGroup;
 			children = (
 				DD6DFF4B1DD697D7004954DE /* Adapter.swift */,
+				DD14EB8E1DD6C7F000906DAD /* Poster.swift */,
 				DD6DFF4F1DD69E63004954DE /* PodcastAdapter.swift */,
 				DD6DFF531DD69F42004954DE /* EpisodeAdapter.swift */,
 			);
@@ -464,6 +484,7 @@
 			files = (
 				DD0BFE3D1CE25D1400446474 /* AppDelegate.swift in Sources */,
 				DD6DFF491DD69734004954DE /* Episode.swift in Sources */,
+				DD14EB8F1DD6C7F000906DAD /* Poster.swift in Sources */,
 				DD0BFE5B1CE268A500446474 /* OvercastController.swift in Sources */,
 				DD6DFF671DD6A1DF004954DE /* SwiftyJSON.swift in Sources */,
 				DD0BFE4C1CE2608E00446474 /* PodcastWebAppViewController.swift in Sources */,
@@ -473,7 +494,9 @@
 				DD13C8BB1CE8E4DE002174C4 /* MediaKeysCoordinator.swift in Sources */,
 				DD0BFE4A1CE2602B00446474 /* StatusPopoverController.swift in Sources */,
 				DD1EFA7A1CE671B200E0C623 /* PMWebView.swift in Sources */,
+				DD14EB8D1DD6C4A600906DAD /* ScrubberRemoteImageItemView.swift in Sources */,
 				DD0BFE4E1CE260FC00446474 /* Metrics.swift in Sources */,
+				DD14EB8B1DD6C2A000906DAD /* ImageCache.swift in Sources */,
 				DD5439311CE50B59002BA32E /* NotificationsBase.swift in Sources */,
 				DDC61FED1CE2F20E00C0FADA /* NSImage+CGImage.m in Sources */,
 				DD13C8B81CE8DE9A002174C4 /* PMEventTap.m in Sources */,
@@ -482,6 +505,7 @@
 				DD0BFE521CE2672800446474 /* Constants.swift in Sources */,
 				DD6DFF471DD69700004954DE /* Podcast.swift in Sources */,
 				DDC61FE91CE2F0C300C0FADA /* VUController.swift in Sources */,
+				DD14EB861DD6BC2100906DAD /* TouchBarScrubberViewController.swift in Sources */,
 				DD6DFF501DD69E63004954DE /* PodcastAdapter.swift in Sources */,
 				DD6DFF4E1DD697E5004954DE /* Result.swift in Sources */,
 				DDF690641D2333AA00C8AB25 /* ErrorViewController.swift in Sources */,
