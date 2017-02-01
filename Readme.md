@@ -22,8 +22,11 @@ This is not an "official" app, I'm not affiliated with Overcast, I just love It 
 
 OBS: This app is free and open source but It's license prohibits anyone from distributing It (free or paid) on any AppStore.
 
+## Compatibility
+`PodcastMenu` is only available for OS X 10.11 or later.
+
 # Get Overcast
 
-If you love podcasts and you're not using Overcast, you definitely should. 
+If you love podcasts and you're not using Overcast, you definitely should.
 
 [Overcast is available on the App Store](https://itunes.apple.com/app/overcast-podcast-player/id888422857).
