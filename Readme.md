@@ -1,4 +1,4 @@
-Psst, want me to love you? Then [check this out](https://getbrowserfreedom.com) 😁
+If you want to support my open source projects financially, you can do so by purchasing a copy of [BrowserFreedom](https://getbrowserfreedom.com), [Mediunic](https://itunes.apple.com/app/mediunic-medium-client/id1088945121?mt=12) or sending Bitcoin to `3DH9B42m6k2A89hy1Diz3Vr3cpDNQTQCbJ` 😁
 
 # PodcastMenu
 
@@ -18,12 +18,13 @@ While the app is playing a podcast, you can use your keyboard's media keys to co
 
 ## Disclaimer
 
-This is not an "official" app, I'm not affiliated with Overcast, I just love It and really wanted it to have a Mac app 😁
+This is not an "official" app, I'm not affiliated with Overcast, I just love it and really wanted it to have a Mac app 😁
 
-OBS: This app is free and open source but It's license prohibits anyone from distributing It (free or paid) on any AppStore.
+NOTE: This app is free and open source but its license prohibits anyone from distributing it (free or paid) on any App Store.
 
 ## Compatibility
-`PodcastMenu` is only available for OS X 10.11 or later.
+
+PodcastMenu is only available for OS X 10.11 or later.
 
 # Get Overcast
 
