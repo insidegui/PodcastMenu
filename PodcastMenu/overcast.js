@@ -39,4 +39,7 @@ $(function(){
 			bridge.postMessage('pause');
 		}
 	}, 500);
+  
+    // hide account button
+    document.querySelector('a[href="/account"]').style.display = 'none';
 });

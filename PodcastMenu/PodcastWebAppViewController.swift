@@ -181,6 +181,10 @@ class PodcastWebAppViewController: NSViewController {
         return String(data: data, encoding: .utf8)
     }()
     
+    // MARK: Data
+    
+    fileprivate var isLoggedIn = false
+    
     private func webViewDidFinishLoadingPage() {
         guard let title = webView.title, title == Constants.homeTitle else {
             // visiting a page other than the home, try to find out the title of the episode being played
@@ -241,6 +245,14 @@ class PodcastWebAppViewController: NSViewController {
                 self?.touchBarController.podcasts = podcasts
             default: break
             }
+        }
+        
+        webView.evaluateJavaScript("document.querySelector('a[href=\"/account\"]') != null") { [weak self] result, error in
+            guard error == nil else { return }
+            
+            guard let status = result as? Bool else { return }
+                
+            self?.isLoggedIn = status
         }
     }
     
@@ -309,6 +321,10 @@ class PodcastWebAppViewController: NSViewController {
         passthroughItem.target = self
         passthroughItem.state = Preferences.mediaKeysPassthroughEnabled ? NSOnState : NSOffState
         
+        let logOutItem = NSMenuItem(title: NSLocalizedString("Log Out", comment: "Log Out"), action: #selector(logOut(_:)), keyEquivalent: "")
+        logOutItem.target = self
+        logOutItem.tag = ConfigMenuItem.logOut.rawValue
+        
         let updateItem = NSMenuItem(title: NSLocalizedString("Check for Updates…", comment: "Check for Updates"), action: #selector(checkForUpdates(_:)), keyEquivalent: "")
         updateItem.target = self
         
@@ -316,9 +332,14 @@ class PodcastWebAppViewController: NSViewController {
         quitItem.target = NSApp
         
         configMenu.addItem(reloadItem)
+        
         configMenu.addItem(NSMenuItem.separator())
         configMenu.addItem(vuItem)
         configMenu.addItem(passthroughItem)
+        
+        configMenu.addItem(NSMenuItem.separator())
+        configMenu.addItem(logOutItem)
+        
         configMenu.addItem(NSMenuItem.separator())
         configMenu.addItem(updateItem)
         configMenu.addItem(quitItem)
@@ -346,6 +367,10 @@ class PodcastWebAppViewController: NSViewController {
         SUUpdater.shared().checkForUpdates(sender)
     }
     
+    @objc fileprivate func logOut(_ sender: NSMenuItem) {
+        webView.load(URLRequest(url: Constants.logOutURL))
+    }
+    
     // MARK: Sharing
     
     @objc fileprivate func share(_ sender: NSButton) {
@@ -361,11 +386,34 @@ class PodcastWebAppViewController: NSViewController {
     
 }
 
+// MARK: Touch Bar Support
+
 @available(OSX 10.12.2, *)
 extension PodcastWebAppViewController {
     
     override func makeTouchBar() -> NSTouchBar? {
         return touchBarController.touchBar
+    }
+    
+}
+
+// MARK: Menu Validation
+
+private enum ConfigMenuItem: Int {
+    case logOut = 101
+}
+
+extension PodcastWebAppViewController: NSMenuDelegate {
+    
+    override func validateMenuItem(_ menuItem: NSMenuItem) -> Bool {
+        guard let item = ConfigMenuItem(rawValue: menuItem.tag) else {
+            return true
+        }
+        
+        switch item {
+        case .logOut:
+            return isLoggedIn
+        }
     }
     
 }

@@ -16,4 +16,5 @@ struct Constants {
     static let retryIntervalAfterError = 10.0
     static let homeTitle = "Overcast"
     static let homePath = "/podcasts"
+    static let logOutURL = URL(string: "https://overcast.fm/logout")!
 }
