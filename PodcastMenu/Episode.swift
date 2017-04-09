@@ -20,6 +20,6 @@ struct Episode {
     let poster: URL
     let date: Date
     let time: Time
-    let link: URL
+    let link: URL?
     
 }

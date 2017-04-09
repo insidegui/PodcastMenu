@@ -10,19 +10,48 @@ import Cocoa
 
 @available(OSX 10.12.2, *)
 class ScrubberRemoteImageItemView: NSScrubberImageItemView {
-
-    fileprivate lazy var imageCache = ImageCache()
+    
+    var indexInScrubber: Int = -1
     
     var imageUrl: URL? {
         didSet {
-            guard let imageUrl = imageUrl else { return }
+            guard imageUrl != nil, superview != nil else { return }
             
-            imageCache.fetchImage(at: imageUrl) { [weak self] url, image in
-                guard url == self?.imageUrl else { return }
-                guard let image = image else { return }
-                
-                self?.image = image
+            displayImage()
+        }
+    }
+    
+    override func viewDidMoveToSuperview() {
+        super.viewDidMoveToSuperview()
+        
+        displayImage()
+    }
+    
+    private var cancelDownload: ImageCache.CancellationHandler?
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        
+        cancelDownload?()
+    }
+    
+    private func displayImage() {
+        guard let imageUrl = imageUrl else { return }
+        
+        let imageUrlWhenDownloadStarted = imageUrl
+        
+        cancelDownload = ImageCache.shared.fetchImage(at: imageUrl) { [weak self] _, image in
+            guard let welf = self else { return }
+            
+            guard imageUrlWhenDownloadStarted == welf.imageUrl else {
+                #if DEBUG
+                    NSLog("Skipped setting scrubber item image because the URL changed \(imageUrlWhenDownloadStarted)")
+                #endif
+                return
             }
+            guard let image = image else { return }
+            
+            welf.image = image
         }
     }
     

@@ -23,7 +23,7 @@ class TouchBarController: NSObject {
     }
     
     @available(OSX 10.12.2, *)
-    fileprivate lazy var scrubberController = TouchBarScrubberViewController()
+    lazy var scrubberController = TouchBarScrubberViewController()
     
     var currentEpisodeTitle: String? = nil {
         didSet {

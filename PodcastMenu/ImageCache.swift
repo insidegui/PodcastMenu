@@ -18,22 +18,25 @@ private extension String {
 
 final class ImageCache {
     
+    static let shared: ImageCache = ImageCache()
+    
+    typealias CancellationHandler = () -> ()
+    
     class func cacheUrl(for imageUrl: URL) -> URL {
-        let filename = imageUrl.absoluteString.base64encoded ?? imageUrl.lastPathComponent
+        let filebase = imageUrl.path.replacingOccurrences(of: "/", with: "_")
+        let filename = filebase + "-" + imageUrl.lastPathComponent
         
         let path = NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true).first! + "/" + filename + "-" + imageUrl.lastPathComponent
-        
-        NSLog("\(path)")
         
         return URL(fileURLWithPath: path)
     }
     
-    func fetchImage(at imageUrl: URL, completion: @escaping (URL, NSImage?) -> ()) {
+    func fetchImage(at imageUrl: URL, completion: @escaping (URL, NSImage?) -> ()) -> CancellationHandler {
         let cacheUrl = ImageCache.cacheUrl(for: imageUrl)
         
         guard !FileManager.default.fileExists(atPath: cacheUrl.path) else {
             completion(imageUrl, NSImage(contentsOfFile: cacheUrl.path))
-            return
+            return { }
         }
         
         let task = URLSession.shared.dataTask(with: imageUrl) { data, _, error in
@@ -44,17 +47,40 @@ final class ImageCache {
                 return
             }
             
-            do {
-                try data.write(to: cacheUrl)
-            } catch {
-                NSLog("Error saving image to cache: \(error)")
+            guard let cachedImage = self.cache(data: data, cacheURL: cacheUrl) else {
+                DispatchQueue.main.async {
+                    completion(imageUrl, nil)
+                }
+                return
             }
             
             DispatchQueue.main.async {
-                completion(imageUrl, NSImage(data: data))
+                completion(imageUrl, cachedImage)
             }
         }
         task.resume()
+        
+        return { task.cancel() }
+    }
+    
+    private func cache(data: Data, cacheURL: URL) -> NSImage? {
+        guard let inputImage = NSImage(data: data) else {
+            return nil
+        }
+        
+        let outputImage = NSImage(size: Metrics.thumbnailSize)
+        
+        outputImage.lockFocus()
+        inputImage.draw(in: NSRect(origin: .zero, size: Metrics.thumbnailSize))
+        outputImage.unlockFocus()
+        
+        do {
+            try outputImage.tiffRepresentation?.write(to: cacheURL)
+        } catch {
+            NSLog("Error saving image to cache: \(error)")
+        }
+        
+        return outputImage
     }
     
 }

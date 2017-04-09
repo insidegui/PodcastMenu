@@ -7,33 +7,51 @@
 //
 
 import Cocoa
+import IGListDiff
 
 @available(macOS 10.12.2, *)
 private final class ScrubberItem: NSObject {
     
-    let episode: Episode?
-    let podcast: Podcast?
+    let model: OvercastModel
     
-    init(episode: Episode? = nil, podcast: Podcast? = nil) {
-        self.episode = episode
-        self.podcast = podcast
+    init(model: OvercastModel) {
+        self.model = model
         
         super.init()
     }
     
     var poster: URL {
-        return episode?.poster ?? podcast!.poster
+        return model.poster
     }
     
-    var link: URL {
-        return episode?.link ?? podcast!.link!
+    var link: URL? {
+        return model.link
     }
+    
+    override func diffIdentifier() -> NSObjectProtocol {
+        return self.hash as NSObjectProtocol
+    }
+    
+    override func isEqual(_ object: IGListDiffable?) -> Bool {
+        guard let other = object as? ScrubberItem else { return false }
+        
+        return model.compare(to: other.model)
+    }
+    
+}
+
+@available(OSX 10.12.2, *)
+protocol TouchBarScrubberViewControllerDelegate: class {
+    
+    func didSelectLink(_ linkURL: URL)
     
 }
 
 @available(OSX 10.12.2, *)
 class TouchBarScrubberViewController: NSViewController {
 
+    weak var delegate: TouchBarScrubberViewControllerDelegate?
+    
     init() {
         super.init(nibName: nil, bundle: nil)!
     }
@@ -61,7 +79,7 @@ class TouchBarScrubberViewController: NSViewController {
     
     var currentEpisode: Episode? = nil {
         didSet {
-            guard let index = items.index(where: { $0.episode?.title == currentEpisode?.title }) else { return }
+            guard let index = items.index(where: { $0.model.title == currentEpisode?.title }) else { return }
             
             scrubber.selectedIndex = index
         }
@@ -80,21 +98,28 @@ class TouchBarScrubberViewController: NSViewController {
     }
     
     private func consolidateItems() {
-        let episodeItems = episodes.map({ ScrubberItem(episode: $0, podcast: nil) })
-        let podcastItems = podcasts.map({ ScrubberItem(episode: nil, podcast: $0) })
-        
-        items = episodeItems + podcastItems
+        let models = (episodes as [OvercastModel]) + (podcasts as [OvercastModel])
+        items = models.map({ ScrubberItem(model: $0) })
     }
     
     fileprivate var items: [ScrubberItem] = [] {
         didSet {
             DispatchQueue.main.async {
-                self.scrubber.reloadData()
+                if oldValue.isEmpty {
+                    self.scrubber.reloadData()
+                } else {
+                    let diff = IGListDiff(oldValue, self.items, .equality)
+                    self.scrubber.performSequentialBatchUpdates {
+                        self.scrubber.removeItems(at: diff.deletes)
+                        self.scrubber.insertItems(at: diff.inserts)
+                        self.scrubber.reloadItems(at: diff.updates)
+                    }
+                }
             }
         }
     }
     
-    private lazy var scrubber: NSScrubber = {
+    fileprivate lazy var scrubber: NSScrubber = {
         let s = NSScrubber()
         
         let layout = NSScrubberFlowLayout()
@@ -103,17 +128,14 @@ class TouchBarScrubberViewController: NSViewController {
         
         s.scrubberLayout = layout
         s.selectionOverlayStyle = .outlineOverlay
-        s.mode = .fixed
+        s.mode = .free
         s.showsAdditionalContentIndicators = true
-        s.isContinuous = true
         s.dataSource = self
         s.delegate = self
         s.autoresizingMask = [.viewWidthSizable, .viewHeightSizable]
         
         return s
     }()
-    
-    fileprivate lazy var imageCache = ImageCache()
     
 }
 
@@ -137,13 +159,19 @@ extension TouchBarScrubberViewController: NSScrubberDataSource, NSScrubberDelega
             item?.imageAlignment = .alignTop
         }
         
+        item?.indexInScrubber = index
         item?.imageUrl = items[index].poster
         
-        return item!
+        return item ?? NSScrubberItemView()
     }
     
     func scrubber(_ scrubber: NSScrubber, didSelectItemAt selectedIndex: Int) {
-        // TODO: play selected episode?
+        guard selectedIndex < scrubber.numberOfItems else { return }
+        
+        let selectedItem = items[selectedIndex]
+        guard let link = selectedItem.model.link else { return }
+        
+        delegate?.didSelectLink(link)
     }
     
 }

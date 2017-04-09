@@ -16,4 +16,5 @@ struct Metrics {
     static let errorBarHeight = CGFloat(48.0)
     static let errorBarMargin = CGFloat(8.0)
     static let controlToWindowMargin = CGFloat(8.0)
+    static let thumbnailSize = NSSize(width: 100, height: 100)
 }

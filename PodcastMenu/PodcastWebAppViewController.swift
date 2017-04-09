@@ -146,7 +146,13 @@ class PodcastWebAppViewController: NSViewController {
     // MARK: - Touch Bar
 
     fileprivate lazy var touchBarController: TouchBarController = {
-        return TouchBarController(webView: self.webView)
+        let c = TouchBarController(webView: self.webView)
+        
+        if #available(macOS 10.12.2, *) {
+            c.scrubberController.delegate = self
+        }
+        
+        return c
     }()
     
     private lazy var episodesParserScript: String? = {
@@ -393,6 +399,15 @@ extension PodcastWebAppViewController {
     
     override func makeTouchBar() -> NSTouchBar? {
         return touchBarController.touchBar
+    }
+    
+}
+
+@available(OSX 10.12.2, *)
+extension PodcastWebAppViewController: TouchBarScrubberViewControllerDelegate {
+    
+    func didSelectLink(_ linkURL: URL) {
+        webView.load(URLRequest(url: linkURL))
     }
     
 }
