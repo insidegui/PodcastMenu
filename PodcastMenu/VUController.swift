@@ -29,8 +29,8 @@ class VUController: OvercastLoudnessDelegate {
     
     fileprivate lazy var baseImage = NSImage(named: "podcast")!
     fileprivate lazy var baseImageCG: CGImage = NSImage(named: "podcast")!.cgImage
-    fileprivate let startAngle = CGFloat(M_PI / 2.0 * -1.0)
-    fileprivate let endAngle = CGFloat(2.0 * M_PI) + CGFloat(M_PI / 2.0 * -1.0)
+    fileprivate let startAngle = CGFloat(Double.pi / 2.0 * -1.0)
+    fileprivate let endAngle = CGFloat(2.0 * Double.pi) + CGFloat(Double.pi / 2.0 * -1.0)
     
     fileprivate func imageForLoudness(_ value: Double) -> NSImage {
         let image = NSImage(size: statusItem.image!.size)
