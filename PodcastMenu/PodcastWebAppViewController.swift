@@ -27,35 +27,33 @@ class PodcastWebAppViewController: NSViewController {
     fileprivate var overcastController: OvercastController!
     
     fileprivate lazy var configMenuButton: NSButton = {
-        let b = NSButton(frame: NSZeroRect)
+        let b = PMFreestandingButton(frame: NSZeroRect)
         
         b.translatesAutoresizingMaskIntoConstraints = false
         b.isBordered = false
-        b.bezelStyle = .shadowlessSquare
-        b.setButtonType(.momentaryPushIn)
+        b.bezelStyle = NSBezelStyle.inline
         b.image = NSImage(named: NSImageNameActionTemplate)
         b.toolTip = NSLocalizedString("Options", comment: "Options menu tooltip")
         b.sendAction(on: .leftMouseDown)
+        b.imagePosition = .imageOnly
         
         b.sizeToFit()
-        b.appearance = NSAppearance(named: NSAppearanceNameAqua)
         
         return b
     }()
     
     fileprivate lazy var shareButton: NSButton = {
-        let b = NSButton(frame: NSZeroRect)
+        let b = PMFreestandingButton(frame: NSZeroRect)
         
         b.translatesAutoresizingMaskIntoConstraints = false
         b.isBordered = false
-        b.bezelStyle = .shadowlessSquare
-        b.setButtonType(.momentaryPushIn)
+        b.bezelStyle = .inline
         b.image = NSImage(named: NSImageNameShareTemplate)
         b.toolTip = NSLocalizedString("Share", comment: "Share button tooltip")
         b.sendAction(on: .leftMouseDown)
+        b.imagePosition = .imageOnly
         
         b.sizeToFit()
-        b.appearance = NSAppearance(named: NSAppearanceNameAqua)
         b.isHidden = true
         
         return b
@@ -72,6 +70,7 @@ class PodcastWebAppViewController: NSViewController {
         webView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -Metrics.webViewMargin).isActive = true
         webView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Metrics.webViewMargin).isActive = true
         webView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -Metrics.webViewMargin).isActive = true
+        webView.alphaValue = 0
         
         progressBar.translatesAutoresizingMaskIntoConstraints = false
         progressBar.tintColor = Theme.Colors.tint
@@ -113,6 +112,7 @@ class PodcastWebAppViewController: NSViewController {
         
         NotificationCenter.default.addObserver(self, selector: #selector(propagatePlaybackInfo(_:)), name: .OvercastShouldUpdatePlaybackInfo, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(stopPlaybackInfoPropagation(_:)), name: .OvercastIsNotOnEpisodePage, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(updateAppearance), name: .SystemAppearanceDidChange, object: nil)
         
         webView.load(URLRequest(url: Constants.webAppURL as URL))
     }
@@ -121,12 +121,17 @@ class PodcastWebAppViewController: NSViewController {
         super.viewWillAppear()
         
         view.window?.alphaValue = 1.0
+        updateAppearance()
     }
     
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         if keyPath == "estimatedProgress" {
             if webView.estimatedProgress >= 0.99 {
                 webViewDidFinishLoadingPage()
+            }
+            if webView.estimatedProgress > 0.4 {
+                webView.animator().alphaValue = 1
+                updateAppearance()
             }
             progressBar.progress = webView.estimatedProgress
         } else {
@@ -141,6 +146,20 @@ class PodcastWebAppViewController: NSViewController {
         }
         
         webView.load(URLRequest(url: URL))
+    }
+    
+    // MARK: - Appearance
+    
+    @objc private func updateAppearance() {
+        view.window?.appearance = Theme.appearance
+        view.window?.backgroundColor = Theme.Colors.background
+        
+        configMenuButton.appearance = Theme.appearance
+        shareButton.appearance = Theme.appearance
+        
+        progressBar.tintColor = Theme.Colors.tint
+        
+        webView.evaluateJavaScript("PodcastMenuLook.toggleDarkMode(\(Theme.isDark));", completionHandler: nil)
     }
 
     // MARK: - Touch Bar
@@ -192,7 +211,7 @@ class PodcastWebAppViewController: NSViewController {
     fileprivate var isLoggedIn = false
     
     private func webViewDidFinishLoadingPage() {
-        guard let title = webView.title, title == Constants.homeTitle else {
+        if let title = webView.title, title != Constants.homeTitle {
             // visiting a page other than the home, try to find out the title of the episode being played
             
             guard let titleParserScript = titleParserScript else { return }
@@ -203,14 +222,17 @@ class PodcastWebAppViewController: NSViewController {
                 
                 self?.touchBarController.currentEpisodeTitle = jsString.isEmpty ? nil : jsString
             }
+        } else {
+            touchBarController.currentEpisodeTitle = nil
             
-            return
+            // visiting the home page, use this chance to grab the list of episodes and podcasts for the touch bar widgets
+            fetchMetadata()
         }
         
-        touchBarController.currentEpisodeTitle = nil
-        
-        // visiting the home page, use this chance to grab the list of episodes and podcasts for the touch bar widgets
-        
+        updateAppearance()
+    }
+    
+    private func fetchMetadata() {
         guard let episodesParserScript = episodesParserScript else { return }
         guard let podcastsParserScript = podcastsParserScript else { return }
         
@@ -257,7 +279,7 @@ class PodcastWebAppViewController: NSViewController {
             guard error == nil else { return }
             
             guard let status = result as? Bool else { return }
-                
+            
             self?.isLoggedIn = status
         }
     }

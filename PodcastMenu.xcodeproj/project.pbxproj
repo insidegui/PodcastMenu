@@ -38,6 +38,7 @@
 		DD1AE3021E9A8C010003FFF0 /* OvercastModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD1AE3011E9A8C010003FFF0 /* OvercastModel.swift */; };
 		DD1AE30C1E9A8E630003FFF0 /* IGListDiff.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD1AE3091E9A8E470003FFF0 /* IGListDiff.framework */; };
 		DD1AE30D1E9A8E630003FFF0 /* IGListDiff.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DD1AE3091E9A8E470003FFF0 /* IGListDiff.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		DD1AE3191E9ACA770003FFF0 /* PMFreestandingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD1AE3181E9ACA770003FFF0 /* PMFreestandingButton.swift */; };
 		DD1EFA781CE671A800E0C623 /* look.js in Resources */ = {isa = PBXBuildFile; fileRef = DD1EFA771CE671A800E0C623 /* look.js */; };
 		DD1EFA7A1CE671B200E0C623 /* PMWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD1EFA791CE671B200E0C623 /* PMWebView.swift */; };
 		DD6DFF471DD69700004954DE /* Podcast.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD6DFF461DD69700004954DE /* Podcast.swift */; };
@@ -130,6 +131,7 @@
 		DD1AE2FF1E9A725D0003FFF0 /* PlaybackInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaybackInfo.swift; sourceTree = "<group>"; };
 		DD1AE3011E9A8C010003FFF0 /* OvercastModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OvercastModel.swift; sourceTree = "<group>"; };
 		DD1AE3031E9A8E470003FFF0 /* IGListDiff.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = IGListDiff.xcodeproj; path = lib/IGListDiff/IGListDiff.xcodeproj; sourceTree = "<group>"; };
+		DD1AE3181E9ACA770003FFF0 /* PMFreestandingButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PMFreestandingButton.swift; sourceTree = "<group>"; };
 		DD1EFA771CE671A800E0C623 /* look.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = look.js; sourceTree = "<group>"; };
 		DD1EFA791CE671B200E0C623 /* PMWebView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PMWebView.swift; sourceTree = "<group>"; };
 		DD6DFF461DD69700004954DE /* Podcast.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Podcast.swift; sourceTree = "<group>"; };
@@ -261,6 +263,7 @@
 				DDC61FEE1CE2F21900C0FADA /* Helpers */,
 				DD1EFA791CE671B200E0C623 /* PMWebView.swift */,
 				DD0BFE581CE2686100446474 /* ProgressBar.swift */,
+				DD1AE3181E9ACA770003FFF0 /* PMFreestandingButton.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -545,6 +548,7 @@
 				DD0BFE4C1CE2608E00446474 /* PodcastWebAppViewController.swift in Sources */,
 				DD0BFE501CE2618900446474 /* Theme.swift in Sources */,
 				DD0BFE621CE276CF00446474 /* MediaKeysHandler.swift in Sources */,
+				DD1AE3191E9ACA770003FFF0 /* PMFreestandingButton.swift in Sources */,
 				DD1AE3001E9A725D0003FFF0 /* PlaybackInfo.swift in Sources */,
 				DD6DFF541DD69F42004954DE /* EpisodeAdapter.swift in Sources */,
 				DD13C8BB1CE8E4DE002174C4 /* MediaKeysCoordinator.swift in Sources */,

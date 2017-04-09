@@ -10,11 +10,23 @@
 
 @implementation NSImage (CGImage)
 
-- (CGImageRef)CGImage
+- (CGImageRef)imageRefAtIndex:(int)index
 {
     CGImageSourceRef source = CGImageSourceCreateWithData((CFDataRef)[self TIFFRepresentation], NULL);
     
-    return CGImageSourceCreateImageAtIndex(source, 0, NULL);
+    return CGImageSourceCreateImageAtIndex(source, index, NULL);
+}
+
+- (CGImageRef)CGImage
+{
+    return [self imageRefAtIndex:0];
+}
+
+- (CGImageRef)CGImageForCurrentScale
+{
+    int idx = ([NSScreen mainScreen].backingScaleFactor > 1) ? 1 : 0;
+    
+    return [self imageRefAtIndex:idx];
 }
 
 @end

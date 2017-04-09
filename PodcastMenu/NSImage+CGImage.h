@@ -11,5 +11,8 @@
 @interface NSImage (CGImage)
 
 @property (nonatomic, readonly) CGImageRef CGImage;
+@property (nonatomic, readonly) CGImageRef CGImageForCurrentScale;
+
+- (CGImageRef)imageRefAtIndex:(int)index;
 
 @end
