@@ -8,7 +8,7 @@
 
 import Cocoa
 
-@available(OSX 10.12.1, *)
+@available(OSX 10.12.2, *)
 class ScrubberRemoteImageItemView: NSScrubberImageItemView {
 
     fileprivate lazy var imageCache = ImageCache()

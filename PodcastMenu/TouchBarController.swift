@@ -22,12 +22,12 @@ class TouchBarController: NSObject {
         self.webView.addObserver(self, forKeyPath: #keyPath(WKWebView.canGoForward), options: [.initial, .new], context: nil)
     }
     
-    @available(OSX 10.12.1, *)
+    @available(OSX 10.12.2, *)
     fileprivate lazy var scrubberController = TouchBarScrubberViewController()
     
     var currentEpisodeTitle: String? = nil {
         didSet {
-            if #available(OSX 10.12.1, *) {
+            if #available(OSX 10.12.2, *) {
                 scrubberController.currentEpisodeTitle = currentEpisodeTitle
             }
         }
@@ -35,7 +35,7 @@ class TouchBarController: NSObject {
     
     var episodes: [Episode] = [] {
         didSet {
-            if #available(OSX 10.12.1, *) {
+            if #available(OSX 10.12.2, *) {
                 scrubberController.episodes = episodes
             }
         }
@@ -43,29 +43,29 @@ class TouchBarController: NSObject {
     
     var podcasts: [Podcast] = [] {
         didSet {
-            if #available(OSX 10.12.1, *) {
+            if #available(OSX 10.12.2, *) {
                 scrubberController.podcasts = podcasts
             }
         }
     }
     
-    @available(OSX 10.12.1, *)
+    @available(OSX 10.12.2, *)
     lazy var backButton: NSButton = {
         return NSButton(title: "", image: NSImage(named: NSImageNameTouchBarGoBackTemplate)!, target: nil, action: #selector(WKWebView.goBack(_:)))
     }()
     
-    @available(OSX 10.12.1, *)
+    @available(OSX 10.12.2, *)
     lazy var forwardButton: NSButton = {
         return NSButton(title: "", image: NSImage(named: NSImageNameTouchBarGoForwardTemplate)!, target: nil, action: #selector(WKWebView.goForward(_:)))
     }()
     
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         if keyPath == #keyPath(WKWebView.canGoBack) {
-            if #available(OSX 10.12.1, *) {
+            if #available(OSX 10.12.2, *) {
                 backButton.isEnabled = webView.canGoBack;
             }
         } else if keyPath == #keyPath(WKWebView.canGoForward) {
-            if #available(OSX 10.12.1, *) {
+            if #available(OSX 10.12.2, *) {
                 forwardButton.isEnabled = webView.canGoForward;
             }
         } else {
@@ -80,14 +80,14 @@ class TouchBarController: NSObject {
     
 }
 
-@available(OSX 10.12.1, *)
+@available(OSX 10.12.2, *)
 extension NSTouchBarItemIdentifier {
     static let backButton = NSTouchBarItemIdentifier("br.com.guilhermerambo.podcastmenu.back")
     static let forwardButton = NSTouchBarItemIdentifier("br.com.guilhermerambo.podcastmenu.forward")
     static let scrubber = NSTouchBarItemIdentifier("br.com.guilhermerambo.podcastmenu.scrubber")
 }
 
-@available(OSX 10.12.1, *)
+@available(OSX 10.12.2, *)
 extension TouchBarController: NSTouchBarProvider {
     
     var touchBar: NSTouchBar? {
@@ -101,7 +101,7 @@ extension TouchBarController: NSTouchBarProvider {
     
 }
 
-@available(OSX 10.12.1, *)
+@available(OSX 10.12.2, *)
 extension TouchBarController: NSTouchBarDelegate {
     
     func touchBar(_ touchBar: NSTouchBar, makeItemForIdentifier identifier: NSTouchBarItemIdentifier) -> NSTouchBarItem? {

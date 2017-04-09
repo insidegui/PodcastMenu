@@ -8,6 +8,7 @@
 
 import Cocoa
 
+@available(macOS 10.12.2, *)
 private final class ScrubberItem: NSObject {
     
     let episode: Episode?
@@ -30,7 +31,7 @@ private final class ScrubberItem: NSObject {
     
 }
 
-@available(OSX 10.12.1, *)
+@available(OSX 10.12.2, *)
 class TouchBarScrubberViewController: NSViewController {
 
     init() {
@@ -116,7 +117,7 @@ class TouchBarScrubberViewController: NSViewController {
     
 }
 
-@available(OSX 10.12.1, *)
+@available(OSX 10.12.2, *)
 extension TouchBarScrubberViewController: NSScrubberDataSource, NSScrubberDelegate {
     
     struct Constants {
