@@ -35,8 +35,28 @@ class PodcastWebAppViewController: NSViewController {
         b.setButtonType(.momentaryPushIn)
         b.image = NSImage(named: NSImageNameActionTemplate)
         b.toolTip = NSLocalizedString("Options", comment: "Options menu tooltip")
+        b.sendAction(on: .leftMouseDown)
+        
         b.sizeToFit()
         b.appearance = NSAppearance(named: NSAppearanceNameAqua)
+        
+        return b
+    }()
+    
+    fileprivate lazy var shareButton: NSButton = {
+        let b = NSButton(frame: NSZeroRect)
+        
+        b.translatesAutoresizingMaskIntoConstraints = false
+        b.isBordered = false
+        b.bezelStyle = .shadowlessSquare
+        b.setButtonType(.momentaryPushIn)
+        b.image = NSImage(named: NSImageNameShareTemplate)
+        b.toolTip = NSLocalizedString("Share", comment: "Share button tooltip")
+        b.sendAction(on: .leftMouseDown)
+        
+        b.sizeToFit()
+        b.appearance = NSAppearance(named: NSAppearanceNameAqua)
+        b.isHidden = true
         
         return b
     }()
@@ -68,12 +88,19 @@ class PodcastWebAppViewController: NSViewController {
         
         configMenuButton.target = self
         configMenuButton.action = #selector(showConfigMenu)
-        configMenuButton.sendAction(on: NSEventMask(rawValue: UInt64(Int(NSEventMask.leftMouseDown.rawValue))))
         
         view.addSubview(configMenuButton)
         
-        configMenuButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10.0).isActive = true
-        configMenuButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -10.0).isActive = true
+        configMenuButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -Metrics.controlToWindowMargin).isActive = true
+        configMenuButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -Metrics.controlToWindowMargin).isActive = true
+        
+        shareButton.target = self
+        shareButton.action = #selector(share(_:))
+        
+        view.addSubview(shareButton)
+        
+        shareButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Metrics.controlToWindowMargin).isActive = true
+        shareButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -Metrics.controlToWindowMargin).isActive = true
     }
     
     override func viewDidLoad() {
@@ -256,10 +283,12 @@ class PodcastWebAppViewController: NSViewController {
     
     fileprivate var currentPlaybackInfo: PlaybackInfo? {
         didSet {
-            guard let info = currentPlaybackInfo else { return }
+            shareButton.isHidden = (currentPlaybackInfo == nil)
             
             #if DEBUG
+            if let info = currentPlaybackInfo {
                 NSLog("Updated playback info:\n\(info)")
+            }
             #endif
         }
     }
@@ -315,6 +344,15 @@ class PodcastWebAppViewController: NSViewController {
     
     @objc fileprivate func checkForUpdates(_ sender: NSMenuItem) {
         SUUpdater.shared().checkForUpdates(sender)
+    }
+    
+    // MARK: Sharing
+    
+    @objc fileprivate func share(_ sender: NSButton) {
+        guard let info = currentPlaybackInfo else { return }
+        
+        let picker = NSSharingServicePicker(items: [info.shareWithTimeURL])
+        picker.show(relativeTo: .zero, of: sender, preferredEdge: .minY)
     }
     
     deinit {
