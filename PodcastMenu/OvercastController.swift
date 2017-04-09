@@ -16,6 +16,8 @@ protocol OvercastLoudnessDelegate {
 extension Notification.Name {
     static let OvercastDidPlay = Notification.Name(rawValue: "OvercastDidPlay")
     static let OvercastDidPause = Notification.Name(rawValue: "OvercastDidPause")
+    static let OvercastShouldUpdatePlaybackInfo = Notification.Name(rawValue: "OvercastShouldUpdatePlaybackInfo")
+    static let OvercastIsNotOnEpisodePage = Notification.Name(rawValue: "OvercastIsNotOnEpisodePage")
 }
 
 class OvercastController: NSObject, WKNavigationDelegate {
@@ -88,6 +90,43 @@ class OvercastController: NSObject, WKNavigationDelegate {
         }
     }
     
+    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+        DispatchQueue.main.async {
+            if webView.url?.path != Constants.homePath {
+                self.startPlaybackInfoTimer()
+            } else {
+                NotificationCenter.default.post(name: .OvercastIsNotOnEpisodePage, object: nil)
+                self.stopPlaybackInfoTimer()
+            }
+        }
+    }
+    
+    // MARK: - Playback Info
+    
+    private var playbackInfoTimer: Timer?
+    
+    fileprivate func startPlaybackInfoTimer() {
+        playbackInfoTimer?.invalidate()
+        
+        playbackInfoTimer = Timer.scheduledTimer(timeInterval: 5,
+                                                 target: self,
+                                                 selector: #selector(updatePlaybackInfo(_:)),
+                                                 userInfo: nil,
+                                                 repeats: true)
+        playbackInfoTimer?.tolerance = 5
+    }
+    
+    fileprivate func stopPlaybackInfoTimer() {
+        playbackInfoTimer?.invalidate()
+        playbackInfoTimer = nil
+    }
+    
+    @objc fileprivate func updatePlaybackInfo(_ sender: Timer) {
+        guard !isPaused else { return }
+        
+        NotificationCenter.default.post(name: .OvercastShouldUpdatePlaybackInfo, object: nil)
+    }
+    
     fileprivate var isPaused = false
     
     // WKWebView has a bug where javascript will not be evaluated in some circumstances (Radar #26290876)
@@ -156,7 +195,7 @@ class OvercastController: NSObject, WKNavigationDelegate {
         activity = ProcessInfo.processInfo.beginActivity(options: [.userInitiated, .automaticTerminationDisabled, .suddenTerminationDisabled, .idleSystemSleepDisabled], reason: "PodcastMenu")
         
         #if DEBUG
-        NSLog("[OvercastController] Started activity \(activity)")
+        NSLog("[OvercastController] Started activity \(String(describing: activity))")
         #endif
     }
     fileprivate func stopActivity() {

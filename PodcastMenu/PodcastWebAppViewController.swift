@@ -84,6 +84,9 @@ class PodcastWebAppViewController: NSViewController {
         
         webView.addObserver(self, forKeyPath: "estimatedProgress", options: [.initial, .new], context: nil)
         
+        NotificationCenter.default.addObserver(self, selector: #selector(propagatePlaybackInfo(_:)), name: .OvercastShouldUpdatePlaybackInfo, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(stopPlaybackInfoPropagation(_:)), name: .OvercastIsNotOnEpisodePage, object: nil)
+        
         webView.load(URLRequest(url: Constants.webAppURL as URL))
     }
     
@@ -143,6 +146,14 @@ class PodcastWebAppViewController: NSViewController {
         return String(data: data, encoding: .utf8)
     }()
     
+    private lazy var playbackInfoParserScript: String? = {
+        guard let url = Bundle.main.url(forResource: "PlaybackInfoParser", withExtension: "js") else { return nil }
+        
+        guard let data = try? Data(contentsOf: url) else { return nil }
+        
+        return String(data: data, encoding: .utf8)
+    }()
+    
     private func webViewDidFinishLoadingPage() {
         guard let title = webView.title, title == Constants.homeTitle else {
             // visiting a page other than the home, try to find out the title of the episode being played
@@ -190,6 +201,66 @@ class PodcastWebAppViewController: NSViewController {
                 self?.touchBarController.podcasts = podcasts
             default: break
             }
+        }
+        
+        webView.evaluateJavaScript(podcastsParserScript) { [weak self] evalResult, error in
+            guard error == nil else { return }
+            guard let jsString = evalResult as? String else { return }
+            guard let jsData = jsString.data(using: .utf8) else { return }
+            
+            let result = PodcastsAdapter(input: JSON(data: jsData)).adapt()
+            switch result {
+            case .success(let podcasts):
+                self?.touchBarController.podcasts = podcasts
+            default: break
+            }
+        }
+    }
+    
+    func fetchPlaybackInfo(completion: @escaping (Result<PlaybackInfo, AdapterError>) -> ()) {
+        guard let playbackInfoParserScript = playbackInfoParserScript else { return }
+        
+        webView.evaluateJavaScript(playbackInfoParserScript) { evalResult, error in
+            guard error == nil else { return }
+            guard let jsString = evalResult as? String else { return }
+            guard let jsData = jsString.data(using: .utf8) else { return }
+            
+            let result = PlaybackInfoAdapter(input: JSON(data: jsData)).adapt()
+            
+            DispatchQueue.main.async {
+                completion(result)
+            }
+        }
+    }
+    
+    // MARK: - Playback Info
+    
+    func propagatePlaybackInfo(_ notification: Notification) {
+        fetchPlaybackInfo { [weak self] result in
+            switch result {
+            case .success(let info):
+                self?.currentPlaybackInfo = info
+            case .error(let error):
+                NSLog("Error updating playback info:\n\(error)")
+            }
+        }
+    }
+    
+    func stopPlaybackInfoPropagation(_ notification: Notification) {
+        currentPlaybackInfo = nil
+        
+        #if DEBUG
+            NSLog("Invalidated playback info")
+        #endif
+    }
+    
+    fileprivate var currentPlaybackInfo: PlaybackInfo? {
+        didSet {
+            guard let info = currentPlaybackInfo else { return }
+            
+            #if DEBUG
+                NSLog("Updated playback info:\n\(info)")
+            #endif
         }
     }
     

@@ -15,4 +15,5 @@ struct Constants {
     static let maxLoudness = 128.0
     static let retryIntervalAfterError = 10.0
     static let homeTitle = "Overcast"
+    static let homePath = "/podcasts"
 }
