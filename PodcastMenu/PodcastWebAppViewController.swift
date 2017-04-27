@@ -341,9 +341,9 @@ class PodcastWebAppViewController: NSViewController {
         let reloadItem = NSMenuItem(title: NSLocalizedString("Reload", comment: "Reload"), action: #selector(reload(_:)), keyEquivalent: "")
         reloadItem.target = self
         
-        //let vuItem = NSMenuItem(title: NSLocalizedString("Enable VU Meter", comment: "Enable VU Meter"), action: #selector(toggleReflectAudioLevelInIcon(_:)), keyEquivalent: "")
-        //vuItem.target = self
-        //vuItem.state = Preferences.enableVU ? NSOnState : NSOffState
+        let isDark = NSMenuItem(title: NSLocalizedString("Dark Mode", comment: "Dark Mode"), action: #selector(toggleReflectAudioLevelInIcon(_:)), keyEquivalent: "")
+        isDark.target = self
+        isDark.state = Preferences.isDark ? NSOnState : NSOffState
         
         let vuItem = NSMenuItem(title: NSLocalizedString("Enable VU Meter", comment: "Enable VU Meter"), action: #selector(toggleReflectAudioLevelInIcon(_:)), keyEquivalent: "")
         vuItem.target = self
