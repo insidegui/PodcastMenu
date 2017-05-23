@@ -26,7 +26,7 @@ final class ImageCache {
         let filebase = imageUrl.path.replacingOccurrences(of: "/", with: "_")
         let filename = filebase + "-" + imageUrl.lastPathComponent
         
-        let path = NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true).first! + "/" + filename + "-" + imageUrl.lastPathComponent
+        let path = NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true).first! + "/" + Bundle.main.bundleIdentifier! + "/ImageCache/" + filename + "-" + imageUrl.lastPathComponent
         
         return URL(fileURLWithPath: path)
     }
