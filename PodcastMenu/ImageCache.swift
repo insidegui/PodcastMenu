@@ -71,7 +71,7 @@ final class ImageCache {
         let cacheDir = cacheURL.deletingLastPathComponent()
         if !FileManager.default.fileExists(atPath: cacheDir.path) {
             do {
-                try FileManager.default.createDirectory(at: cacheDir, withIntermediateDirectories: false, attributes: nil)
+                try FileManager.default.createDirectory(at: cacheDir, withIntermediateDirectories: true, attributes: nil)
             } catch {
                 NSLog("Error creating cache directory: \(error)")
                 return nil
