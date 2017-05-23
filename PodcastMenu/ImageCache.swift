@@ -68,6 +68,16 @@ final class ImageCache {
             return nil
         }
         
+        let cacheDir = cacheURL.deletingLastPathComponent()
+        if !FileManager.default.fileExists(atPath: cacheDir.path) {
+            do {
+                try FileManager.default.createDirectory(at: cacheDir, withIntermediateDirectories: false, attributes: nil)
+            } catch {
+                NSLog("Error creating cache directory: \(error)")
+                return nil
+            }
+        }
+        
         let outputImage = NSImage(size: Metrics.thumbnailSize)
         
         outputImage.lockFocus()
