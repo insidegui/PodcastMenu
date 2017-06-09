@@ -15,6 +15,7 @@ PodcastMenuLook = new function(){
 		document.styleSheets[0].insertRule('::-webkit-scrollbar-track { background: #eee; }', 0);
 		document.styleSheets[0].insertRule('::-webkit-scrollbar-thumb { -webkit-border-radius: 10px; border-radius: 10px; background: rgba(252,126,15,0.8); }', 0);
 		document.styleSheets[0].insertRule('::-webkit-scrollbar-thumb:window-inactive { background: rgba(252,126,15,0.4); }', 0);
+		document.styleSheets[0].insertRule('input.podcastsearchbox { width: 115px; }', 0);
         
         // DARK MODE
         document.styleSheets[0].insertRule('body.pm-dark-mode { color: #fff !important; background-color: #303333 !important; }');
