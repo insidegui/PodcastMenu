@@ -41,12 +41,41 @@ class OvercastController: NSObject, WKNavigationDelegate {
         return WKUserScript(source: source, injectionTime: .atDocumentEnd, forMainFrameOnly: false)
     }()
     
+     fileprivate func startAutomaticRefresh() {
+        
+        Timer.scheduledTimer(timeInterval: TimeInterval(Constants.automaticRefreshInterval), target: self, selector: #selector(self.refresh(timer:)) , userInfo: nil, repeats: true)
+        
+        NSWorkspace.shared().notificationCenter.addObserver(forName: Notification.Name.NSWorkspaceDidWake, object: NSWorkspace.shared(), queue: nil) { [weak self] _ in
+            
+            self?.refreshPodcastsIfNeeded()
+        }
+    }
+    
+    @objc fileprivate func refresh(timer: Timer) {
+        
+        refreshPodcastsIfNeeded()
+    }
+        
+    fileprivate func refreshPodcastsIfNeeded() {
+        
+       guard (activity == nil) else { return }
+       guard (self.webView.url != nil) else { return }
+       guard self.webView.url?.path == Constants.homePath else { return }
+       guard !self.webView.isLoading else { return }
+       guard !(self.webView.window?.isVisible)! else { return }
+        #if DEBUG
+            NSLog("[OvercastController] automatically refreshing podcasts")
+        #endif
+       self.webView.reload()
+    }
+    
     init(webView: WKWebView) {
         self.webView = webView
         self.bridge = OvercastJavascriptBridge(webView: webView)
         
         super.init()
         
+        startAutomaticRefresh()
         self.bridge.callback = callLoudnessDelegate
         
         webView.navigationDelegate = self
