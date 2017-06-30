@@ -42,22 +42,18 @@ class OvercastController: NSObject, WKNavigationDelegate {
     }()
     
      fileprivate func startAutomaticRefresh() {
-        
         Timer.scheduledTimer(timeInterval: TimeInterval(Constants.automaticRefreshInterval), target: self, selector: #selector(self.refresh(timer:)) , userInfo: nil, repeats: true)
         
         NSWorkspace.shared().notificationCenter.addObserver(forName: Notification.Name.NSWorkspaceDidWake, object: NSWorkspace.shared(), queue: nil) { [weak self] _ in
-            
             self?.refreshPodcastsIfNeeded()
         }
     }
     
     @objc fileprivate func refresh(timer: Timer) {
-        
         refreshPodcastsIfNeeded()
     }
         
     fileprivate func refreshPodcastsIfNeeded() {
-        
        guard (activity == nil) else { return }
        guard (self.webView.url != nil) else { return }
        guard self.webView.url?.path == Constants.homePath else { return }
