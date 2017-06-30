@@ -62,7 +62,7 @@ class OvercastController: NSObject, WKNavigationDelegate {
        guard (self.webView.url != nil) else { return }
        guard self.webView.url?.path == Constants.homePath else { return }
        guard !self.webView.isLoading else { return }
-       guard !(self.webView.window?.isVisible)! else { return }
+       guard (self.webView.window?.isVisible == false) else { return }
         #if DEBUG
             NSLog("[OvercastController] automatically refreshing podcasts")
         #endif
