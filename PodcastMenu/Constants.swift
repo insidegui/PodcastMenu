@@ -18,5 +18,5 @@ struct Constants {
     static let homePath = "/podcasts"
     static let logOutURL = URL(string: "https://overcast.fm/logout")!
     static let mainStyleName = "main.css"
-    static let automaticRefreshInterval = 3600.0
+    static let automaticRefreshInterval = 900.0
 }
