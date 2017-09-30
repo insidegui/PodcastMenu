@@ -15,6 +15,12 @@ class TouchBarNowPlayingController: NSViewController {
     @IBOutlet private weak var timeRemainingLabel: NSTextField!
     
     func updateUI(oldInfo: PlaybackInfo?, newInfo: PlaybackInfo?) {
+        let hide = (newInfo == nil)
+        
+        artworkImageView.isHidden = hide
+        titleLabel.isHidden = hide
+        timeRemainingLabel.isHidden = hide
+        
         let title = newInfo?.title ?? ""
         let timeRemaining = newInfo?.timeRemaining ?? ""
         

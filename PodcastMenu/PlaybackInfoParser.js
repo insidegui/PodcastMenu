@@ -15,7 +15,8 @@ var playbackInfo = {
 	"share_link": shareLinkElement.getAttribute('href'),
 	"share_link_timestamp": shareLinkWithTimestampElement.getAttribute('href'),
 	"audio_source": audioElement.currentSrc,
-    "artwork_url": artworkElement.getAttribute('src')
+    "artwork_url": artworkElement.getAttribute('src'),
+    "is_playing": document.querySelector('audio').playbackRate >= 1
 };
 
 JSON.stringify(playbackInfo);

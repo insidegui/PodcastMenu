@@ -43,13 +43,16 @@ final class PlaybackInfoAdapter: Adapter<JSON, PlaybackInfo> {
                 return .error(.missingRequiredFields)
         }
         
+        let playing = input["is_playing"].boolValue
+        
         let info = PlaybackInfo(title: title,
                                 timeElapsed: timeElapsed,
                                 timeRemaining: timeRemaining,
                                 audioURL: audioURL,
                                 shareURL: shareURL,
                                 shareWithTimeURL: shareWithTimeURL,
-                                artworkURL: artworkURL)
+                                artworkURL: artworkURL,
+                                isPlaying: playing)
         
         return .success(info)
     }

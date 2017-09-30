@@ -18,6 +18,7 @@ extension Notification.Name {
     static let OvercastDidPause = Notification.Name(rawValue: "OvercastDidPause")
     static let OvercastShouldUpdatePlaybackInfo = Notification.Name(rawValue: "OvercastShouldUpdatePlaybackInfo")
     static let OvercastIsNotOnEpisodePage = Notification.Name(rawValue: "OvercastIsNotOnEpisodePage")
+    static let OvercastCommandTogglePlaying = Notification.Name(rawValue: "OvercastCommandTogglePlaying")
 }
 
 class OvercastController: NSObject, WKNavigationDelegate {
@@ -63,6 +64,9 @@ class OvercastController: NSObject, WKNavigationDelegate {
         }
         NotificationCenter.default.addObserver(forName: Notification.Name.OvercastDidPause, object: nil, queue: nil) { [weak self] _ in
             self?.stopActivity()
+        }
+        NotificationCenter.default.addObserver(forName: Notification.Name.OvercastCommandTogglePlaying, object: nil, queue: nil) { [weak self] _ in
+            self?.handlePlayPauseButton()
         }
     }
     

@@ -19,10 +19,10 @@
                         <touchBarItems>
                             <touchBarItem id="6a7-6A-ybd">
                                 <viewController key="viewController" id="pkX-ZB-6U1">
-                                    <button key="view" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DWA-nY-5GD">
-                                        <rect key="frame" x="0.0" y="0.0" width="51" height="30"/>
+                                    <button key="view" hidden="YES" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DWA-nY-5GD">
+                                        <rect key="frame" x="0.0" y="0.0" width="44" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                        <buttonCell key="cell" type="push" bezelStyle="rounded" image="pause_touchbar" imagePosition="only" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="AiF-Tf-IqB">
+                                        <buttonCell key="cell" type="push" bezelStyle="rounded" image="play_touchbar" imagePosition="only" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="AiF-Tf-IqB">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" usesAppearanceFont="YES"/>
                                         </buttonCell>
@@ -31,7 +31,7 @@
                                         </connections>
                                     </button>
                                 </viewController>
-                                <size key="designTimeSize" width="51" height="30"/>
+                                <size key="designTimeSize" width="44" height="30"/>
                             </touchBarItem>
                             <touchBarItem id="eOU-Zy-XC3">
                                 <viewController key="viewController" id="sfB-lK-DUk" customClass="TouchBarNowPlayingController" customModule="PodcastMenu" customModuleProvider="target">
@@ -41,19 +41,19 @@
                                             <stackView distribution="fill" orientation="horizontal" alignment="top" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yMk-OW-Lil">
                                                 <rect key="frame" x="0.0" y="0.0" width="158" height="30"/>
                                                 <subviews>
-                                                    <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="1ii-Os-PKN">
+                                                    <imageView hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="1ii-Os-PKN">
                                                         <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="30" id="eAO-k2-4IH"/>
                                                             <constraint firstAttribute="height" constant="30" id="xtp-bZ-yRf"/>
                                                         </constraints>
-                                                        <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="NSApplicationIcon" id="wQ1-KF-IHA"/>
+                                                        <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="wQ1-KF-IHA"/>
                                                     </imageView>
-                                                    <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="0.0" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oNz-Ci-x6j">
-                                                        <rect key="frame" x="38" y="0.0" width="120" height="30"/>
+                                                    <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="0.0" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" ambiguous="YES" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oNz-Ci-x6j">
+                                                        <rect key="frame" x="0.0" y="30" width="158" height="0.0"/>
                                                         <subviews>
-                                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="BYG-zE-khm">
-                                                                <rect key="frame" x="-2" y="14" width="8" height="16"/>
+                                                            <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BYG-zE-khm">
+                                                                <rect key="frame" x="-2" y="-16" width="8" height="16"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" relation="lessThanOrEqual" constant="130" id="qY1-xT-ipd"/>
                                                                 </constraints>
@@ -63,8 +63,8 @@
                                                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                                 </textFieldCell>
                                                             </textField>
-                                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ypk-W6-5eM">
-                                                                <rect key="frame" x="-2" y="0.0" width="7" height="14"/>
+                                                            <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ypk-W6-5eM">
+                                                                <rect key="frame" x="-2" y="-14" width="7" height="14"/>
                                                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title=" " id="naF-so-Rvy">
                                                                     <font key="font" metaFont="smallSystem"/>
                                                                     <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
@@ -120,7 +120,6 @@
         </touchBar>
     </objects>
     <resources>
-        <image name="NSApplicationIcon" width="128" height="128"/>
-        <image name="pause_touchbar" width="60" height="60"/>
+        <image name="play_touchbar" width="60" height="60"/>
     </resources>
 </document>
