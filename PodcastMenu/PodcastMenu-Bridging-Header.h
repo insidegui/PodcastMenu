@@ -4,3 +4,4 @@
 
 #import "NSImage+CGImage.h"
 #import "PMEventTap.h"
+#import "TouchBarPrivate.h"

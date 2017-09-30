@@ -39,6 +39,7 @@
 		DD1AE3191E9ACA770003FFF0 /* PMFreestandingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD1AE3181E9ACA770003FFF0 /* PMFreestandingButton.swift */; };
 		DD1EFA781CE671A800E0C623 /* look.js in Resources */ = {isa = PBXBuildFile; fileRef = DD1EFA771CE671A800E0C623 /* look.js */; };
 		DD1EFA7A1CE671B200E0C623 /* PMWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD1EFA791CE671B200E0C623 /* PMWebView.swift */; };
+		DD5F6DBC1F7FE93400BC57AE /* DFRFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD5F6DBB1F7FE93400BC57AE /* DFRFoundation.framework */; };
 		DD6DFF471DD69700004954DE /* Podcast.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD6DFF461DD69700004954DE /* Podcast.swift */; };
 		DD6DFF491DD69734004954DE /* Episode.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD6DFF481DD69734004954DE /* Episode.swift */; };
 		DD6DFF4C1DD697D7004954DE /* Adapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD6DFF4B1DD697D7004954DE /* Adapter.swift */; };
@@ -116,6 +117,8 @@
 		DD1AE3181E9ACA770003FFF0 /* PMFreestandingButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PMFreestandingButton.swift; sourceTree = "<group>"; };
 		DD1EFA771CE671A800E0C623 /* look.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = look.js; sourceTree = "<group>"; };
 		DD1EFA791CE671B200E0C623 /* PMWebView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PMWebView.swift; sourceTree = "<group>"; };
+		DD5F6DB91F7FE64F00BC57AE /* TouchBarPrivate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TouchBarPrivate.h; sourceTree = "<group>"; };
+		DD5F6DBB1F7FE93400BC57AE /* DFRFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DFRFoundation.framework; path = ../../../../../System/Library/PrivateFrameworks/DFRFoundation.framework; sourceTree = "<group>"; };
 		DD6DFF461DD69700004954DE /* Podcast.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Podcast.swift; sourceTree = "<group>"; };
 		DD6DFF481DD69734004954DE /* Episode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Episode.swift; sourceTree = "<group>"; };
 		DD6DFF4B1DD697D7004954DE /* Adapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Adapter.swift; sourceTree = "<group>"; };
@@ -146,6 +149,7 @@
 				DD0BFE6A1CE2817100446474 /* Sparkle.framework in Frameworks */,
 				DD0BFE741CE2890000446474 /* Crashlytics.framework in Frameworks */,
 				DD0BFE731CE2890000446474 /* Fabric.framework in Frameworks */,
+				DD5F6DBC1F7FE93400BC57AE /* DFRFoundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -166,6 +170,7 @@
 				DD0BFE3B1CE25D1400446474 /* PodcastMenu */,
 				DD6DFF5A1DD6A122004954DE /* PodcastMenuTests */,
 				DD0BFE3A1CE25D1400446474 /* Products */,
+				DD5F6DBA1F7FE93300BC57AE /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -291,12 +296,21 @@
 		DD14EB871DD6BC2300906DAD /* Touch Bar */ = {
 			isa = PBXGroup;
 			children = (
+				DD5F6DB91F7FE64F00BC57AE /* TouchBarPrivate.h */,
 				DD14EB811DD6B0F800906DAD /* TouchBarController.swift */,
 				DD14EB851DD6BC2100906DAD /* TouchBarScrubberViewController.swift */,
 				DD14EB8A1DD6C2A000906DAD /* ImageCache.swift */,
 				DD14EB8C1DD6C4A600906DAD /* ScrubberRemoteImageItemView.swift */,
 			);
 			name = "Touch Bar";
+			sourceTree = "<group>";
+		};
+		DD5F6DBA1F7FE93300BC57AE /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				DD5F6DBB1F7FE93400BC57AE /* DFRFoundation.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		DD6DFF451DD696F6004954DE /* Models */ = {
@@ -661,6 +675,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/lib",
 					"$(PROJECT_DIR)",
+					"$(SYSTEM_LIBRARY_DIR)/PrivateFrameworks",
 				);
 				INFOPLIST_FILE = PodcastMenu/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
@@ -685,6 +700,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/lib",
 					"$(PROJECT_DIR)",
+					"$(SYSTEM_LIBRARY_DIR)/PrivateFrameworks",
 				);
 				INFOPLIST_FILE = PodcastMenu/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";

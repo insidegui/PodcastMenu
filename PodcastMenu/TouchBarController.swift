@@ -73,6 +73,40 @@ class TouchBarController: NSObject {
         }
     }
     
+    @available(OSX 10.12.2, *)
+    fileprivate lazy var nowPlayingTouchBar: NSTouchBar = {
+        let bar = NSTouchBar()
+        
+        bar.delegate = self
+        bar.defaultItemIdentifiers = [.backButton, .forwardButton, .scrubber, .otherItemsProxy]
+        
+        return bar
+    }()
+    
+    @available(OSX 10.12.2, *)
+    func installControlStripNowPlayingItem() {
+        let nowPlayingItem = NSCustomTouchBarItem(identifier: .nowPlayingControlStrip)
+        nowPlayingItem.view = NSButton(image: #imageLiteral(resourceName: "controlStripIcon"), target: self, action: #selector(nowPlayingItemActivated))
+        NSTouchBarItem.addSystemTrayItem(nowPlayingItem)
+        
+        DFRElementSetControlStripPresenceForIdentifier(NSTouchBarItemIdentifier.nowPlayingControlStrip.rawValue, true);
+    }
+    
+    @available(OSX 10.12.2, *)
+    @objc private func nowPlayingItemActivated(_ sender: Any) {
+        showTouchBar()
+    }
+    
+    @available(OSX 10.12.2, *)
+    func showTouchBar() {
+        NSTouchBar.presentSystemModalFunctionBar(nowPlayingTouchBar, placement: 0, systemTrayItemIdentifier: "otherTouchBar")
+    }
+    
+    @available(OSX 10.12.2, *)
+    func hideTouchBar() {
+        NSTouchBar.dismissSystemModalFunctionBar(nowPlayingTouchBar)
+    }
+    
     deinit {
         webView.removeObserver(self, forKeyPath: #keyPath(WKWebView.canGoBack))
         webView.removeObserver(self, forKeyPath: #keyPath(WKWebView.canGoForward))
@@ -85,20 +119,7 @@ extension NSTouchBarItemIdentifier {
     static let backButton = NSTouchBarItemIdentifier("br.com.guilhermerambo.podcastmenu.back")
     static let forwardButton = NSTouchBarItemIdentifier("br.com.guilhermerambo.podcastmenu.forward")
     static let scrubber = NSTouchBarItemIdentifier("br.com.guilhermerambo.podcastmenu.scrubber")
-}
-
-@available(OSX 10.12.2, *)
-extension TouchBarController: NSTouchBarProvider {
-    
-    var touchBar: NSTouchBar? {
-        let bar = NSTouchBar()
-        
-        bar.delegate = self
-        bar.defaultItemIdentifiers = [.backButton, .forwardButton, .scrubber, .otherItemsProxy]
-        
-        return bar
-    }
-    
+    static let nowPlayingControlStrip = NSTouchBarItemIdentifier("br.com.guilhermerambo.podcastmenu.nowPlaying")
 }
 
 @available(OSX 10.12.2, *)
