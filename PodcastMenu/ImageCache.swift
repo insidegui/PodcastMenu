@@ -23,7 +23,7 @@ final class ImageCache {
     typealias CancellationHandler = () -> ()
     
     class func cacheUrl(for imageUrl: URL) -> URL {
-        let filebase = imageUrl.path.replacingOccurrences(of: "/", with: "_")
+        let filebase = imageUrl.absoluteString.data(using: .utf8)?.base64EncodedString() ?? UUID().uuidString
         let filename = filebase + "-" + imageUrl.lastPathComponent
         
         let path = NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true).first! + "/" + Bundle.main.bundleIdentifier! + "/ImageCache/" + filename + "-" + imageUrl.lastPathComponent

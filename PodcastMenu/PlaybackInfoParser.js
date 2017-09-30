@@ -6,7 +6,7 @@ var shareContainer = document.querySelector('div.centertext.lighttext.margintop1
 var shareLinks = shareContainer.querySelectorAll('a');
 var shareLinkElement = shareLinks[1];
 var shareLinkWithTimestampElement = shareLinks[2];
-var artworkElement = document.querySelector('img.fullart');
+var artworkElement = document.querySelector(".fullart_container img.art.fullart");
 
 var playbackInfo = {
 	"title": titleElement.innerText,
