@@ -338,11 +338,7 @@ class PodcastWebAppViewController: NSViewController {
         didSet {
             shareButton.isHidden = (currentPlaybackInfo == nil)
             
-            #if DEBUG
-            if let info = currentPlaybackInfo {
-                NSLog("Updated playback info:\n\(info)")
-            }
-            #endif
+            touchBarController.playbackInfo = currentPlaybackInfo
         }
     }
     

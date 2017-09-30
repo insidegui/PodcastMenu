@@ -49,6 +49,14 @@ class TouchBarController: NSObject {
         }
     }
     
+    var playbackInfo: PlaybackInfo? {
+        didSet {
+            if #available(OSX 10.12.2, *) {
+                miniPlayer.updateUI(oldInfo: oldValue, newInfo: playbackInfo)
+            }
+        }
+    }
+    
     @available(OSX 10.12.2, *)
     lazy var backButton: NSButton = {
         return NSButton(title: "", image: NSImage(named: NSImageNameTouchBarGoBackTemplate)!, target: nil, action: #selector(WKWebView.goBack(_:)))
@@ -78,7 +86,13 @@ class TouchBarController: NSObject {
         let bar = NSTouchBar()
         
         bar.delegate = self
-        bar.defaultItemIdentifiers = [.backButton, .forwardButton, .scrubber, .otherItemsProxy]
+        
+        bar.customizationAllowedItemIdentifiers = [
+            .backButton,
+            .forwardButton,
+        ]
+
+        bar.defaultItemIdentifiers = [.miniPlayer, .scrubber, .otherItemsProxy]
         
         return bar
     }()
@@ -107,6 +121,11 @@ class TouchBarController: NSObject {
         NSTouchBar.dismissSystemModalFunctionBar(nowPlayingTouchBar)
     }
     
+    @available(OSX 10.12.2, *)
+    fileprivate lazy var miniPlayer: TouchBarMiniPlayer = {
+        return TouchBarMiniPlayer.instantiate()
+    }()
+    
     deinit {
         webView.removeObserver(self, forKeyPath: #keyPath(WKWebView.canGoBack))
         webView.removeObserver(self, forKeyPath: #keyPath(WKWebView.canGoForward))
@@ -120,6 +139,7 @@ extension NSTouchBarItemIdentifier {
     static let forwardButton = NSTouchBarItemIdentifier("br.com.guilhermerambo.podcastmenu.forward")
     static let scrubber = NSTouchBarItemIdentifier("br.com.guilhermerambo.podcastmenu.scrubber")
     static let nowPlayingControlStrip = NSTouchBarItemIdentifier("br.com.guilhermerambo.podcastmenu.nowPlaying")
+    static let miniPlayer = NSTouchBarItemIdentifier("br.com.guilhermerambo.podcastmenu.miniPlayer")
 }
 
 @available(OSX 10.12.2, *)
@@ -139,6 +159,8 @@ extension TouchBarController: NSTouchBarDelegate {
             let item = NSCustomTouchBarItem(identifier: .scrubber)
             item.viewController = scrubberController
             return item
+        case .miniPlayer:
+            return miniPlayer.touchBarItem
         default: return nil
         }
     }

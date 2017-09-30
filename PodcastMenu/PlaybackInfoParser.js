@@ -6,6 +6,7 @@ var shareContainer = document.querySelector('div.centertext.lighttext.margintop1
 var shareLinks = shareContainer.querySelectorAll('a');
 var shareLinkElement = shareLinks[1];
 var shareLinkWithTimestampElement = shareLinks[2];
+var artworkElement = document.querySelector('img.fullart');
 
 var playbackInfo = {
 	"title": titleElement.innerText,
@@ -13,7 +14,8 @@ var playbackInfo = {
 	"time_remaining": timeRemainingElement.innerText,
 	"share_link": shareLinkElement.getAttribute('href'),
 	"share_link_timestamp": shareLinkWithTimestampElement.getAttribute('href'),
-	"audio_source": audioElement.currentSrc
+	"audio_source": audioElement.currentSrc,
+    "artwork_url": artworkElement.getAttribute('src')
 };
 
 JSON.stringify(playbackInfo);

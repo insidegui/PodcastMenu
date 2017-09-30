@@ -108,12 +108,11 @@ class OvercastController: NSObject, WKNavigationDelegate {
     fileprivate func startPlaybackInfoTimer() {
         playbackInfoTimer?.invalidate()
         
-        playbackInfoTimer = Timer.scheduledTimer(timeInterval: 5,
+        playbackInfoTimer = Timer.scheduledTimer(timeInterval: 1,
                                                  target: self,
                                                  selector: #selector(updatePlaybackInfo(_:)),
                                                  userInfo: nil,
                                                  repeats: true)
-        playbackInfoTimer?.tolerance = 5
     }
     
     fileprivate func stopPlaybackInfoTimer() {

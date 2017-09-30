@@ -32,6 +32,9 @@
 		DD14EB8B1DD6C2A000906DAD /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD14EB8A1DD6C2A000906DAD /* ImageCache.swift */; };
 		DD14EB8D1DD6C4A600906DAD /* ScrubberRemoteImageItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD14EB8C1DD6C4A600906DAD /* ScrubberRemoteImageItemView.swift */; };
 		DD14EB8F1DD6C7F000906DAD /* Poster.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD14EB8E1DD6C7F000906DAD /* Poster.swift */; };
+		DD153DD01F802F68007F9AD7 /* TouchBarMiniPlayer.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD153DCF1F802F68007F9AD7 /* TouchBarMiniPlayer.xib */; };
+		DD153DD31F803BE1007F9AD7 /* TouchBarNowPlayingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD153DD21F803BE1007F9AD7 /* TouchBarNowPlayingController.swift */; };
+		DD153DD51F803C6B007F9AD7 /* TouchBarMiniPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD153DD41F803C6B007F9AD7 /* TouchBarMiniPlayer.swift */; };
 		DD1AE2FC1E9A72180003FFF0 /* PlaybackInfoParser.js in Resources */ = {isa = PBXBuildFile; fileRef = DD1AE2FB1E9A72180003FFF0 /* PlaybackInfoParser.js */; };
 		DD1AE2FE1E9A72350003FFF0 /* PlaybackInfoAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD1AE2FD1E9A72350003FFF0 /* PlaybackInfoAdapter.swift */; };
 		DD1AE3001E9A725D0003FFF0 /* PlaybackInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD1AE2FF1E9A725D0003FFF0 /* PlaybackInfo.swift */; };
@@ -110,6 +113,10 @@
 		DD14EB8A1DD6C2A000906DAD /* ImageCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
 		DD14EB8C1DD6C4A600906DAD /* ScrubberRemoteImageItemView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScrubberRemoteImageItemView.swift; sourceTree = "<group>"; };
 		DD14EB8E1DD6C7F000906DAD /* Poster.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Poster.swift; sourceTree = "<group>"; };
+		DD153DCF1F802F68007F9AD7 /* TouchBarMiniPlayer.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TouchBarMiniPlayer.xib; sourceTree = "<group>"; };
+		DD153DD11F803194007F9AD7 /* test-artwork.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "test-artwork.jpg"; sourceTree = "<group>"; };
+		DD153DD21F803BE1007F9AD7 /* TouchBarNowPlayingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouchBarNowPlayingController.swift; sourceTree = "<group>"; };
+		DD153DD41F803C6B007F9AD7 /* TouchBarMiniPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouchBarMiniPlayer.swift; sourceTree = "<group>"; };
 		DD1AE2FB1E9A72180003FFF0 /* PlaybackInfoParser.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = PlaybackInfoParser.js; sourceTree = "<group>"; };
 		DD1AE2FD1E9A72350003FFF0 /* PlaybackInfoAdapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaybackInfoAdapter.swift; sourceTree = "<group>"; };
 		DD1AE2FF1E9A725D0003FFF0 /* PlaybackInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaybackInfo.swift; sourceTree = "<group>"; };
@@ -233,12 +240,14 @@
 		DD0BFE561CE267F400446474 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				DD153DD11F803194007F9AD7 /* test-artwork.jpg */,
 				DD13C8BC1CE8E587002174C4 /* MediaKeysUsers.plist */,
 				DD6DFF6B1DD6AC9B004954DE /* Parsers */,
 				DD0BFE651CE27D4500446474 /* Userscripts */,
 				DD0BFE3E1CE25D1400446474 /* Assets.xcassets */,
 				DD0BFE401CE25D1400446474 /* MainMenu.xib */,
 				DD0BFE431CE25D1400446474 /* Info.plist */,
+				DD153DCF1F802F68007F9AD7 /* TouchBarMiniPlayer.xib */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -301,6 +310,8 @@
 				DD14EB851DD6BC2100906DAD /* TouchBarScrubberViewController.swift */,
 				DD14EB8A1DD6C2A000906DAD /* ImageCache.swift */,
 				DD14EB8C1DD6C4A600906DAD /* ScrubberRemoteImageItemView.swift */,
+				DD153DD41F803C6B007F9AD7 /* TouchBarMiniPlayer.swift */,
+				DD153DD21F803BE1007F9AD7 /* TouchBarNowPlayingController.swift */,
 			);
 			name = "Touch Bar";
 			sourceTree = "<group>";
@@ -469,6 +480,7 @@
 				DD0BFE3F1CE25D1400446474 /* Assets.xcassets in Resources */,
 				DD0BFE671CE27D5400446474 /* overcast.js in Resources */,
 				DD13C8BD1CE8E587002174C4 /* MediaKeysUsers.plist in Resources */,
+				DD153DD01F802F68007F9AD7 /* TouchBarMiniPlayer.xib in Resources */,
 				DD6DFF6E1DD6ACB5004954DE /* EpisodesParser.js in Resources */,
 				DD1AE2FC1E9A72180003FFF0 /* PlaybackInfoParser.js in Resources */,
 				DD0BFE421CE25D1400446474 /* MainMenu.xib in Resources */,
@@ -514,6 +526,7 @@
 				DD14EB8F1DD6C7F000906DAD /* Poster.swift in Sources */,
 				DD0BFE5B1CE268A500446474 /* OvercastController.swift in Sources */,
 				DD6DFF671DD6A1DF004954DE /* SwiftyJSON.swift in Sources */,
+				DD153DD31F803BE1007F9AD7 /* TouchBarNowPlayingController.swift in Sources */,
 				DD0BFE4C1CE2608E00446474 /* PodcastWebAppViewController.swift in Sources */,
 				DD0BFE501CE2618900446474 /* Theme.swift in Sources */,
 				DD0BFE621CE276CF00446474 /* MediaKeysHandler.swift in Sources */,
@@ -533,6 +546,7 @@
 				DDC61FF01CE2FE1E00C0FADA /* Preferences.swift in Sources */,
 				DD0BFE521CE2672800446474 /* Constants.swift in Sources */,
 				DD6DFF471DD69700004954DE /* Podcast.swift in Sources */,
+				DD153DD51F803C6B007F9AD7 /* TouchBarMiniPlayer.swift in Sources */,
 				DDC61FE91CE2F0C300C0FADA /* VUController.swift in Sources */,
 				DD1AE2FE1E9A72350003FFF0 /* PlaybackInfoAdapter.swift in Sources */,
 				DD14EB861DD6BC2100906DAD /* TouchBarScrubberViewController.swift in Sources */,
