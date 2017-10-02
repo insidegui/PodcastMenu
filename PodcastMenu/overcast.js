@@ -17,12 +17,11 @@ if (typeof(window.webkit) != 'undefined') {
 function installAudioPipeline() {
 	try {
 		if (audio == null || typeof(audio) == 'undefined') return;
-	
-		audio.addEventListener('pause', function(){
-			bridge.postMessage('pause');
-		}, false);
+        
 		audio.addEventListener('play', function(){
-			bridge.postMessage('play');
+           // stop autoplay and buffering
+           audio.pause();
+           audio.src = "";
 		}, false);
 	} catch(e) {
 		console.log(e);
