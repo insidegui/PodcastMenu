@@ -57,6 +57,9 @@
 		DD6DFF6F1DD6ACB5004954DE /* PodcastsParser.js in Resources */ = {isa = PBXBuildFile; fileRef = DD6DFF6D1DD6ACB5004954DE /* PodcastsParser.js */; };
 		DDBF6D761F81C7710056B3E8 /* Playback.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DDBF6D751F81C7710056B3E8 /* Playback.storyboard */; };
 		DDBF6D781F81C8390056B3E8 /* PlaybackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDBF6D771F81C8390056B3E8 /* PlaybackViewController.swift */; };
+		DDBF6D821F8270C90056B3E8 /* PodcastMenuAudio.m in Sources */ = {isa = PBXBuildFile; fileRef = DDBF6D811F8270C90056B3E8 /* PodcastMenuAudio.m */; };
+		DDBF6D841F8270C90056B3E8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DDBF6D831F8270C90056B3E8 /* main.m */; };
+		DDBF6D881F8270C90056B3E8 /* PodcastMenuAudio.xpc in Embed XPC Services */ = {isa = PBXBuildFile; fileRef = DDBF6D7D1F8270C90056B3E8 /* PodcastMenuAudio.xpc */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		DDC61FE91CE2F0C300C0FADA /* VUController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDC61FE81CE2F0C300C0FADA /* VUController.swift */; };
 		DDC61FED1CE2F20E00C0FADA /* NSImage+CGImage.m in Sources */ = {isa = PBXBuildFile; fileRef = DDC61FEC1CE2F20E00C0FADA /* NSImage+CGImage.m */; };
 		DDC61FF01CE2FE1E00C0FADA /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDC61FEF1CE2FE1E00C0FADA /* Preferences.swift */; };
@@ -71,6 +74,13 @@
 			remoteGlobalIDString = DD0BFE381CE25D1400446474;
 			remoteInfo = PodcastMenu;
 		};
+		DDBF6D861F8270C90056B3E8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DD0BFE311CE25D1400446474 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DDBF6D7C1F8270C90056B3E8;
+			remoteInfo = PodcastMenuAudio;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -83,6 +93,17 @@
 				DD0BFE6B1CE2817100446474 /* Sparkle.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DDBF6D8C1F8270C90056B3E8 /* Embed XPC Services */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/XPCServices";
+			dstSubfolderSpec = 16;
+			files = (
+				DDBF6D881F8270C90056B3E8 /* PodcastMenuAudio.xpc in Embed XPC Services */,
+			);
+			name = "Embed XPC Services";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -144,6 +165,12 @@
 		DD6DFF6D1DD6ACB5004954DE /* PodcastsParser.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = PodcastsParser.js; sourceTree = "<group>"; };
 		DDBF6D751F81C7710056B3E8 /* Playback.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Playback.storyboard; sourceTree = "<group>"; };
 		DDBF6D771F81C8390056B3E8 /* PlaybackViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaybackViewController.swift; sourceTree = "<group>"; };
+		DDBF6D7D1F8270C90056B3E8 /* PodcastMenuAudio.xpc */ = {isa = PBXFileReference; explicitFileType = "wrapper.xpc-service"; includeInIndex = 0; path = PodcastMenuAudio.xpc; sourceTree = BUILT_PRODUCTS_DIR; };
+		DDBF6D7F1F8270C90056B3E8 /* PodcastMenuAudioProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PodcastMenuAudioProtocol.h; sourceTree = "<group>"; };
+		DDBF6D801F8270C90056B3E8 /* PodcastMenuAudio.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PodcastMenuAudio.h; sourceTree = "<group>"; };
+		DDBF6D811F8270C90056B3E8 /* PodcastMenuAudio.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PodcastMenuAudio.m; sourceTree = "<group>"; };
+		DDBF6D831F8270C90056B3E8 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		DDBF6D851F8270C90056B3E8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DDC61FE81CE2F0C300C0FADA /* VUController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VUController.swift; sourceTree = "<group>"; };
 		DDC61FEA1CE2F20E00C0FADA /* PodcastMenu-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PodcastMenu-Bridging-Header.h"; sourceTree = "<group>"; };
 		DDC61FEB1CE2F20E00C0FADA /* NSImage+CGImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSImage+CGImage.h"; sourceTree = "<group>"; };
@@ -171,6 +198,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		DDBF6D7A1F8270C90056B3E8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -180,6 +214,7 @@
 				DD0BFE691CE2816C00446474 /* Vendor */,
 				DD0BFE3B1CE25D1400446474 /* PodcastMenu */,
 				DD6DFF5A1DD6A122004954DE /* PodcastMenuTests */,
+				DDBF6D7E1F8270C90056B3E8 /* PodcastMenuAudio */,
 				DD0BFE3A1CE25D1400446474 /* Products */,
 				DD5F6DBA1F7FE93300BC57AE /* Frameworks */,
 			);
@@ -190,6 +225,7 @@
 			children = (
 				DD0BFE391CE25D1400446474 /* PodcastMenu.app */,
 				DD6DFF591DD6A122004954DE /* PodcastMenuTests.xctest */,
+				DDBF6D7D1F8270C90056B3E8 /* PodcastMenuAudio.xpc */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -385,6 +421,18 @@
 			name = Parsers;
 			sourceTree = "<group>";
 		};
+		DDBF6D7E1F8270C90056B3E8 /* PodcastMenuAudio */ = {
+			isa = PBXGroup;
+			children = (
+				DDBF6D7F1F8270C90056B3E8 /* PodcastMenuAudioProtocol.h */,
+				DDBF6D801F8270C90056B3E8 /* PodcastMenuAudio.h */,
+				DDBF6D811F8270C90056B3E8 /* PodcastMenuAudio.m */,
+				DDBF6D831F8270C90056B3E8 /* main.m */,
+				DDBF6D851F8270C90056B3E8 /* Info.plist */,
+			);
+			path = PodcastMenuAudio;
+			sourceTree = "<group>";
+		};
 		DDC61FEE1CE2F21900C0FADA /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
@@ -406,10 +454,12 @@
 				DD0BFE371CE25D1400446474 /* Resources */,
 				DD0BFE6C1CE2817100446474 /* Embed Frameworks */,
 				DD0BFE701CE288E900446474 /* Crashlytics */,
+				DDBF6D8C1F8270C90056B3E8 /* Embed XPC Services */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				DDBF6D871F8270C90056B3E8 /* PBXTargetDependency */,
 			);
 			name = PodcastMenu;
 			productName = PodcastMenu;
@@ -434,6 +484,23 @@
 			productReference = DD6DFF591DD6A122004954DE /* PodcastMenuTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		DDBF6D7C1F8270C90056B3E8 /* PodcastMenuAudio */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DDBF6D891F8270C90056B3E8 /* Build configuration list for PBXNativeTarget "PodcastMenuAudio" */;
+			buildPhases = (
+				DDBF6D791F8270C90056B3E8 /* Sources */,
+				DDBF6D7A1F8270C90056B3E8 /* Frameworks */,
+				DDBF6D7B1F8270C90056B3E8 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PodcastMenuAudio;
+			productName = PodcastMenuAudio;
+			productReference = DDBF6D7D1F8270C90056B3E8 /* PodcastMenuAudio.xpc */;
+			productType = "com.apple.product-type.xpc-service";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -455,6 +522,11 @@
 						ProvisioningStyle = Automatic;
 						TestTargetID = DD0BFE381CE25D1400446474;
 					};
+					DDBF6D7C1F8270C90056B3E8 = {
+						CreatedOnToolsVersion = 9.0;
+						DevelopmentTeam = 8C7439RJLG;
+						ProvisioningStyle = Automatic;
+					};
 				};
 			};
 			buildConfigurationList = DD0BFE341CE25D1400446474 /* Build configuration list for PBXProject "PodcastMenu" */;
@@ -472,6 +544,7 @@
 			targets = (
 				DD0BFE381CE25D1400446474 /* PodcastMenu */,
 				DD6DFF581DD6A122004954DE /* PodcastMenuTests */,
+				DDBF6D7C1F8270C90056B3E8 /* PodcastMenuAudio */,
 			);
 		};
 /* End PBXProject section */
@@ -501,6 +574,13 @@
 			files = (
 				DD6DFF6A1DD6A6F8004954DE /* Podcasts.json in Resources */,
 				DD6DFF651DD6A159004954DE /* Episodes.json in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DDBF6D7B1F8270C90056B3E8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -574,6 +654,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		DDBF6D791F8270C90056B3E8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DDBF6D841F8270C90056B3E8 /* main.m in Sources */,
+				DDBF6D821F8270C90056B3E8 /* PodcastMenuAudio.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -581,6 +670,11 @@
 			isa = PBXTargetDependency;
 			target = DD0BFE381CE25D1400446474 /* PodcastMenu */;
 			targetProxy = DD6DFF5E1DD6A122004954DE /* PBXContainerItemProxy */;
+		};
+		DDBF6D871F8270C90056B3E8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DDBF6D7C1F8270C90056B3E8 /* PodcastMenuAudio */;
+			targetProxy = DDBF6D861F8270C90056B3E8 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -773,6 +867,59 @@
 			};
 			name = Release;
 		};
+		DDBF6D8A1F8270C90056B3E8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = 8C7439RJLG;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = PodcastMenuAudio/Info.plist;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				PRODUCT_BUNDLE_IDENTIFIER = br.com.guilhermerambo.PodcastMenuAudio;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		DDBF6D8B1F8270C90056B3E8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 8C7439RJLG;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = PodcastMenuAudio/Info.plist;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				PRODUCT_BUNDLE_IDENTIFIER = br.com.guilhermerambo.PodcastMenuAudio;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -799,6 +946,15 @@
 			buildConfigurations = (
 				DD6DFF611DD6A122004954DE /* Debug */,
 				DD6DFF621DD6A122004954DE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DDBF6D891F8270C90056B3E8 /* Build configuration list for PBXNativeTarget "PodcastMenuAudio" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DDBF6D8A1F8270C90056B3E8 /* Debug */,
+				DDBF6D8B1F8270C90056B3E8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
