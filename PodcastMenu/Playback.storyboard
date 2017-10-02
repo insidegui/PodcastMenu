@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="XEv-g1-3RH">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13196"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Playback View Controller-->
+        <scene sceneID="Pg2-i6-6zp">
+            <objects>
+                <viewController id="XEv-g1-3RH" customClass="PlaybackViewController" customModule="PodcastMenu" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" wantsLayer="YES" id="xOk-Fl-QRn">
+                        <rect key="frame" x="0.0" y="0.0" width="308" height="340"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="fUk-ub-2a4">
+                                <rect key="frame" x="122" y="122" width="64" height="96"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="🙈" id="j1c-po-mbY">
+                                    <font key="font" size="60" name="AppleColorEmoji"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="fUk-ub-2a4" firstAttribute="centerX" secondItem="xOk-Fl-QRn" secondAttribute="centerX" id="e2b-Ae-qcF"/>
+                            <constraint firstItem="fUk-ub-2a4" firstAttribute="centerY" secondItem="xOk-Fl-QRn" secondAttribute="centerY" id="qgc-iq-4Yw"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <customObject id="DKo-7w-yeH" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-202" y="4"/>
+        </scene>
+    </scenes>
+</document>

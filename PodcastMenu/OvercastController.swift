@@ -13,6 +13,11 @@ protocol OvercastLoudnessDelegate {
     func loudnessDidChange(_ value: Double)
 }
 
+protocol OvercastNavigationDelegate: class {
+    func navigateToPlayback(with url: URL)
+    func dismissPlayback()
+}
+
 extension Notification.Name {
     static let OvercastDidPlay = Notification.Name(rawValue: "OvercastDidPlay")
     static let OvercastDidPause = Notification.Name(rawValue: "OvercastDidPause")
@@ -24,6 +29,8 @@ extension Notification.Name {
 class OvercastController: NSObject, WKNavigationDelegate {
     
     var loudnessDelegate: OvercastLoudnessDelegate?
+    
+    weak var navigationDelegate: OvercastNavigationDelegate?
     
     fileprivate let webView: WKWebView
     fileprivate let bridge: OvercastJavascriptBridge
@@ -84,13 +91,19 @@ class OvercastController: NSObject, WKNavigationDelegate {
         
         guard navigationAction.navigationType == .linkActivated else { return }
         
-        guard let URL = navigationAction.request.url else { return }
+        guard let url = navigationAction.request.url else { return }
         
         // if the user clicked a link to another website, open with the default browser instead of navigating inside the app
-        guard isValidOvercastURL(URL) else {
+        guard isValidOvercastURL(url) else {
             decision = .cancel
-            NSWorkspace.shared().open(URL)
+            NSWorkspace.shared().open(url)
             return
+        }
+        
+        if url.path != Constants.homePath {
+            navigationDelegate?.navigateToPlayback(with: url)
+        } else {
+            navigationDelegate?.dismissPlayback()
         }
     }
     

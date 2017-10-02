@@ -55,6 +55,8 @@
 		DD6DFF6A1DD6A6F8004954DE /* Podcasts.json in Resources */ = {isa = PBXBuildFile; fileRef = DD6DFF691DD6A6F8004954DE /* Podcasts.json */; };
 		DD6DFF6E1DD6ACB5004954DE /* EpisodesParser.js in Resources */ = {isa = PBXBuildFile; fileRef = DD6DFF6C1DD6ACB5004954DE /* EpisodesParser.js */; };
 		DD6DFF6F1DD6ACB5004954DE /* PodcastsParser.js in Resources */ = {isa = PBXBuildFile; fileRef = DD6DFF6D1DD6ACB5004954DE /* PodcastsParser.js */; };
+		DDBF6D761F81C7710056B3E8 /* Playback.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DDBF6D751F81C7710056B3E8 /* Playback.storyboard */; };
+		DDBF6D781F81C8390056B3E8 /* PlaybackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDBF6D771F81C8390056B3E8 /* PlaybackViewController.swift */; };
 		DDC61FE91CE2F0C300C0FADA /* VUController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDC61FE81CE2F0C300C0FADA /* VUController.swift */; };
 		DDC61FED1CE2F20E00C0FADA /* NSImage+CGImage.m in Sources */ = {isa = PBXBuildFile; fileRef = DDC61FEC1CE2F20E00C0FADA /* NSImage+CGImage.m */; };
 		DDC61FF01CE2FE1E00C0FADA /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDC61FEF1CE2FE1E00C0FADA /* Preferences.swift */; };
@@ -140,6 +142,8 @@
 		DD6DFF691DD6A6F8004954DE /* Podcasts.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = Podcasts.json; path = Data/Podcasts.json; sourceTree = "<group>"; };
 		DD6DFF6C1DD6ACB5004954DE /* EpisodesParser.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = EpisodesParser.js; sourceTree = "<group>"; };
 		DD6DFF6D1DD6ACB5004954DE /* PodcastsParser.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = PodcastsParser.js; sourceTree = "<group>"; };
+		DDBF6D751F81C7710056B3E8 /* Playback.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Playback.storyboard; sourceTree = "<group>"; };
+		DDBF6D771F81C8390056B3E8 /* PlaybackViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaybackViewController.swift; sourceTree = "<group>"; };
 		DDC61FE81CE2F0C300C0FADA /* VUController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VUController.swift; sourceTree = "<group>"; };
 		DDC61FEA1CE2F20E00C0FADA /* PodcastMenu-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PodcastMenu-Bridging-Header.h"; sourceTree = "<group>"; };
 		DDC61FEB1CE2F20E00C0FADA /* NSImage+CGImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSImage+CGImage.h"; sourceTree = "<group>"; };
@@ -233,6 +237,7 @@
 				DD0BFE5A1CE268A500446474 /* OvercastController.swift */,
 				DDF690631D2333AA00C8AB25 /* ErrorViewController.swift */,
 				DDC61FE81CE2F0C300C0FADA /* VUController.swift */,
+				DDBF6D771F81C8390056B3E8 /* PlaybackViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -248,6 +253,7 @@
 				DD0BFE401CE25D1400446474 /* MainMenu.xib */,
 				DD0BFE431CE25D1400446474 /* Info.plist */,
 				DD153DCF1F802F68007F9AD7 /* TouchBarMiniPlayer.xib */,
+				DDBF6D751F81C7710056B3E8 /* Playback.storyboard */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -476,6 +482,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DD14EB841DD6B81D00906DAD /* TitleParser.js in Resources */,
+				DDBF6D761F81C7710056B3E8 /* Playback.storyboard in Resources */,
 				DD6DFF6F1DD6ACB5004954DE /* PodcastsParser.js in Resources */,
 				DD0BFE3F1CE25D1400446474 /* Assets.xcassets in Resources */,
 				DD0BFE671CE27D5400446474 /* overcast.js in Resources */,
@@ -547,6 +554,7 @@
 				DD0BFE521CE2672800446474 /* Constants.swift in Sources */,
 				DD6DFF471DD69700004954DE /* Podcast.swift in Sources */,
 				DD153DD51F803C6B007F9AD7 /* TouchBarMiniPlayer.swift in Sources */,
+				DDBF6D781F81C8390056B3E8 /* PlaybackViewController.swift in Sources */,
 				DDC61FE91CE2F0C300C0FADA /* VUController.swift in Sources */,
 				DD1AE2FE1E9A72350003FFF0 /* PlaybackInfoAdapter.swift in Sources */,
 				DD14EB861DD6BC2100906DAD /* TouchBarScrubberViewController.swift in Sources */,

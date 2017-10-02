@@ -107,6 +107,7 @@ class PodcastWebAppViewController: NSViewController {
         
         overcastController = OvercastController(webView: webView)
         overcastController.loudnessDelegate = loudnessDelegate
+        overcastController.navigationDelegate = self
         
         webView.addObserver(self, forKeyPath: "estimatedProgress", options: [.initial, .new], context: nil)
         
@@ -137,8 +138,12 @@ class PodcastWebAppViewController: NSViewController {
         }
     }
     
+    var shouldFadeWebView = true
+    
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         if keyPath == "estimatedProgress" {
+            guard shouldFadeWebView else { return }
+            
             if webView.estimatedProgress >= 0.99 {
                 webViewDidFinishLoadingPage()
             }
@@ -159,6 +164,38 @@ class PodcastWebAppViewController: NSViewController {
         }
         
         webView.load(URLRequest(url: URL))
+    }
+    
+    // MARK: - Playback presentation
+    
+    private var playbackController: PlaybackViewController!
+    
+    func presentPlaybackViewController(for url: URL) {
+        shouldFadeWebView = false
+        
+        playbackController = PlaybackViewController.instantiate()
+        addChildViewController(playbackController)
+        
+        playbackController.view.frame = view.bounds
+        playbackController.view.autoresizingMask = [.viewWidthSizable, .viewHeightSizable]
+        playbackController.view.alphaValue = 0
+        view.addSubview(playbackController.view)
+        
+        NSAnimationContext.beginGrouping()
+        webView.animator().alphaValue = 0
+        playbackController.view.animator().alphaValue = 1
+        NSAnimationContext.endGrouping()
+    }
+    
+    func dismissPlaybackViewController() {
+        shouldFadeWebView = true
+        
+        NSAnimationContext.beginGrouping()
+        playbackController.view.animator().alphaValue = 0
+        NSAnimationContext.current().completionHandler = { [weak self] in
+            self?.playbackController.view.removeFromSuperview()
+        }
+        NSAnimationContext.endGrouping()
     }
     
     // MARK: - Appearance
@@ -448,6 +485,22 @@ extension PodcastWebAppViewController: NSMenuDelegate {
         switch item {
         case .logOut:
             return isLoggedIn
+        }
+    }
+    
+}
+
+extension PodcastWebAppViewController: OvercastNavigationDelegate {
+    
+    func navigateToPlayback(with url: URL) {
+        DispatchQueue.main.async {
+            self.presentPlaybackViewController(for: url)
+        }
+    }
+    
+    func dismissPlayback() {
+        DispatchQueue.main.async {
+            self.dismissPlaybackViewController()
         }
     }
     
