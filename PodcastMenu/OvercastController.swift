@@ -14,16 +14,18 @@ protocol OvercastLoudnessDelegate {
 }
 
 protocol OvercastNavigationDelegate: class {
-    func navigateToPlayback(with url: URL)
+    func navigateToPlayback()
+    func requestPlaybackAudio(at url: URL)
     func dismissPlayback()
 }
 
 extension Notification.Name {
-    static let OvercastDidPlay = Notification.Name(rawValue: "OvercastDidPlay")
-    static let OvercastDidPause = Notification.Name(rawValue: "OvercastDidPause")
-    static let OvercastShouldUpdatePlaybackInfo = Notification.Name(rawValue: "OvercastShouldUpdatePlaybackInfo")
-    static let OvercastIsNotOnEpisodePage = Notification.Name(rawValue: "OvercastIsNotOnEpisodePage")
-    static let OvercastCommandTogglePlaying = Notification.Name(rawValue: "OvercastCommandTogglePlaying")
+    static let OvercastDidPlay = Notification.Name("OvercastDidPlay")
+    static let OvercastDidPause = Notification.Name("OvercastDidPause")
+    static let OvercastDidCapturePlaybackURL = Notification.Name("OvercastDidCapturePlaybackURL")
+    static let OvercastShouldUpdatePlaybackInfo = Notification.Name("OvercastShouldUpdatePlaybackInfo")
+    static let OvercastIsNotOnEpisodePage = Notification.Name("OvercastIsNotOnEpisodePage")
+    static let OvercastCommandTogglePlaying = Notification.Name("OvercastCommandTogglePlaying")
 }
 
 class OvercastController: NSObject, WKNavigationDelegate {
@@ -75,6 +77,11 @@ class OvercastController: NSObject, WKNavigationDelegate {
         NotificationCenter.default.addObserver(forName: Notification.Name.OvercastCommandTogglePlaying, object: nil, queue: nil) { [weak self] _ in
             self?.handlePlayPauseButton()
         }
+        NotificationCenter.default.addObserver(forName: Notification.Name.OvercastDidCapturePlaybackURL, object: nil, queue: nil) { [weak self] note in
+            guard let url = note.object as? URL else { return }
+            
+            self?.navigationDelegate?.requestPlaybackAudio(at: url)
+        }
     }
     
     func isValidOvercastURL(_ URL: Foundation.URL) -> Bool {
@@ -101,7 +108,7 @@ class OvercastController: NSObject, WKNavigationDelegate {
         }
         
         if url.path != Constants.homePath {
-            navigationDelegate?.navigateToPlayback(with: url)
+            navigationDelegate?.navigateToPlayback()
         } else {
             navigationDelegate?.dismissPlayback()
         }
@@ -123,13 +130,13 @@ class OvercastController: NSObject, WKNavigationDelegate {
     private var playbackInfoTimer: Timer?
     
     fileprivate func startPlaybackInfoTimer() {
-        playbackInfoTimer?.invalidate()
-        
-        playbackInfoTimer = Timer.scheduledTimer(timeInterval: 1,
-                                                 target: self,
-                                                 selector: #selector(updatePlaybackInfo(_:)),
-                                                 userInfo: nil,
-                                                 repeats: true)
+//        playbackInfoTimer?.invalidate()
+//
+//        playbackInfoTimer = Timer.scheduledTimer(timeInterval: 1,
+//                                                 target: self,
+//                                                 selector: #selector(updatePlaybackInfo(_:)),
+//                                                 userInfo: nil,
+//                                                 repeats: true)
     }
     
     fileprivate func stopPlaybackInfoTimer() {
@@ -301,22 +308,25 @@ private class OvercastJavascriptBridge: NSObject, WKScriptMessageHandler {
     
     @objc fileprivate func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
         guard let msg = message.body as? String else { return }
+        guard let msgData = msg.data(using: .utf8) else { return }
         
-        DispatchQueue.main.async {
-            switch msg {
-            case "pause": self.didPause()
-            case "play": self.didPlay()
-            default: break;
+        do {
+            guard let msgDict = try JSONSerialization.jsonObject(with: msgData, options: []) as? [String: String] else { return }
+            
+            guard let msgName = msgDict["name"] else { return }
+            
+            DispatchQueue.main.async {
+                switch msgName {
+                case "audioURL":
+                    guard let audioStr = msgDict["url"], let audioURL = URL(string: audioStr) else { return }
+                    
+                    self.didCapturePlaybackURL(audioURL)
+                default: break;
+                }
             }
+        } catch {
+            NSLog("Failed to parse javascript bridge message: \(error.localizedDescription)")
         }
-        
-        /* JS-based VU disabled because of webkit bug (issue #3)
-        guard let value = message.body as? Double else { return }
-        
-        dispatch_async(dispatch_get_main_queue()) {
-            self.callback(value)
-        }
-         */
     }
     
     fileprivate func didPause() {
@@ -337,6 +347,10 @@ private class OvercastJavascriptBridge: NSObject, WKScriptMessageHandler {
         DispatchQueue.main.async {
             self.fakeGenerator.resume()
         }
+    }
+    
+    fileprivate func didCapturePlaybackURL(_ url: URL) {
+        NotificationCenter.default.post(name: .OvercastDidCapturePlaybackURL, object: url)
     }
     
 }

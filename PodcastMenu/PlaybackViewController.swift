@@ -10,6 +10,14 @@ import Cocoa
 
 final class PlaybackViewController: NSViewController {
 
+    var playbackURL: URL? {
+        didSet {
+            guard oldValue != playbackURL else { return }
+            
+            play()
+        }
+    }
+    
     static func instantiate() -> PlaybackViewController {
         let storyboard = NSStoryboard(name: "Playback", bundle: nil)
         
@@ -18,6 +26,20 @@ final class PlaybackViewController: NSViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    
+    override func viewDidAppear() {
+        super.viewDidAppear()
+    }
+    
+    @objc func play() {
+        guard let url = playbackURL else { return }
+        
+        PlaybackManager.shared.play(from: url)
+    }
+    
+    @objc func pause() {
+        PlaybackManager.shared.pause()
     }
     
 }

@@ -168,9 +168,9 @@ class PodcastWebAppViewController: NSViewController {
     
     // MARK: - Playback presentation
     
-    private var playbackController: PlaybackViewController!
+    var playbackController: PlaybackViewController!
     
-    func presentPlaybackViewController(for url: URL) {
+    func presentPlaybackViewController() {
         shouldFadeWebView = false
         
         playbackController = PlaybackViewController.instantiate()
@@ -492,9 +492,15 @@ extension PodcastWebAppViewController: NSMenuDelegate {
 
 extension PodcastWebAppViewController: OvercastNavigationDelegate {
     
-    func navigateToPlayback(with url: URL) {
+    func navigateToPlayback() {
         DispatchQueue.main.async {
-            self.presentPlaybackViewController(for: url)
+            self.presentPlaybackViewController()
+        }
+    }
+    
+    func requestPlaybackAudio(at url: URL) {
+        DispatchQueue.main.async {
+            self.playbackController.playbackURL = url
         }
     }
     

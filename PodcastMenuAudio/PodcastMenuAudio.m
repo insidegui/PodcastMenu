@@ -27,6 +27,10 @@ NSString * const kErrorDomain = @"br.com.guilhermerambo.PodcastMenuAudio";
                  seekingToTime:(NSTimeInterval)time
            useURLTimeIfPresent:(BOOL)shouldUseURLTime
 {
+#ifdef DEBUG
+    NSLog(@"Received request to play URL %@", url);
+#endif
+    
     NSTimeInterval effectiveStartTime = time;
     
     if (shouldUseURLTime) {
@@ -47,7 +51,10 @@ NSString * const kErrorDomain = @"br.com.guilhermerambo.PodcastMenuAudio";
     
     self.player = [AVPlayer playerWithURL:url];
     [self.player play];
-    [self.player seekToTime:CMTimeMakeWithSeconds(effectiveStartTime, kDefaultTimeScale)];
+    
+    if (effectiveStartTime != 0) {
+        [self.player seekToTime:CMTimeMakeWithSeconds(effectiveStartTime, kDefaultTimeScale)];
+    }
 }
 
 - (void)pause

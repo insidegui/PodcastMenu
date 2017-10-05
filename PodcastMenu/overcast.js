@@ -21,6 +21,10 @@ function installAudioPipeline() {
 		audio.addEventListener('play', function(){
            // stop autoplay and buffering
            audio.pause();
+                               
+           var msg = {"name": "audioURL", "url": audio.currentSrc};
+           bridge.postMessage(JSON.stringify(msg));
+                               
            audio.src = "";
 		}, false);
 	} catch(e) {
@@ -34,11 +38,6 @@ $(function(){
 		if (audio != null) {
 			clearInterval(findAudioInterval);
 			installAudioPipeline();
-		} else {
-			bridge.postMessage('pause');
 		}
 	}, 500);
-  
-    // hide account button
-    document.querySelector('a[href="/account"]').style.display = 'none';
 });

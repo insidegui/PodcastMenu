@@ -42,6 +42,7 @@
 		DD1AE3191E9ACA770003FFF0 /* PMFreestandingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD1AE3181E9ACA770003FFF0 /* PMFreestandingButton.swift */; };
 		DD1EFA781CE671A800E0C623 /* look.js in Resources */ = {isa = PBXBuildFile; fileRef = DD1EFA771CE671A800E0C623 /* look.js */; };
 		DD1EFA7A1CE671B200E0C623 /* PMWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD1EFA791CE671B200E0C623 /* PMWebView.swift */; };
+		DD51257A1F86EBFB00975453 /* PlaybackManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5125791F86EBFB00975453 /* PlaybackManager.swift */; };
 		DD5F6DBC1F7FE93400BC57AE /* DFRFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD5F6DBB1F7FE93400BC57AE /* DFRFoundation.framework */; };
 		DD6DFF471DD69700004954DE /* Podcast.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD6DFF461DD69700004954DE /* Podcast.swift */; };
 		DD6DFF491DD69734004954DE /* Episode.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD6DFF481DD69734004954DE /* Episode.swift */; };
@@ -147,6 +148,8 @@
 		DD1AE3181E9ACA770003FFF0 /* PMFreestandingButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PMFreestandingButton.swift; sourceTree = "<group>"; };
 		DD1EFA771CE671A800E0C623 /* look.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = look.js; sourceTree = "<group>"; };
 		DD1EFA791CE671B200E0C623 /* PMWebView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PMWebView.swift; sourceTree = "<group>"; };
+		DD5125791F86EBFB00975453 /* PlaybackManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaybackManager.swift; sourceTree = "<group>"; };
+		DD51257B1F86EE2500975453 /* PodcastMenuAudio.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PodcastMenuAudio.entitlements; sourceTree = "<group>"; };
 		DD5F6DB91F7FE64F00BC57AE /* TouchBarPrivate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TouchBarPrivate.h; sourceTree = "<group>"; };
 		DD5F6DBB1F7FE93400BC57AE /* DFRFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DFRFoundation.framework; path = ../../../../../System/Library/PrivateFrameworks/DFRFoundation.framework; sourceTree = "<group>"; };
 		DD6DFF461DD69700004954DE /* Podcast.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Podcast.swift; sourceTree = "<group>"; };
@@ -249,6 +252,7 @@
 			children = (
 				DDC61FEA1CE2F20E00C0FADA /* PodcastMenu-Bridging-Header.h */,
 				DD0BFE3C1CE25D1400446474 /* AppDelegate.swift */,
+				DD5125791F86EBFB00975453 /* PlaybackManager.swift */,
 			);
 			name = Bootstrap;
 			sourceTree = "<group>";
@@ -424,6 +428,7 @@
 		DDBF6D7E1F8270C90056B3E8 /* PodcastMenuAudio */ = {
 			isa = PBXGroup;
 			children = (
+				DD51257B1F86EE2500975453 /* PodcastMenuAudio.entitlements */,
 				DDBF6D7F1F8270C90056B3E8 /* PodcastMenuAudioProtocol.h */,
 				DDBF6D801F8270C90056B3E8 /* PodcastMenuAudio.h */,
 				DDBF6D811F8270C90056B3E8 /* PodcastMenuAudio.m */,
@@ -526,6 +531,11 @@
 						CreatedOnToolsVersion = 9.0;
 						DevelopmentTeam = 8C7439RJLG;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Sandbox = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -610,6 +620,7 @@
 			files = (
 				DD0BFE3D1CE25D1400446474 /* AppDelegate.swift in Sources */,
 				DD6DFF491DD69734004954DE /* Episode.swift in Sources */,
+				DD51257A1F86EBFB00975453 /* PlaybackManager.swift in Sources */,
 				DD14EB8F1DD6C7F000906DAD /* Poster.swift in Sources */,
 				DD0BFE5B1CE268A500446474 /* OvercastController.swift in Sources */,
 				DD6DFF671DD6A1DF004954DE /* SwiftyJSON.swift in Sources */,
@@ -880,6 +891,7 @@
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_ENTITLEMENTS = PodcastMenuAudio/PodcastMenuAudio.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -907,6 +919,7 @@
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_ENTITLEMENTS = PodcastMenuAudio/PodcastMenuAudio.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
