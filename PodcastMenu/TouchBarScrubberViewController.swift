@@ -7,7 +7,6 @@
 //
 
 import Cocoa
-import IGListDiff
 
 @available(macOS 10.12.2, *)
 private final class ScrubberItem: NSObject {
@@ -26,16 +25,6 @@ private final class ScrubberItem: NSObject {
     
     var link: URL? {
         return model.link
-    }
-    
-    override func diffIdentifier() -> NSObjectProtocol {
-        return self.hash as NSObjectProtocol
-    }
-    
-    override func isEqual(_ object: IGListDiffable?) -> Bool {
-        guard let other = object as? ScrubberItem else { return false }
-        
-        return model.compare(to: other.model)
     }
     
 }
@@ -105,16 +94,7 @@ class TouchBarScrubberViewController: NSViewController {
     fileprivate var items: [ScrubberItem] = [] {
         didSet {
             DispatchQueue.main.async {
-                if oldValue.isEmpty {
-                    self.scrubber.reloadData()
-                } else {
-                    let diff = IGListDiff(oldValue, self.items, .equality)
-                    self.scrubber.performSequentialBatchUpdates {
-                        self.scrubber.removeItems(at: diff.deletes)
-                        self.scrubber.insertItems(at: diff.inserts)
-                        self.scrubber.reloadItems(at: diff.updates)
-                    }
-                }
+                self.scrubber.reloadData()
             }
         }
     }

@@ -9,6 +9,7 @@
 import Cocoa
 import WebKit
 import Sparkle
+import SwiftyJSON
 
 class PodcastWebAppViewController: NSViewController {
     
@@ -122,6 +123,19 @@ class PodcastWebAppViewController: NSViewController {
         
         view.window?.alphaValue = 1.0
         updateAppearance()
+        
+        if #available(OSX 10.12.2, *) {
+            touchBarController.installControlStripNowPlayingItem()
+            touchBarController.showTouchBar()
+        }
+    }
+    
+    override func viewWillDisappear() {
+        super.viewWillDisappear()
+        
+        if #available(OSX 10.12.2, *) {
+            touchBarController.hideTouchBar()
+        }
     }
     
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
@@ -325,11 +339,7 @@ class PodcastWebAppViewController: NSViewController {
         didSet {
             shareButton.isHidden = (currentPlaybackInfo == nil)
             
-            #if DEBUG
-            if let info = currentPlaybackInfo {
-                NSLog("Updated playback info:\n\(info)")
-            }
-            #endif
+            touchBarController.playbackInfo = currentPlaybackInfo
         }
     }
     
@@ -410,17 +420,6 @@ class PodcastWebAppViewController: NSViewController {
     
     deinit {
         webView.removeObserver(self, forKeyPath: "estimatedProgress")
-    }
-    
-}
-
-// MARK: Touch Bar Support
-
-@available(OSX 10.12.2, *)
-extension PodcastWebAppViewController {
-    
-    override func makeTouchBar() -> NSTouchBar? {
-        return touchBarController.touchBar
     }
     
 }

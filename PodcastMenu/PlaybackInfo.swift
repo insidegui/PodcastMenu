@@ -16,5 +16,22 @@ struct PlaybackInfo {
     let audioURL: URL
     let shareURL: URL
     let shareWithTimeURL: URL
+    let artworkURL: URL
+    let isPlaying: Bool
+    
+}
+
+extension PlaybackInfo: Equatable {
+    
+    static func ==(lhs: PlaybackInfo, rhs: PlaybackInfo) -> Bool {
+        return lhs.title == rhs.title
+            && lhs.timeElapsed == rhs.timeElapsed
+            && lhs.timeRemaining == rhs.timeRemaining
+            && lhs.audioURL == rhs.audioURL
+            && lhs.shareURL == rhs.shareURL
+            && lhs.shareWithTimeURL == rhs.shareWithTimeURL
+            && lhs.artworkURL == rhs.artworkURL
+            && lhs.isPlaying == rhs.isPlaying
+    }
     
 }

@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import SwiftyJSON
 
 final class PlaybackInfoAdapter: Adapter<JSON, PlaybackInfo> {
     
@@ -38,12 +39,21 @@ final class PlaybackInfoAdapter: Adapter<JSON, PlaybackInfo> {
             return .error(.missingRequiredFields)
         }
         
+        guard let artworkSource = input["artwork_url"].string,
+            let artworkURL = URL(string: artworkSource) else {
+                return .error(.missingRequiredFields)
+        }
+        
+        let playing = input["is_playing"].boolValue
+        
         let info = PlaybackInfo(title: title,
                                 timeElapsed: timeElapsed,
                                 timeRemaining: timeRemaining,
                                 audioURL: audioURL,
                                 shareURL: shareURL,
-                                shareWithTimeURL: shareWithTimeURL)
+                                shareWithTimeURL: shareWithTimeURL,
+                                artworkURL: artworkURL,
+                                isPlaying: playing)
         
         return .success(info)
     }

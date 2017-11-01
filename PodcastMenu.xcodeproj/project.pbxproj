@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		012E8CCC1FA96F7F00E5FBF9 /* IGListKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 012E8CC91FA96F7E00E5FBF9 /* IGListKit.framework */; };
+		012E8CCD1FA96F7F00E5FBF9 /* IGListKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 012E8CC91FA96F7E00E5FBF9 /* IGListKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		012E8CCE1FA96F7F00E5FBF9 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 012E8CCA1FA96F7E00E5FBF9 /* Sparkle.framework */; };
+		012E8CCF1FA96F7F00E5FBF9 /* Sparkle.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 012E8CCA1FA96F7E00E5FBF9 /* Sparkle.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		012E8CD01FA96F7F00E5FBF9 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 012E8CCB1FA96F7F00E5FBF9 /* SwiftyJSON.framework */; };
+		012E8CD11FA96F7F00E5FBF9 /* SwiftyJSON.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 012E8CCB1FA96F7F00E5FBF9 /* SwiftyJSON.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		DD0BFE3D1CE25D1400446474 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD0BFE3C1CE25D1400446474 /* AppDelegate.swift */; };
 		DD0BFE3F1CE25D1400446474 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DD0BFE3E1CE25D1400446474 /* Assets.xcassets */; };
 		DD0BFE421CE25D1400446474 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD0BFE401CE25D1400446474 /* MainMenu.xib */; };
@@ -19,8 +25,6 @@
 		DD0BFE5B1CE268A500446474 /* OvercastController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD0BFE5A1CE268A500446474 /* OvercastController.swift */; };
 		DD0BFE621CE276CF00446474 /* MediaKeysHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD0BFE611CE276CF00446474 /* MediaKeysHandler.swift */; };
 		DD0BFE671CE27D5400446474 /* overcast.js in Resources */ = {isa = PBXBuildFile; fileRef = DD0BFE661CE27D5400446474 /* overcast.js */; };
-		DD0BFE6A1CE2817100446474 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD0BFE681CE2816900446474 /* Sparkle.framework */; };
-		DD0BFE6B1CE2817100446474 /* Sparkle.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DD0BFE681CE2816900446474 /* Sparkle.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		DD0BFE731CE2890000446474 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD0BFE711CE2890000446474 /* Fabric.framework */; };
 		DD0BFE741CE2890000446474 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD0BFE721CE2890000446474 /* Crashlytics.framework */; };
 		DD13C8B81CE8DE9A002174C4 /* PMEventTap.m in Sources */ = {isa = PBXBuildFile; fileRef = DD13C8B71CE8DE9A002174C4 /* PMEventTap.m */; };
@@ -32,15 +36,17 @@
 		DD14EB8B1DD6C2A000906DAD /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD14EB8A1DD6C2A000906DAD /* ImageCache.swift */; };
 		DD14EB8D1DD6C4A600906DAD /* ScrubberRemoteImageItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD14EB8C1DD6C4A600906DAD /* ScrubberRemoteImageItemView.swift */; };
 		DD14EB8F1DD6C7F000906DAD /* Poster.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD14EB8E1DD6C7F000906DAD /* Poster.swift */; };
+		DD153DD01F802F68007F9AD7 /* TouchBarMiniPlayer.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD153DCF1F802F68007F9AD7 /* TouchBarMiniPlayer.xib */; };
+		DD153DD31F803BE1007F9AD7 /* TouchBarNowPlayingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD153DD21F803BE1007F9AD7 /* TouchBarNowPlayingController.swift */; };
+		DD153DD51F803C6B007F9AD7 /* TouchBarMiniPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD153DD41F803C6B007F9AD7 /* TouchBarMiniPlayer.swift */; };
 		DD1AE2FC1E9A72180003FFF0 /* PlaybackInfoParser.js in Resources */ = {isa = PBXBuildFile; fileRef = DD1AE2FB1E9A72180003FFF0 /* PlaybackInfoParser.js */; };
 		DD1AE2FE1E9A72350003FFF0 /* PlaybackInfoAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD1AE2FD1E9A72350003FFF0 /* PlaybackInfoAdapter.swift */; };
 		DD1AE3001E9A725D0003FFF0 /* PlaybackInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD1AE2FF1E9A725D0003FFF0 /* PlaybackInfo.swift */; };
 		DD1AE3021E9A8C010003FFF0 /* OvercastModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD1AE3011E9A8C010003FFF0 /* OvercastModel.swift */; };
-		DD1AE30C1E9A8E630003FFF0 /* IGListDiff.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD1AE3091E9A8E470003FFF0 /* IGListDiff.framework */; };
-		DD1AE30D1E9A8E630003FFF0 /* IGListDiff.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DD1AE3091E9A8E470003FFF0 /* IGListDiff.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		DD1AE3191E9ACA770003FFF0 /* PMFreestandingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD1AE3181E9ACA770003FFF0 /* PMFreestandingButton.swift */; };
 		DD1EFA781CE671A800E0C623 /* look.js in Resources */ = {isa = PBXBuildFile; fileRef = DD1EFA771CE671A800E0C623 /* look.js */; };
 		DD1EFA7A1CE671B200E0C623 /* PMWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD1EFA791CE671B200E0C623 /* PMWebView.swift */; };
+		DD5F6DBC1F7FE93400BC57AE /* DFRFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD5F6DBB1F7FE93400BC57AE /* DFRFoundation.framework */; };
 		DD6DFF471DD69700004954DE /* Podcast.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD6DFF461DD69700004954DE /* Podcast.swift */; };
 		DD6DFF491DD69734004954DE /* Episode.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD6DFF481DD69734004954DE /* Episode.swift */; };
 		DD6DFF4C1DD697D7004954DE /* Adapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD6DFF4B1DD697D7004954DE /* Adapter.swift */; };
@@ -49,7 +55,6 @@
 		DD6DFF541DD69F42004954DE /* EpisodeAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD6DFF531DD69F42004954DE /* EpisodeAdapter.swift */; };
 		DD6DFF5C1DD6A122004954DE /* PodcastMenuTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD6DFF5B1DD6A122004954DE /* PodcastMenuTests.swift */; };
 		DD6DFF651DD6A159004954DE /* Episodes.json in Resources */ = {isa = PBXBuildFile; fileRef = DD6DFF641DD6A159004954DE /* Episodes.json */; };
-		DD6DFF671DD6A1DF004954DE /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD6DFF661DD6A1DF004954DE /* SwiftyJSON.swift */; };
 		DD6DFF6A1DD6A6F8004954DE /* Podcasts.json in Resources */ = {isa = PBXBuildFile; fileRef = DD6DFF691DD6A6F8004954DE /* Podcasts.json */; };
 		DD6DFF6E1DD6ACB5004954DE /* EpisodesParser.js in Resources */ = {isa = PBXBuildFile; fileRef = DD6DFF6C1DD6ACB5004954DE /* EpisodesParser.js */; };
 		DD6DFF6F1DD6ACB5004954DE /* PodcastsParser.js in Resources */ = {isa = PBXBuildFile; fileRef = DD6DFF6D1DD6ACB5004954DE /* PodcastsParser.js */; };
@@ -60,20 +65,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		DD1AE3081E9A8E470003FFF0 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = DD1AE3031E9A8E470003FFF0 /* IGListDiff.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = DD7CA1BE1DAECCC10020B93F;
-			remoteInfo = IGListDiff;
-		};
-		DD1AE30E1E9A8E630003FFF0 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = DD1AE3031E9A8E470003FFF0 /* IGListDiff.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = DD7CA1BD1DAECCC10020B93F;
-			remoteInfo = IGListDiff;
-		};
 		DD6DFF5E1DD6A122004954DE /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = DD0BFE311CE25D1400446474 /* Project object */;
@@ -84,14 +75,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		DD0BFE6C1CE2817100446474 /* Embed Frameworks */ = {
+		012E8CD21FA96F7F00E5FBF9 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				DD0BFE6B1CE2817100446474 /* Sparkle.framework in Embed Frameworks */,
-				DD1AE30D1E9A8E630003FFF0 /* IGListDiff.framework in Embed Frameworks */,
+				012E8CCD1FA96F7F00E5FBF9 /* IGListKit.framework in Embed Frameworks */,
+				012E8CCF1FA96F7F00E5FBF9 /* Sparkle.framework in Embed Frameworks */,
+				012E8CD11FA96F7F00E5FBF9 /* SwiftyJSON.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -99,6 +91,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		012E8CC91FA96F7E00E5FBF9 /* IGListKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IGListKit.framework; path = Carthage/Build/Mac/IGListKit.framework; sourceTree = "<group>"; };
+		012E8CCA1FA96F7E00E5FBF9 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sparkle.framework; path = Carthage/Build/Mac/Sparkle.framework; sourceTree = "<group>"; };
+		012E8CCB1FA96F7F00E5FBF9 /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = Carthage/Build/Mac/SwiftyJSON.framework; sourceTree = "<group>"; };
 		DD0BFE391CE25D1400446474 /* PodcastMenu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PodcastMenu.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD0BFE3C1CE25D1400446474 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DD0BFE3E1CE25D1400446474 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -113,7 +108,6 @@
 		DD0BFE5A1CE268A500446474 /* OvercastController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OvercastController.swift; sourceTree = "<group>"; };
 		DD0BFE611CE276CF00446474 /* MediaKeysHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaKeysHandler.swift; sourceTree = "<group>"; };
 		DD0BFE661CE27D5400446474 /* overcast.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = overcast.js; sourceTree = "<group>"; };
-		DD0BFE681CE2816900446474 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sparkle.framework; path = lib/Sparkle.framework; sourceTree = "<group>"; };
 		DD0BFE711CE2890000446474 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
 		DD0BFE721CE2890000446474 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		DD13C8B61CE8DE9A002174C4 /* PMEventTap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMEventTap.h; sourceTree = "<group>"; };
@@ -126,14 +120,19 @@
 		DD14EB8A1DD6C2A000906DAD /* ImageCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
 		DD14EB8C1DD6C4A600906DAD /* ScrubberRemoteImageItemView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScrubberRemoteImageItemView.swift; sourceTree = "<group>"; };
 		DD14EB8E1DD6C7F000906DAD /* Poster.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Poster.swift; sourceTree = "<group>"; };
+		DD153DCF1F802F68007F9AD7 /* TouchBarMiniPlayer.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TouchBarMiniPlayer.xib; sourceTree = "<group>"; };
+		DD153DD11F803194007F9AD7 /* test-artwork.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "test-artwork.jpg"; sourceTree = "<group>"; };
+		DD153DD21F803BE1007F9AD7 /* TouchBarNowPlayingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouchBarNowPlayingController.swift; sourceTree = "<group>"; };
+		DD153DD41F803C6B007F9AD7 /* TouchBarMiniPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouchBarMiniPlayer.swift; sourceTree = "<group>"; };
 		DD1AE2FB1E9A72180003FFF0 /* PlaybackInfoParser.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = PlaybackInfoParser.js; sourceTree = "<group>"; };
 		DD1AE2FD1E9A72350003FFF0 /* PlaybackInfoAdapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaybackInfoAdapter.swift; sourceTree = "<group>"; };
 		DD1AE2FF1E9A725D0003FFF0 /* PlaybackInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaybackInfo.swift; sourceTree = "<group>"; };
 		DD1AE3011E9A8C010003FFF0 /* OvercastModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OvercastModel.swift; sourceTree = "<group>"; };
-		DD1AE3031E9A8E470003FFF0 /* IGListDiff.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = IGListDiff.xcodeproj; path = lib/IGListDiff/IGListDiff.xcodeproj; sourceTree = "<group>"; };
 		DD1AE3181E9ACA770003FFF0 /* PMFreestandingButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PMFreestandingButton.swift; sourceTree = "<group>"; };
 		DD1EFA771CE671A800E0C623 /* look.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = look.js; sourceTree = "<group>"; };
 		DD1EFA791CE671B200E0C623 /* PMWebView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PMWebView.swift; sourceTree = "<group>"; };
+		DD5F6DB91F7FE64F00BC57AE /* TouchBarPrivate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TouchBarPrivate.h; sourceTree = "<group>"; };
+		DD5F6DBB1F7FE93400BC57AE /* DFRFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DFRFoundation.framework; path = ../../../../../System/Library/PrivateFrameworks/DFRFoundation.framework; sourceTree = "<group>"; };
 		DD6DFF461DD69700004954DE /* Podcast.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Podcast.swift; sourceTree = "<group>"; };
 		DD6DFF481DD69734004954DE /* Episode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Episode.swift; sourceTree = "<group>"; };
 		DD6DFF4B1DD697D7004954DE /* Adapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Adapter.swift; sourceTree = "<group>"; };
@@ -144,7 +143,6 @@
 		DD6DFF5B1DD6A122004954DE /* PodcastMenuTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastMenuTests.swift; sourceTree = "<group>"; };
 		DD6DFF5D1DD6A122004954DE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DD6DFF641DD6A159004954DE /* Episodes.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = Episodes.json; path = Data/Episodes.json; sourceTree = "<group>"; };
-		DD6DFF661DD6A1DF004954DE /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwiftyJSON.swift; path = lib/SwiftyJSON.swift; sourceTree = "<group>"; };
 		DD6DFF691DD6A6F8004954DE /* Podcasts.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = Podcasts.json; path = Data/Podcasts.json; sourceTree = "<group>"; };
 		DD6DFF6C1DD6ACB5004954DE /* EpisodesParser.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = EpisodesParser.js; sourceTree = "<group>"; };
 		DD6DFF6D1DD6ACB5004954DE /* PodcastsParser.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = PodcastsParser.js; sourceTree = "<group>"; };
@@ -161,10 +159,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DD0BFE6A1CE2817100446474 /* Sparkle.framework in Frameworks */,
-				DD1AE30C1E9A8E630003FFF0 /* IGListDiff.framework in Frameworks */,
+				012E8CCC1FA96F7F00E5FBF9 /* IGListKit.framework in Frameworks */,
 				DD0BFE741CE2890000446474 /* Crashlytics.framework in Frameworks */,
 				DD0BFE731CE2890000446474 /* Fabric.framework in Frameworks */,
+				012E8CCE1FA96F7F00E5FBF9 /* Sparkle.framework in Frameworks */,
+				DD5F6DBC1F7FE93400BC57AE /* DFRFoundation.framework in Frameworks */,
+				012E8CD01FA96F7F00E5FBF9 /* SwiftyJSON.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -181,10 +181,15 @@
 		DD0BFE301CE25D1400446474 = {
 			isa = PBXGroup;
 			children = (
-				DD0BFE691CE2816C00446474 /* Vendor */,
+				012E8CC91FA96F7E00E5FBF9 /* IGListKit.framework */,
+				012E8CCA1FA96F7E00E5FBF9 /* Sparkle.framework */,
+				012E8CCB1FA96F7F00E5FBF9 /* SwiftyJSON.framework */,
+				DD0BFE711CE2890000446474 /* Fabric.framework */,
+				DD0BFE721CE2890000446474 /* Crashlytics.framework */,
 				DD0BFE3B1CE25D1400446474 /* PodcastMenu */,
 				DD6DFF5A1DD6A122004954DE /* PodcastMenuTests */,
 				DD0BFE3A1CE25D1400446474 /* Products */,
+				DD5F6DBA1F7FE93300BC57AE /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -247,12 +252,14 @@
 		DD0BFE561CE267F400446474 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				DD153DD11F803194007F9AD7 /* test-artwork.jpg */,
 				DD13C8BC1CE8E587002174C4 /* MediaKeysUsers.plist */,
 				DD6DFF6B1DD6AC9B004954DE /* Parsers */,
 				DD0BFE651CE27D4500446474 /* Userscripts */,
 				DD0BFE3E1CE25D1400446474 /* Assets.xcassets */,
 				DD0BFE401CE25D1400446474 /* MainMenu.xib */,
 				DD0BFE431CE25D1400446474 /* Info.plist */,
+				DD153DCF1F802F68007F9AD7 /* TouchBarMiniPlayer.xib */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -286,18 +293,6 @@
 			name = Userscripts;
 			sourceTree = "<group>";
 		};
-		DD0BFE691CE2816C00446474 /* Vendor */ = {
-			isa = PBXGroup;
-			children = (
-				DD1AE3031E9A8E470003FFF0 /* IGListDiff.xcodeproj */,
-				DD6DFF661DD6A1DF004954DE /* SwiftyJSON.swift */,
-				DD0BFE711CE2890000446474 /* Fabric.framework */,
-				DD0BFE721CE2890000446474 /* Crashlytics.framework */,
-				DD0BFE681CE2816900446474 /* Sparkle.framework */,
-			);
-			name = Vendor;
-			sourceTree = "<group>";
-		};
 		DD13C8B91CE8DE9E002174C4 /* Aux */ = {
 			isa = PBXGroup;
 			children = (
@@ -311,20 +306,23 @@
 		DD14EB871DD6BC2300906DAD /* Touch Bar */ = {
 			isa = PBXGroup;
 			children = (
+				DD5F6DB91F7FE64F00BC57AE /* TouchBarPrivate.h */,
 				DD14EB811DD6B0F800906DAD /* TouchBarController.swift */,
 				DD14EB851DD6BC2100906DAD /* TouchBarScrubberViewController.swift */,
 				DD14EB8A1DD6C2A000906DAD /* ImageCache.swift */,
 				DD14EB8C1DD6C4A600906DAD /* ScrubberRemoteImageItemView.swift */,
+				DD153DD41F803C6B007F9AD7 /* TouchBarMiniPlayer.swift */,
+				DD153DD21F803BE1007F9AD7 /* TouchBarNowPlayingController.swift */,
 			);
 			name = "Touch Bar";
 			sourceTree = "<group>";
 		};
-		DD1AE3041E9A8E470003FFF0 /* Products */ = {
+		DD5F6DBA1F7FE93300BC57AE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				DD1AE3091E9A8E470003FFF0 /* IGListDiff.framework */,
+				DD5F6DBB1F7FE93400BC57AE /* DFRFoundation.framework */,
 			);
-			name = Products;
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		DD6DFF451DD696F6004954DE /* Models */ = {
@@ -401,13 +399,12 @@
 				DD0BFE351CE25D1400446474 /* Sources */,
 				DD0BFE361CE25D1400446474 /* Frameworks */,
 				DD0BFE371CE25D1400446474 /* Resources */,
-				DD0BFE6C1CE2817100446474 /* Embed Frameworks */,
 				DD0BFE701CE288E900446474 /* Crashlytics */,
+				012E8CD21FA96F7F00E5FBF9 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				DD1AE30F1E9A8E630003FFF0 /* PBXTargetDependency */,
 			);
 			name = PodcastMenu;
 			productName = PodcastMenu;
@@ -444,8 +441,8 @@
 				TargetAttributes = {
 					DD0BFE381CE25D1400446474 = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = 8C7439RJLG;
 						LastSwiftMigration = 0810;
+						ProvisioningStyle = Manual;
 					};
 					DD6DFF581DD6A122004954DE = {
 						CreatedOnToolsVersion = 8.1;
@@ -466,12 +463,6 @@
 			mainGroup = DD0BFE301CE25D1400446474;
 			productRefGroup = DD0BFE3A1CE25D1400446474 /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = DD1AE3041E9A8E470003FFF0 /* Products */;
-					ProjectRef = DD1AE3031E9A8E470003FFF0 /* IGListDiff.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				DD0BFE381CE25D1400446474 /* PodcastMenu */,
@@ -479,16 +470,6 @@
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		DD1AE3091E9A8E470003FFF0 /* IGListDiff.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = IGListDiff.framework;
-			remoteRef = DD1AE3081E9A8E470003FFF0 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		DD0BFE371CE25D1400446474 /* Resources */ = {
@@ -500,6 +481,7 @@
 				DD0BFE3F1CE25D1400446474 /* Assets.xcassets in Resources */,
 				DD0BFE671CE27D5400446474 /* overcast.js in Resources */,
 				DD13C8BD1CE8E587002174C4 /* MediaKeysUsers.plist in Resources */,
+				DD153DD01F802F68007F9AD7 /* TouchBarMiniPlayer.xib in Resources */,
 				DD6DFF6E1DD6ACB5004954DE /* EpisodesParser.js in Resources */,
 				DD1AE2FC1E9A72180003FFF0 /* PlaybackInfoParser.js in Resources */,
 				DD0BFE421CE25D1400446474 /* MainMenu.xib in Resources */,
@@ -544,7 +526,7 @@
 				DD6DFF491DD69734004954DE /* Episode.swift in Sources */,
 				DD14EB8F1DD6C7F000906DAD /* Poster.swift in Sources */,
 				DD0BFE5B1CE268A500446474 /* OvercastController.swift in Sources */,
-				DD6DFF671DD6A1DF004954DE /* SwiftyJSON.swift in Sources */,
+				DD153DD31F803BE1007F9AD7 /* TouchBarNowPlayingController.swift in Sources */,
 				DD0BFE4C1CE2608E00446474 /* PodcastWebAppViewController.swift in Sources */,
 				DD0BFE501CE2618900446474 /* Theme.swift in Sources */,
 				DD0BFE621CE276CF00446474 /* MediaKeysHandler.swift in Sources */,
@@ -564,6 +546,7 @@
 				DDC61FF01CE2FE1E00C0FADA /* Preferences.swift in Sources */,
 				DD0BFE521CE2672800446474 /* Constants.swift in Sources */,
 				DD6DFF471DD69700004954DE /* Podcast.swift in Sources */,
+				DD153DD51F803C6B007F9AD7 /* TouchBarMiniPlayer.swift in Sources */,
 				DDC61FE91CE2F0C300C0FADA /* VUController.swift in Sources */,
 				DD1AE2FE1E9A72350003FFF0 /* PlaybackInfoAdapter.swift in Sources */,
 				DD14EB861DD6BC2100906DAD /* TouchBarScrubberViewController.swift in Sources */,
@@ -586,11 +569,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		DD1AE30F1E9A8E630003FFF0 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = IGListDiff;
-			targetProxy = DD1AE30E1E9A8E630003FFF0 /* PBXContainerItemProxy */;
-		};
 		DD6DFF5F1DD6A122004954DE /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = DD0BFE381CE25D1400446474 /* PodcastMenu */;
@@ -704,19 +682,23 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = 8C7439RJLG;
+				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/lib",
 					"$(PROJECT_DIR)",
+					"$(SYSTEM_LIBRARY_DIR)/PrivateFrameworks",
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
 				);
 				INFOPLIST_FILE = PodcastMenu/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				OTHER_SWIFT_FLAGS = "-D DEBUG";
 				PRODUCT_BUNDLE_IDENTIFIER = br.com.guilhermerambo.PodcastMenu;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "PodcastMenu/PodcastMenu-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
@@ -728,18 +710,22 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = 8C7439RJLG;
+				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/lib",
 					"$(PROJECT_DIR)",
+					"$(SYSTEM_LIBRARY_DIR)/PrivateFrameworks",
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
 				);
 				INFOPLIST_FILE = PodcastMenu/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = br.com.guilhermerambo.PodcastMenu;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "PodcastMenu/PodcastMenu-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
