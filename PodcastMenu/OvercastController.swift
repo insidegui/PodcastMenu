@@ -66,6 +66,14 @@ class OvercastController: NSObject, WKNavigationDelegate {
        self.webView.reload()
     }
     
+    private lazy var removeActiveEpisodesScript: String? = {
+        guard let url = Bundle.main.url(forResource: "removeActiveEpisodes", withExtension: "js") else { return nil }
+        
+        guard let data = try? Data(contentsOf: url) else { return nil }
+        
+        return String(data: data, encoding: .utf8)
+    }()
+
     init(webView: WKWebView) {
         self.webView = webView
         self.bridge = OvercastJavascriptBridge(webView: webView)
@@ -126,6 +134,10 @@ class OvercastController: NSObject, WKNavigationDelegate {
             } else {
                 NotificationCenter.default.post(name: .OvercastIsNotOnEpisodePage, object: nil)
                 self.stopPlaybackInfoTimer()
+                
+                guard Preferences.showActiveEpisodes == false else { return }
+                guard let removeActiveEpisodesScript = self.removeActiveEpisodesScript else { return }
+                webView.evaluateJavaScript(removeActiveEpisodesScript, completionHandler: nil)
             }
         }
     }

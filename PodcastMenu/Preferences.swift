@@ -37,4 +37,17 @@ class Preferences {
         }
     }
     
+    class var showActiveEpisodes: Bool {
+        set {
+            #if DEBUG
+                NSLog("showActiveEpisodes = \(!newValue)")
+            #endif
+            defaults.set(!newValue, forKey: "showActiveEpisodes")
+            defaults.synchronize()
+        }
+        get {
+            return !defaults.bool(forKey: "showActiveEpisodes")
+        }
+    }
+    
 }
