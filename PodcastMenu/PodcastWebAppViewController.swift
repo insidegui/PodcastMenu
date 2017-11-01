@@ -14,6 +14,8 @@ import SwiftyJSON
 class PodcastWebAppViewController: NSViewController {
     
     var loudnessDelegate: OvercastLoudnessDelegate?
+    var currentEpisodes: [Episode] = []
+    
     
     init() {
         super.init(nibName: nil, bundle: nil)!
@@ -258,6 +260,8 @@ class PodcastWebAppViewController: NSViewController {
             let result = EpisodesAdapter(input: JSON(data: jsData)).adapt()
             switch result {
             case .success(let episodes):
+                self?.displayNotifcationIfNecessary(self?.currentEpisodes, currentEpisodes: episodes)
+                self?.currentEpisodes = episodes
                 self?.touchBarController.episodes = episodes
             default: break
             }
@@ -422,6 +426,27 @@ class PodcastWebAppViewController: NSViewController {
         webView.removeObserver(self, forKeyPath: "estimatedProgress")
     }
     
+    // MARK: User Notifications
+    
+    fileprivate func displayNotifcationIfNecessary(_ previousEpisodes: [Episode]?, currentEpisodes:[Episode]?) {
+        var newEpisodeCount = 0
+        guard (previousEpisodes?.isEmpty) == false else { return }
+        
+        currentEpisodes?.forEach({ (episode) in
+            guard (previousEpisodes?.contains(episode))! == false else { return }
+            newEpisodeCount += 1
+        })
+        
+        guard (newEpisodeCount != 0) else { return }
+        self.displayUserNotifcation(newEpisodeCount: newEpisodeCount)
+    }
+    
+    fileprivate func displayUserNotifcation(newEpisodeCount: Int ){
+        let userNotification = NSUserNotification()
+        userNotification.title = "New Active Episodes"
+        userNotification.informativeText = newEpisodeCount > 1 ? "You have \(newEpisodeCount) new episodes" : "You have \(newEpisodeCount) new episode"
+        NSUserNotificationCenter.default.deliver(userNotification)
+    }
 }
 
 @available(OSX 10.12.2, *)
