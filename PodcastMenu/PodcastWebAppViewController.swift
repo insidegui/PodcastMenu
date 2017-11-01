@@ -260,7 +260,7 @@ class PodcastWebAppViewController: NSViewController {
             let result = EpisodesAdapter(input: JSON(data: jsData)).adapt()
             switch result {
             case .success(let episodes):
-                self?.displayNotifcationIfNecessary(self?.currentEpisodes, currentEpisodes: episodes)
+                self?.displayUserNotifcationIfNecessary(self?.currentEpisodes, currentEpisodes: episodes)
                 self?.currentEpisodes = episodes
                 self?.touchBarController.episodes = episodes
             default: break
@@ -428,7 +428,7 @@ class PodcastWebAppViewController: NSViewController {
     
     // MARK: User Notifications
     
-    fileprivate func displayNotifcationIfNecessary(_ previousEpisodes: [Episode]?, currentEpisodes:[Episode]?) {
+    fileprivate func displayUserNotifcationIfNecessary(_ previousEpisodes: [Episode]?, currentEpisodes:[Episode]?) {
         var newEpisodeCount = 0
         guard (previousEpisodes?.isEmpty) == false else { return }
         
