@@ -293,17 +293,6 @@
 			name = Userscripts;
 			sourceTree = "<group>";
 		};
-		DD0BFE691CE2816C00446474 /* Vendor */ = {
-			isa = PBXGroup;
-			children = (
-				DD6DFF661DD6A1DF004954DE /* SwiftyJSON.swift */,
-				DD0BFE711CE2890000446474 /* Fabric.framework */,
-				DD0BFE721CE2890000446474 /* Crashlytics.framework */,
-				DD0BFE681CE2816900446474 /* Sparkle.framework */,
-			);
-			name = Vendor;
-			sourceTree = "<group>";
-		};
 		DD13C8B91CE8DE9E002174C4 /* Aux */ = {
 			isa = PBXGroup;
 			children = (
@@ -452,8 +441,8 @@
 				TargetAttributes = {
 					DD0BFE381CE25D1400446474 = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = 92RXMNCL7U;
 						LastSwiftMigration = 0810;
+						ProvisioningStyle = Manual;
 					};
 					DD6DFF581DD6A122004954DE = {
 						CreatedOnToolsVersion = 8.1;
@@ -537,7 +526,6 @@
 				DD6DFF491DD69734004954DE /* Episode.swift in Sources */,
 				DD14EB8F1DD6C7F000906DAD /* Poster.swift in Sources */,
 				DD0BFE5B1CE268A500446474 /* OvercastController.swift in Sources */,
-				DD6DFF671DD6A1DF004954DE /* SwiftyJSON.swift in Sources */,
 				DD153DD31F803BE1007F9AD7 /* TouchBarNowPlayingController.swift in Sources */,
 				DD0BFE4C1CE2608E00446474 /* PodcastWebAppViewController.swift in Sources */,
 				DD0BFE501CE2618900446474 /* Theme.swift in Sources */,
@@ -694,9 +682,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = 92RXMNCL7U;
+				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/lib",
@@ -709,6 +698,7 @@
 				OTHER_SWIFT_FLAGS = "-D DEBUG";
 				PRODUCT_BUNDLE_IDENTIFIER = br.com.guilhermerambo.PodcastMenu;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "PodcastMenu/PodcastMenu-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
@@ -720,9 +710,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = 92RXMNCL7U;
+				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/lib",
@@ -734,6 +725,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = br.com.guilhermerambo.PodcastMenu;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "PodcastMenu/PodcastMenu-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
