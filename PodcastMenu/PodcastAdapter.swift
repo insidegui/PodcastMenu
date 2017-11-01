@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import SwiftyJSON
 
 final class PodcastAdapter: Adapter<JSON, Podcast> {
     

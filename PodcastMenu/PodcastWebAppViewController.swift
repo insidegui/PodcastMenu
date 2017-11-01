@@ -9,6 +9,7 @@
 import Cocoa
 import WebKit
 import Sparkle
+import SwiftyJSON
 
 class PodcastWebAppViewController: NSViewController {
     
