@@ -13,6 +13,7 @@
 		012E8CCF1FA96F7F00E5FBF9 /* Sparkle.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 012E8CCA1FA96F7E00E5FBF9 /* Sparkle.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		012E8CD01FA96F7F00E5FBF9 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 012E8CCB1FA96F7F00E5FBF9 /* SwiftyJSON.framework */; };
 		012E8CD11FA96F7F00E5FBF9 /* SwiftyJSON.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 012E8CCB1FA96F7F00E5FBF9 /* SwiftyJSON.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		012E8CD51FA972EA00E5FBF9 /* removeActiveEpisodes.js in Resources */ = {isa = PBXBuildFile; fileRef = 012E8CD41FA972EA00E5FBF9 /* removeActiveEpisodes.js */; };
 		DD0BFE3D1CE25D1400446474 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD0BFE3C1CE25D1400446474 /* AppDelegate.swift */; };
 		DD0BFE3F1CE25D1400446474 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DD0BFE3E1CE25D1400446474 /* Assets.xcassets */; };
 		DD0BFE421CE25D1400446474 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD0BFE401CE25D1400446474 /* MainMenu.xib */; };
@@ -94,6 +95,7 @@
 		012E8CC91FA96F7E00E5FBF9 /* IGListKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IGListKit.framework; path = Carthage/Build/Mac/IGListKit.framework; sourceTree = "<group>"; };
 		012E8CCA1FA96F7E00E5FBF9 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sparkle.framework; path = Carthage/Build/Mac/Sparkle.framework; sourceTree = "<group>"; };
 		012E8CCB1FA96F7F00E5FBF9 /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = Carthage/Build/Mac/SwiftyJSON.framework; sourceTree = "<group>"; };
+		012E8CD41FA972EA00E5FBF9 /* removeActiveEpisodes.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = removeActiveEpisodes.js; sourceTree = "<group>"; };
 		DD0BFE391CE25D1400446474 /* PodcastMenu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PodcastMenu.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD0BFE3C1CE25D1400446474 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DD0BFE3E1CE25D1400446474 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -289,6 +291,7 @@
 			children = (
 				DD1EFA771CE671A800E0C623 /* look.js */,
 				DD0BFE661CE27D5400446474 /* overcast.js */,
+				012E8CD41FA972EA00E5FBF9 /* removeActiveEpisodes.js */,
 			);
 			name = Userscripts;
 			sourceTree = "<group>";
@@ -481,6 +484,7 @@
 				DD0BFE3F1CE25D1400446474 /* Assets.xcassets in Resources */,
 				DD0BFE671CE27D5400446474 /* overcast.js in Resources */,
 				DD13C8BD1CE8E587002174C4 /* MediaKeysUsers.plist in Resources */,
+				012E8CD51FA972EA00E5FBF9 /* removeActiveEpisodes.js in Resources */,
 				DD153DD01F802F68007F9AD7 /* TouchBarMiniPlayer.xib in Resources */,
 				DD6DFF6E1DD6ACB5004954DE /* EpisodesParser.js in Resources */,
 				DD1AE2FC1E9A72180003FFF0 /* PlaybackInfoParser.js in Resources */,
