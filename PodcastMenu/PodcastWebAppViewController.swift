@@ -426,19 +426,34 @@ class PodcastWebAppViewController: NSViewController {
         webView.removeObserver(self, forKeyPath: "estimatedProgress")
     }
     
-    // MARK: User Notifications
+    //MARK:-
     
-    fileprivate func displayUserNotifcationIfNecessary(_ previousEpisodes: [Episode]?, currentEpisodes:[Episode]?) {
-        var newEpisodeCount = 0
-        guard (previousEpisodes?.isEmpty) == false else { return }
+    fileprivate func filterNewEpisodes(_ previousEpisodes: [Episode]?, currentEpisodes: [Episode]?) -> [Episode]? {
+        guard (previousEpisodes != nil) else { return nil }
+        guard (currentEpisodes != nil) else { return nil }
+        guard (previousEpisodes!.isEmpty) == false else { return nil }
+        guard (currentEpisodes!.isEmpty) == false else { return nil }
+        
+        var newEpisodes: [Episode]?
         
         currentEpisodes?.forEach({ (episode) in
             guard (previousEpisodes?.contains(episode))! == false else { return }
-            newEpisodeCount += 1
+            if newEpisodes == nil {
+                newEpisodes = []
+            }
+            newEpisodes?.append(episode)
         })
         
-        guard (newEpisodeCount != 0) else { return }
-        self.displayUserNotifcation(newEpisodeCount: newEpisodeCount)
+        return newEpisodes
+    }
+    
+    // MARK: User Notifications
+    
+    fileprivate func displayUserNotifcationIfNecessary(_ previousEpisodes: [Episode]?, currentEpisodes:[Episode]?) {
+       
+        guard let newEpisodes = filterNewEpisodes(previousEpisodes, currentEpisodes: currentEpisodes) else { return }
+        
+        self.displayUserNotifcation(newEpisodeCount: newEpisodes.count)
     }
     
     fileprivate func displayUserNotifcation(newEpisodeCount: Int ){
