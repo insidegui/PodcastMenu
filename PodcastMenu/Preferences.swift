@@ -37,4 +37,15 @@ class Preferences {
         }
     }
     
+    class var notificationsEnabled: Bool {
+        set {
+            defaults.set(newValue, forKey: "enableNotifications")
+            defaults.synchronize()
+        }
+        get {
+        
+            return defaults.bool(forKey: "enableNotifications")
+        }
+    }
+    
 }

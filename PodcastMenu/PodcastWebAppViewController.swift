@@ -260,6 +260,7 @@ class PodcastWebAppViewController: NSViewController {
             let result = EpisodesAdapter(input: JSON(data: jsData)).adapt()
             switch result {
             case .success(let episodes):
+                guard Preferences.notificationsEnabled else { return }
                 self?.displayUserNotifcationIfNecessary(self?.currentEpisodes, currentEpisodes: episodes)
                 self?.currentEpisodes = episodes
                 self?.touchBarController.episodes = episodes
@@ -363,6 +364,10 @@ class PodcastWebAppViewController: NSViewController {
         passthroughItem.target = self
         passthroughItem.state = Preferences.mediaKeysPassthroughEnabled ? NSOnState : NSOffState
         
+        let enableNotificationsItem = NSMenuItem(title: NSLocalizedString("Enable Notifications", comment: "Enable Notifications"), action: #selector(toggleNotifications(_:)), keyEquivalent: "")
+        enableNotificationsItem.target = self
+        enableNotificationsItem.state = Preferences.notificationsEnabled ? NSOnState : NSOffState
+        
         let logOutItem = NSMenuItem(title: NSLocalizedString("Log Out", comment: "Log Out"), action: #selector(logOut(_:)), keyEquivalent: "")
         logOutItem.target = self
         logOutItem.tag = ConfigMenuItem.logOut.rawValue
@@ -378,6 +383,7 @@ class PodcastWebAppViewController: NSViewController {
         configMenu.addItem(NSMenuItem.separator())
         configMenu.addItem(vuItem)
         configMenu.addItem(passthroughItem)
+        configMenu.addItem(enableNotificationsItem)
         
         configMenu.addItem(NSMenuItem.separator())
         configMenu.addItem(logOutItem)
@@ -403,6 +409,11 @@ class PodcastWebAppViewController: NSViewController {
     @objc fileprivate func toggleMediaKeysPassthrough(_ sender: NSMenuItem) {
         sender.state = sender.state == NSOnState ? NSOffState : NSOnState
         Preferences.mediaKeysPassthroughEnabled = (sender.state == NSOnState)
+    }
+    
+    @objc fileprivate func toggleNotifications(_ sender: NSMenuItem) {
+        sender.state = sender.state == NSOnState ? NSOffState : NSOnState
+        Preferences.enableNotifications = (sender.state == NSOnState)
     }
     
     @objc fileprivate func checkForUpdates(_ sender: NSMenuItem) {
