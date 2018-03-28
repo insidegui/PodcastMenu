@@ -40,6 +40,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         popoverController.webAppController.loudnessDelegate = vuController
         
         perform(#selector(statusItemAction(_:)), with: statusItem.button, afterDelay: 0.5)
+        
+        NSUserNotificationCenter.default.delegate = self
     }
     
     @objc fileprivate func statusItemAction(_ sender: NSStatusBarButton) {
@@ -60,4 +62,17 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         popoverController.webAppController.openURL(URL)
     }
 
+}
+
+extension AppDelegate: NSUserNotificationCenterDelegate {
+    
+    func userNotificationCenter(_ center: NSUserNotificationCenter, shouldPresent notification: NSUserNotification) -> Bool {
+        return true
+    }
+    
+    func userNotificationCenter(_ center: NSUserNotificationCenter, didActivate notification: NSUserNotification) {
+        guard statusItem?.button != nil else { return }
+        popoverController.showPopoverFromStatusItemButton(statusItem.button!)
+        center.removeDeliveredNotification(notification)
+    }
 }

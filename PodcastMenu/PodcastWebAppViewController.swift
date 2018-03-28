@@ -9,10 +9,13 @@
 import Cocoa
 import WebKit
 import Sparkle
+import SwiftyJSON
 
 class PodcastWebAppViewController: NSViewController {
     
     var loudnessDelegate: OvercastLoudnessDelegate?
+    var currentEpisodes: [Episode] = []
+    
     
     init() {
         super.init(nibName: nil, bundle: nil)!
@@ -257,6 +260,9 @@ class PodcastWebAppViewController: NSViewController {
             let result = EpisodesAdapter(input: JSON(data: jsData)).adapt()
             switch result {
             case .success(let episodes):
+                guard Preferences.notificationsEnabled else { return }
+                self?.displayUserNotifcationIfNecessary(self?.currentEpisodes, currentEpisodes: episodes)
+                self?.currentEpisodes = episodes
                 self?.touchBarController.episodes = episodes
             default: break
             }
@@ -358,6 +364,10 @@ class PodcastWebAppViewController: NSViewController {
         passthroughItem.target = self
         passthroughItem.state = Preferences.mediaKeysPassthroughEnabled ? NSOnState : NSOffState
         
+        let enableNotificationsItem = NSMenuItem(title: NSLocalizedString("Enable Notifications", comment: "Enable Notifications"), action: #selector(toggleNotifications(_:)), keyEquivalent: "")
+        enableNotificationsItem.target = self
+        enableNotificationsItem.state = Preferences.notificationsEnabled ? NSOnState : NSOffState
+        
         let logOutItem = NSMenuItem(title: NSLocalizedString("Log Out", comment: "Log Out"), action: #selector(logOut(_:)), keyEquivalent: "")
         logOutItem.target = self
         logOutItem.tag = ConfigMenuItem.logOut.rawValue
@@ -373,6 +383,7 @@ class PodcastWebAppViewController: NSViewController {
         configMenu.addItem(NSMenuItem.separator())
         configMenu.addItem(vuItem)
         configMenu.addItem(passthroughItem)
+        configMenu.addItem(enableNotificationsItem)
         
         configMenu.addItem(NSMenuItem.separator())
         configMenu.addItem(logOutItem)
@@ -400,6 +411,11 @@ class PodcastWebAppViewController: NSViewController {
         Preferences.mediaKeysPassthroughEnabled = (sender.state == NSOnState)
     }
     
+    @objc fileprivate func toggleNotifications(_ sender: NSMenuItem) {
+        sender.state = sender.state == NSOnState ? NSOffState : NSOnState
+        Preferences.enableNotifications = (sender.state == NSOnState)
+    }
+    
     @objc fileprivate func checkForUpdates(_ sender: NSMenuItem) {
         SUUpdater.shared().checkForUpdates(sender)
     }
@@ -421,6 +437,42 @@ class PodcastWebAppViewController: NSViewController {
         webView.removeObserver(self, forKeyPath: "estimatedProgress")
     }
     
+    //MARK:-
+    
+    fileprivate func filterNewEpisodes(_ previousEpisodes: [Episode]?, currentEpisodes: [Episode]?) -> [Episode]? {
+        guard (previousEpisodes != nil) else { return nil }
+        guard (currentEpisodes != nil) else { return nil }
+        guard (previousEpisodes!.isEmpty) == false else { return nil }
+        guard (currentEpisodes!.isEmpty) == false else { return nil }
+        
+        var newEpisodes: [Episode]?
+        
+        currentEpisodes?.forEach({ (episode) in
+            guard (previousEpisodes?.contains(episode))! == false else { return }
+            if newEpisodes == nil {
+                newEpisodes = []
+            }
+            newEpisodes?.append(episode)
+        })
+        
+        return newEpisodes
+    }
+    
+    // MARK: User Notifications
+    
+    fileprivate func displayUserNotifcationIfNecessary(_ previousEpisodes: [Episode]?, currentEpisodes:[Episode]?) {
+       
+        guard let newEpisodes = filterNewEpisodes(previousEpisodes, currentEpisodes: currentEpisodes) else { return }
+        
+        self.displayUserNotifcation(newEpisodeCount: newEpisodes.count)
+    }
+    
+    fileprivate func displayUserNotifcation(newEpisodeCount: Int ){
+        let userNotification = NSUserNotification()
+        userNotification.title = "New Active Episodes"
+        userNotification.informativeText = newEpisodeCount > 1 ? "You have \(newEpisodeCount) new episodes" : "You have \(newEpisodeCount) new episode"
+        NSUserNotificationCenter.default.deliver(userNotification)
+    }
 }
 
 @available(OSX 10.12.2, *)

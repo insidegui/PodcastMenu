@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Episode {
+struct Episode: Equatable {
     
     enum Time {
         case duration(String)
@@ -21,5 +21,9 @@ struct Episode {
     let date: Date
     let time: Time
     let link: URL?
+    
+    static func == (lhs: Episode, rhs: Episode) -> Bool {
+        return lhs.podcast == rhs.podcast && lhs.title == rhs.title && lhs.date == rhs.date
+    }
     
 }
