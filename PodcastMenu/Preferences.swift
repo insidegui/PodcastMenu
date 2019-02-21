@@ -36,7 +36,7 @@ class Preferences {
             return defaults.bool(forKey: "mediakeyspassthrough")
         }
     }
-    
+  
     class var showActiveEpisodes: Bool {
         set {
             #if DEBUG
@@ -47,6 +47,16 @@ class Preferences {
         }
         get {
             return !defaults.bool(forKey: "showActiveEpisodes")
+        }
+    }
+  
+    class var notificationsEnabled: Bool {
+        set {
+            defaults.set(newValue, forKey: "enableNotifications")
+            defaults.synchronize()
+        }
+        get {
+            return defaults.bool(forKey: "enableNotifications")
         }
     }
     

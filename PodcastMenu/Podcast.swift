@@ -8,10 +8,13 @@
 
 import Foundation
 
-struct Podcast {
+struct Podcast: Equatable {
     
     let name: String
     let poster: URL
     let link: URL?
     
+    static func == (lhs: Podcast, rhs: Podcast) -> Bool {
+        return lhs.name == rhs.name && lhs.poster == rhs.poster && lhs.link == rhs.link
+    }
 }
