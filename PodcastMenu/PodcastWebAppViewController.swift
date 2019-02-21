@@ -424,7 +424,7 @@ class PodcastWebAppViewController: NSViewController {
     
     @objc fileprivate func toggleNotifications(_ sender: NSMenuItem) {
         sender.state = sender.state == NSOnState ? NSOffState : NSOnState
-        Preferences.enableNotifications = (sender.state == NSOnState)
+        Preferences.notificationsEnabled = (sender.state == NSOnState)
     }
     
     @objc fileprivate func checkForUpdates(_ sender: NSMenuItem) {
