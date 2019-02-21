@@ -85,13 +85,62 @@ CGEventRef eventTapCallback(CGEventTapProxy proxy, CGEventType type, CGEventRef 
     return self;
 }
 
+- (void)checkButtonPressed:(NSButton *)button
+{
+    if (!AXIsProcessTrustedWithOptions((CFDictionaryRef)@{(__bridge id)kAXTrustedCheckOptionPrompt: @NO})) {
+        return;
+    }
+    [[NSApplication sharedApplication]abortModal];
+    [self startObserving];
+}
+
+- (void)openSystemPreferencesButtonPressed:(NSButton *)button
+{
+    NSString* urlString = @"x-apple.systempreferences:com.apple.preference.security?Privacy_Accessibility";
+    [[NSWorkspace sharedWorkspace] openURL: [NSURL URLWithString:urlString]];
+}
 - (void)start
+{
+    if (@available(macOS 10.14, *)) {
+        BOOL accessibilityEnabled = AXIsProcessTrustedWithOptions((CFDictionaryRef)@{(__bridge id)kAXTrustedCheckOptionPrompt: @NO});
+        
+        if (!accessibilityEnabled) {
+            NSAlert *alert = [NSAlert new];
+            alert.informativeText = @"Podcast Menu needs to be authorized in otder to be able to controlled by your media keys.\n\nYou can do this in System Preferences > Security & Privacy > Privacy > Accessibility. You might need to drag-and-drop Podcast Menu into the list of allowed applications, and make sure the checkbox is on (and then press Check again).";
+            alert.messageText = @"Authorization Required";
+            
+            [alert addButtonWithTitle:@"Check"];
+            [alert addButtonWithTitle:@"Quit"];
+            [alert addButtonWithTitle:@"Open System Preferences"];
+            
+            NSButton *checkButton = alert.buttons[0];
+            [checkButton setTarget:self];
+            checkButton.action = @selector(checkButtonPressed:);
+            
+            NSButton *systemPreferencesButton = alert.buttons[2];
+            [systemPreferencesButton setTarget:self];
+            systemPreferencesButton.action = @selector(openSystemPreferencesButtonPressed:);
+            
+            if ([alert runModal] == NSAlertSecondButtonReturn) {
+                [[NSApplication sharedApplication] terminate:nil];
+            }
+        }
+        return;
+    }
+    
+    [self startObserving];
+}
+
+- (void)startObserving
 {
     dispatch_queue_t eventQueue = dispatch_queue_create("br.com.guilhermerambo.EventTap", NULL);
     dispatch_async(eventQueue, ^{
         CGEventMask mask = CGEventMaskBit(NSSystemDefined);
-        
         self.eventPort = CGEventTapCreate(kCGHIDEventTap, kCGHeadInsertEventTap, 0, mask, eventTapCallback, (__bridge void *)self);
+        if (self.eventPort == NULL) {
+            NSLog(@"[PMEventTap] Could not create event tap");
+            return;
+        }
         CFRunLoopSourceRef runLoopSource = CFMachPortCreateRunLoopSource(kCFAllocatorDefault, self.eventPort, 0);
         CFRunLoopAddSource(CFRunLoopGetCurrent(), runLoopSource, kCFRunLoopCommonModes);
         CGEventTapEnable(self.eventPort, true);
