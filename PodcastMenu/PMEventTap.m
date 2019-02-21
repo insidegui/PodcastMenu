@@ -106,7 +106,7 @@ CGEventRef eventTapCallback(CGEventTapProxy proxy, CGEventType type, CGEventRef 
         
         if (!accessibilityEnabled) {
             NSAlert *alert = [NSAlert new];
-            alert.informativeText = @"Podcast Menu needs to be authorized in otder to be able to controlled by your media keys.\n\nYou can do this in System Preferences > Security & Privacy > Privacy > Accessibility. You might need to drag-and-drop Podcast Menu into the list of allowed applications, and make sure the checkbox is on (and then press Check again).";
+            alert.informativeText = @"Podcast Menu needs to be authorized in order to be able to controlled by your media keys.\n\nYou can do this in System Preferences > Security & Privacy > Privacy > Accessibility. You might need to drag-and-drop Podcast Menu into the list of allowed applications, and make sure the checkbox is on (and then press Check again).";
             alert.messageText = @"Authorization Required";
             
             [alert addButtonWithTitle:@"Check"];
