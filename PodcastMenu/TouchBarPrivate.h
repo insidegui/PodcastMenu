@@ -23,4 +23,8 @@ extern void DFRSystemModalShowsCloseBoxWhenFrontMost(BOOL);
 + (void)presentSystemModalFunctionBar:(NSTouchBar *__nonnull)touchBar placement:(long long)placement systemTrayItemIdentifier:(NSString *__nonnull)identifier;
 + (void)dismissSystemModalFunctionBar:(NSTouchBar *__nonnull)touchBar;
 
+/* macOS 10.14 */
++ (void)presentSystemModalTouchBar:(NSTouchBar *)touchBar placement:(long long)placement systemTrayItemIdentifier:(NSTouchBarItemIdentifier)identifier;
++ (void)dismissSystemModalTouchBar:(NSTouchBar *)touchBar;
+
 @end

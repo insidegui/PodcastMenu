@@ -113,11 +113,19 @@ class TouchBarController: NSObject {
     
     @available(OSX 10.12.2, *)
     func showTouchBar() {
+        if #available(OSX 10.14, *) {
+            NSTouchBar.presentSystemModalTouchBar(nowPlayingTouchBar, placement: 0, systemTrayItemIdentifier: NSTouchBarItemIdentifier(rawValue: "otherTouchBar"))
+            return
+        }
         NSTouchBar.presentSystemModalFunctionBar(nowPlayingTouchBar, placement: 0, systemTrayItemIdentifier: "otherTouchBar")
     }
     
     @available(OSX 10.12.2, *)
     func hideTouchBar() {
+        if #available(OSX 10.14, *) {
+            NSTouchBar.dismissSystemModalTouchBar(nowPlayingTouchBar)
+            return
+        }
         NSTouchBar.dismissSystemModalFunctionBar(nowPlayingTouchBar)
     }
     
