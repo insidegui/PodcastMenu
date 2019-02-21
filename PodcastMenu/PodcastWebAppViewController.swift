@@ -415,6 +415,9 @@ class PodcastWebAppViewController: NSViewController {
     @objc fileprivate func toggleActiveEpisodes(_ sender: NSMenuItem) {
         sender.state = sender.state == NSOnState ? NSOffState : NSOnState
         Preferences.showActiveEpisodes = (sender.state == NSOnState)
+        //Only reload if user is on the home page 
+        guard webView.url?.path == Constants.homePath else { return }
+        webView.reload()
     }
     
     @objc fileprivate func toggleMediaKeysPassthrough(_ sender: NSMenuItem) {
