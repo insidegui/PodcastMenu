@@ -36,14 +36,26 @@ class Preferences {
             return defaults.bool(forKey: "mediakeyspassthrough")
         }
     }
-    
+  
+    class var showActiveEpisodes: Bool {
+        set {
+            #if DEBUG
+                NSLog("showActiveEpisodes = \(!newValue)")
+            #endif
+            defaults.set(!newValue, forKey: "showActiveEpisodes")
+            defaults.synchronize()
+        }
+        get {
+            return !defaults.bool(forKey: "showActiveEpisodes")
+        }
+    }
+  
     class var notificationsEnabled: Bool {
         set {
             defaults.set(newValue, forKey: "enableNotifications")
             defaults.synchronize()
         }
         get {
-        
             return defaults.bool(forKey: "enableNotifications")
         }
     }

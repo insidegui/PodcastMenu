@@ -260,6 +260,7 @@ class PodcastWebAppViewController: NSViewController {
             let result = EpisodesAdapter(input: JSON(data: jsData)).adapt()
             switch result {
             case .success(let episodes):
+                guard Preferences.showActiveEpisodes else { self?.touchBarController.episodes = []; break }
                 guard Preferences.notificationsEnabled else { return }
                 self?.displayUserNotifcationIfNecessary(self?.currentEpisodes, currentEpisodes: episodes)
                 self?.currentEpisodes = episodes
@@ -360,6 +361,10 @@ class PodcastWebAppViewController: NSViewController {
         vuItem.target = self
         vuItem.state = Preferences.enableVU ? NSOnState : NSOffState
         
+        let activeEpisodesItem = NSMenuItem(title: NSLocalizedString("Show Active Episodes", comment: "Show Active Episodes"), action: #selector(toggleActiveEpisodes(_:)), keyEquivalent: "")
+        activeEpisodesItem.target = self
+        activeEpisodesItem.state = Preferences.showActiveEpisodes ? NSOnState : NSOffState
+        
         let passthroughItem = NSMenuItem(title: NSLocalizedString("Don't Own Media Keys", comment: "Don't Own Media Keys"), action: #selector(toggleMediaKeysPassthrough(_:)), keyEquivalent: "")
         passthroughItem.target = self
         passthroughItem.state = Preferences.mediaKeysPassthroughEnabled ? NSOnState : NSOffState
@@ -382,6 +387,7 @@ class PodcastWebAppViewController: NSViewController {
         
         configMenu.addItem(NSMenuItem.separator())
         configMenu.addItem(vuItem)
+        configMenu.addItem(activeEpisodesItem)
         configMenu.addItem(passthroughItem)
         configMenu.addItem(enableNotificationsItem)
         
@@ -406,6 +412,14 @@ class PodcastWebAppViewController: NSViewController {
         Preferences.enableVU = (sender.state == NSOnState)
     }
     
+    @objc fileprivate func toggleActiveEpisodes(_ sender: NSMenuItem) {
+        sender.state = sender.state == NSOnState ? NSOffState : NSOnState
+        Preferences.showActiveEpisodes = (sender.state == NSOnState)
+        //Only reload if user is on the home page 
+        guard webView.url?.path == Constants.homePath else { return }
+        webView.reload()
+    }
+    
     @objc fileprivate func toggleMediaKeysPassthrough(_ sender: NSMenuItem) {
         sender.state = sender.state == NSOnState ? NSOffState : NSOnState
         Preferences.mediaKeysPassthroughEnabled = (sender.state == NSOnState)
@@ -413,7 +427,7 @@ class PodcastWebAppViewController: NSViewController {
     
     @objc fileprivate func toggleNotifications(_ sender: NSMenuItem) {
         sender.state = sender.state == NSOnState ? NSOffState : NSOnState
-        Preferences.enableNotifications = (sender.state == NSOnState)
+        Preferences.notificationsEnabled = (sender.state == NSOnState)
     }
     
     @objc fileprivate func checkForUpdates(_ sender: NSMenuItem) {
